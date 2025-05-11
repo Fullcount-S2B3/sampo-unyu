@@ -1,0 +1,44 @@
+.loading-spinner {
+  width: 300px;
+  height: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+
+  // 表示/非表示を制御するクラス
+  &.is-loading {
+    display: block; // または flex など、レイアウトに応じて
+  }
+  &.is-hidden {
+    display: none;
+  }
+
+  .wave-loader {
+    display: block;
+    width: 100%;
+    height: auto;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 30%,
+      black 45%,
+      black 55%,
+      transparent 70%,
+      transparent 100%
+    );
+    mask-size: 250% 100%;
+    mask-repeat: no-repeat;
+    animation: loading-highlight-pass 1.6s linear infinite;
+  }
+}
+
+@keyframes loading-highlight-pass {
+  0% {
+    mask-position: 125% 0;
+  }
+  100% {
+    mask-position: -125% 0;
+  }
+}

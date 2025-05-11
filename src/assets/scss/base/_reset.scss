@@ -1,0 +1,16 @@
+@use "abstracts" as *;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-base;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $color-dark;
+}

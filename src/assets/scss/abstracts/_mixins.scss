@@ -1,0 +1,16 @@
+// breakpoints
+$breakpoint-sp: 480px;
+$breakpoint-tab: 768px;
+
+// メディアクエリmixin
+@mixin sp {
+  @media (max-width: #{$breakpoint-sp}) {
+    @content;
+  }
+}
+
+@mixin tab {
+  @media (max-width: #{$breakpoint-tab}) {
+    @content;
+  }
+}

@@ -1,36 +1,48 @@
+const loadingSpinner = document.querySelector(".loading-spinner");
+
+function showLoading() {
+  if (loadingSpinner) {
+    loadingSpinner.classList.remove("is-hidden");
+    loadingSpinner.classList.add("is-loading");
+  }
+}
+
+function hideLoading() {
+  if (loadingSpinner) {
+    loadingSpinner.classList.remove("is-loading");
+    loadingSpinner.classList.add("is-hidden");
+  }
+}
+
+showLoading();
+
 document.addEventListener("DOMContentLoaded", () => {
   const video = document.querySelector(".hero__video");
   const heroWave = document.querySelector(".hero__wave");
   const h1Element = document.querySelector(".hero__text h1");
   const pElement = document.querySelector(".hero__text p");
 
-  // h1のテキストを1文字ずつspanで囲む（<br>も保持）
+  let h1CharSpans = [];
+
   function setupH1Text(element) {
     if (!element) return [];
-    // JSONから読み込まれたHTML文字列（<br>を含む）がelement.innerHTMLに入っていると想定
     const originalHTML = element.innerHTML;
-    element.innerHTML = ""; // 一旦クリア
+    element.innerHTML = "";
     const fragment = document.createDocumentFragment();
-    let charNodes = []; // アニメーション対象となる文字のspan要素を格納
-
-    // HTML文字列を一時的なdivに入れてDOMノードとしてアクセス可能にする
+    let charNodes = [];
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = originalHTML;
 
     Array.from(tempDiv.childNodes).forEach((node) => {
       if (node.nodeType === Node.TEXT_NODE) {
-        // テキストノードの場合
         const textContent = node.textContent || "";
         for (let i = 0; i < textContent.length; i++) {
           const char = textContent[i];
           const span = document.createElement("span");
-          span.className = "char-span"; // スタイル適用のためクラス名を付与
-
+          span.className = "char-span";
           if (char === " ") {
-            // 半角スペースの場合は &nbsp; をinnerHTMLで設定
             span.innerHTML = "&nbsp;";
           } else {
-            // その他の文字はtextContentで設定
             span.textContent = char;
           }
           fragment.appendChild(span);
@@ -40,20 +52,20 @@ document.addEventListener("DOMContentLoaded", () => {
         node.nodeType === Node.ELEMENT_NODE &&
         node.tagName.toLowerCase() === "br"
       ) {
-        // <br> タグの場合はそのまま<br>タグとして追加
         const br = document.createElement("br");
         fragment.appendChild(br);
-        // charNodesには含めない（<br>はアニメーション対象の「文字」ではないため）
       }
     });
     element.appendChild(fragment);
     return charNodes;
   }
 
-  const h1CharSpans = setupH1Text(h1Element);
+  if (h1Element) {
+    h1CharSpans = setupH1Text(h1Element);
+  }
 
   async function animateH1() {
-    if (h1CharSpans.length === 0) return;
+    if (!h1CharSpans || h1CharSpans.length === 0) return;
     const charAnimationDelay = 150;
 
     h1CharSpans.forEach((span, index) => {
@@ -71,24 +83,21 @@ document.addEventListener("DOMContentLoaded", () => {
     return new Promise((resolve) => setTimeout(resolve, totalH1AnimationTime));
   }
 
-  // pテキストをフェードイン
   function fadeInP() {
     if (pElement) {
       pElement.classList.add("is-visible");
     }
   }
 
-  // SVGワイプアニメーションを開始
   function startWaveAnimation() {
     if (heroWave) {
       heroWave.classList.add("is-active");
     }
   }
 
-  // アニメーション全体のシーケンスを開始する関数
-  function startAnimations() {
+  function startHeroContentAnimations() {
+    hideLoading(); // ヒーローアニメーション開始直前にローディングを非表示
     startWaveAnimation();
-
     setTimeout(() => {
       animateH1().then(() => {
         fadeInP();
@@ -96,18 +105,42 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 500);
   }
 
-  // 動画の読み込みを監視
+  let windowLoaded = false;
+  let videoReadyForAnimations = false;
+
+  function tryStartAnimations() {
+    if (windowLoaded && videoReadyForAnimations) {
+      startHeroContentAnimations();
+    }
+  }
+
+  window.addEventListener("load", () => {
+    windowLoaded = true;
+    tryStartAnimations();
+  });
+
   if (video) {
+    const onVideoReady = () => {
+      if (!videoReadyForAnimations) {
+        // 複数回発火する可能性のあるイベントのためフラグチェック
+        videoReadyForAnimations = true;
+        tryStartAnimations();
+      }
+    };
+
     if (video.readyState >= 3) {
-      startAnimations();
+      // HAVE_FUTURE_DATA or HAVE_ENOUGH_DATA
+      // video.play().catch(() => {}); // autoplay属性がある場合は不要なことも多いが、念のため
+      onVideoReady();
     } else {
-      video.addEventListener("canplaythrough", startAnimations, { once: true });
-      video.addEventListener("loadeddata", startAnimations, { once: true });
+      video.addEventListener("canplaythrough", onVideoReady, { once: true });
+      video.addEventListener("loadeddata", onVideoReady, { once: true }); // loadeddataはcanplaythroughより先に発火する可能性がある
     }
   } else {
     console.warn(
-      "Hero video element not found. Starting animations immediately."
+      "Hero video element not found. Assuming video is ready for animations."
     );
-    startAnimations();
+    videoReadyForAnimations = true;
+    tryStartAnimations(); // window.onloadを待つことになる
   }
 });

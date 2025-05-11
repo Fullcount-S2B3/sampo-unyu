@@ -21,6 +21,39 @@ body {
   color: #111;
 }
 
+.loading-spinner {
+  width: 300px;
+  height: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+.loading-spinner.is-loading {
+  display: block;
+}
+.loading-spinner.is-hidden {
+  display: none;
+}
+.loading-spinner .wave-loader {
+  display: block;
+  width: 100%;
+  height: auto;
+  mask-image: linear-gradient(to right, transparent 0%, transparent 30%, black 45%, black 55%, transparent 70%, transparent 100%);
+  mask-size: 250% 100%;
+  mask-repeat: no-repeat;
+  animation: loading-highlight-pass 1.6s linear infinite;
+}
+
+@keyframes loading-highlight-pass {
+  0% {
+    mask-position: 125% 0;
+  }
+  100% {
+    mask-position: -125% 0;
+  }
+}
 .footer {
   background-color: #004a8f;
   color: #fff;

@@ -162,6 +162,7 @@ body {
   line-height: 1.4;
   margin-bottom: 1rem;
   opacity: 1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 .hero__text h1 span.char-span {
   display: inline-block;
@@ -174,6 +175,7 @@ body {
   font-size: 3rem;
   opacity: 0;
   transition: opacity 1s ease-in;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 .hero__text p.is-visible {
   opacity: 1;

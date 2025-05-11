@@ -87,6 +87,7 @@
       line-height: 1.4;
       margin-bottom: 1rem;
       opacity: 1;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 
       span.char-span {
         display: inline-block;
@@ -102,6 +103,7 @@
       font-size: 3rem;
       opacity: 0;
       transition: opacity 1s ease-in;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 
       &.is-visible {
         opacity: 1;

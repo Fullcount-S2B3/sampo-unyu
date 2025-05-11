@@ -1,0 +1,29 @@
+@use "abstracts" as *;
+
+.footer {
+  background-color: $color-primary;
+  color: $color-white;
+  padding: 2rem 1rem;
+  font-size: 0.875rem;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__links a {
+    color: $color-white;
+    margin-right: 1rem;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__copyright {
+    margin-top: 1rem;
+    text-align: center;
+  }
+}

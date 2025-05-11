@@ -1,0 +1,215 @@
+@use "abstracts" as *;
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__video-wrapper {
+    // HTML構造に合わせて追加
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; // 動画を一番後ろに
+  }
+
+  &__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.4) 25%,
+        transparent 25%,
+        transparent 75%,
+        rgba(0, 0, 0, 0.4) 75%,
+        rgba(0, 0, 0, 0.4)
+      ),
+      linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.2) 25%,
+        transparent 25%,
+        transparent 75%,
+        rgba(0, 0, 0, 0.2) 75%,
+        rgba(0, 0, 0, 0.2)
+      );
+    background-size: 2px 2px;
+    z-index: 0;
+  }
+
+  &__wave {
+    position: absolute;
+    left: 3%;
+    z-index: 1;
+    width: 90vw;
+    max-width: 1368px;
+    mask-image: linear-gradient(to right, black 60%, transparent 100%);
+    mask-size: 0% 100%;
+    mask-repeat: no-repeat;
+    mask-position: left center;
+
+    .wave {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    &.is-active {
+      animation: wipe-fade-right 4s ease-out forwards;
+    }
+  }
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 8.33%;
+    transform: translateY(-50%);
+    z-index: 2;
+    color: #fff;
+    max-width: 80%;
+
+    h1 {
+      font-size: clamp(1rem, 3vw + 1rem, 9rem);
+      line-height: 1.4;
+      margin-bottom: 1rem;
+      opacity: 1;
+
+      span.char-span {
+        display: inline-block;
+        opacity: 0;
+        // transform: translateY(15px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        transition-delay: var(--char-delay, 0.5s);
+      }
+    }
+
+    p {
+      margin-top: 1rem;
+      font-size: 3rem;
+      opacity: 0;
+      transition: opacity 1s ease-in;
+
+      &.is-visible {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@keyframes wipe-fade-right {
+  to {
+    mask-size: 100% 100%;
+  }
+}
+
+.services {
+  background: #f2f8fc;
+  padding: 4rem 1rem;
+
+  &__heading {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    text-align: center;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    p {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.company {
+  padding: 4rem 1rem;
+  background: #fff;
+
+  &__heading {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+
+    a {
+      color: $color-primary;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.news {
+  background: #f9f9f9;
+  padding: 4rem 1rem;
+
+  &__heading {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+
+  &__item {
+    background: #fff;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    text-align: left;
+
+    img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 0.875rem;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+@use "../abstracts" as *;
+
+.section-padding {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+
+  @include tab {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  @include sp {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+.section--light-bg {
+  // `pages/_home.scss`で使ったもの
+  background-color: $color-light-bg;
+}
+
+.section--blue-bg {
+  // `pages/_home.scss`で使ったもの
+  background-color: $color-primary;
+  color: $color-white; // このセクション内の基本文字色
+  .section-title {
+    // このセクション内のタイトルは白
+    color: $color-white;
+  }
+  // このセクション内のカードタイトルなども白にする場合は、カード側で指定
+  .service-card__title {
+    color: $color-white;
+  }
+}
+
+// マージン・パディングのユーティリティ例 (必要に応じて拡張)
+$space-amounts: (0, 1, 2, 3, 4, 5); // 0rem, 1rem, 2rem ...
+$space-unit: 1rem;
+
+@each $amount in $space-amounts {
+  .mt-#{$amount} {
+    margin-top: $amount * $space-unit !important;
+  }
+  .mb-#{$amount} {
+    margin-bottom: $amount * $space-unit !important;
+  }
+  .ml-#{$amount} {
+    margin-left: $amount * $space-unit !important;
+  }
+  .mr-#{$amount} {
+    margin-right: $amount * $space-unit !important;
+  }
+  .my-#{$amount} {
+    margin-top: $amount * $space-unit !important;
+    margin-bottom: $amount * $space-unit !important;
+  }
+  .mx-#{$amount} {
+    margin-left: $amount * $space-unit !important;
+    margin-right: $amount * $space-unit !important;
+  }
+
+  .pt-#{$amount} {
+    padding-top: $amount * $space-unit !important;
+  }
+  .pb-#{$amount} {
+    padding-bottom: $amount * $space-unit !important;
+  }
+  .pl-#{$amount} {
+    padding-left: $amount * $space-unit !important;
+  }
+  .pr-#{$amount} {
+    padding-right: $amount * $space-unit !important;
+  }
+  .py-#{$amount} {
+    padding-top: $amount * $space-unit !important;
+    padding-bottom: $amount * $space-unit !important;
+  }
+  .px-#{$amount} {
+    padding-left: $amount * $space-unit !important;
+    padding-right: $amount * $space-unit !important;
+  }
+}

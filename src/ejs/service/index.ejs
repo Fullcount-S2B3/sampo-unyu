@@ -1,12 +1,7 @@
-<% var path = '../'; // 下層ページの場合のパス例 %> <% var pageId = 'service';
-// このページのID (ヘッダーのアクティブ表示用) %> <% var lang = 'ja'; //
-言語設定 %> <% var data = { title: '内航船舶貸渡業 - 事業案内 |
-三豊運輸株式会社', // ページタイトル breadcrumbs: [ { name: 'ホーム', href: path
-}, { name: '事業内容', href: path + 'service/' }, { name: '内航船舶貸渡業' } //
-現在のページはリンクなし ] }; %>
+<% var path = '../'; %>
 <!DOCTYPE html>
 <html lang="<%= lang %>">
-  <%- include('_includes/head', { path: path, data: data }) %>
+  <%- include('_includes/head', { path: '../' }) %>
   <body class="page-service page-service-detail">
     <%- /* bodyにページ固有クラスを追加 */ %> <%- include('_includes/header', {
     path: path, pageId: pageId, lang: lang }) %>
@@ -71,7 +66,7 @@
       </div>
     </main>
 
-    <%- include('_includes/footer', { path: path }) %> <%-
-    include('_includes/scripts', { path: path }) %>
+    <%- include('_includes/footer', { path: '../' }) %> <%-
+    include('_includes/scripts', { path: '../' }) %>
   </body>
 </html>

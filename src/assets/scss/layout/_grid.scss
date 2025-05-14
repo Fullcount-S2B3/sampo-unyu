@@ -1,0 +1,15 @@
+@use "../abstracts" as *;
+
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $container-padding-sp;
+  padding-right: $container-padding-sp;
+
+  @include tab {
+    padding-left: $container-padding-pc;
+    padding-right: $container-padding-pc;
+  }
+}

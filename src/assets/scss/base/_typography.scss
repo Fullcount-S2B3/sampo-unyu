@@ -1,0 +1,63 @@
+@use "../abstracts" as *;
+
+body {
+  font-family: $font-base;
+  font-size: $font-size-base;
+  line-height: 1.7;
+  color: $color-dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+  @include transition(color);
+
+  &:hover {
+    color: $color-secondary;
+    text-decoration: underline;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-heading;
+  font-weight: bold;
+  line-height: 1.4;
+  color: $color-primary;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: $font-size-h1;
+}
+h2 {
+  font-size: $font-size-h2;
+}
+h3 {
+  font-size: $font-size-h3;
+}
+
+p {
+  margin-bottom: 1.5rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.main-content > section {
+  overflow: hidden;
+}

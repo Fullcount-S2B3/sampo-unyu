@@ -1,14 +1,24 @@
+<% var path = './'; %>
 <!DOCTYPE html>
-<html lang="<%= lang %>">
-  <%- include('_includes/head') %>
+<html lang="<%= lang || 'ja' %>">
+  <%- include('_includes/head', { path: path }) %>
   <body class="page-top">
-    <%- include('_includes/header') %>
+    <%- include('_includes/header', { path: path }) %>
 
-    <!-- ヒーローセクション -->
     <section class="hero">
       <div class="hero__video-wrapper">
-        <video class="hero__video" autoplay loop muted loading="lazy">
-          <source src="/assets/video/hero-video.mp4" type="video/mp4" />
+        <video
+          class="hero__video"
+          autoplay
+          loop
+          muted
+          playsinline
+          loading="lazy"
+        >
+          <source
+            src="<%= path %>assets/video/hero-video.mp4"
+            type="video/mp4"
+          />
           お使いのブラウザは動画タグに対応していません。
         </video>
         <div class="hero__overlay"></div>
@@ -34,65 +44,206 @@
       </div>
     </section>
 
-    <!-- ご挨拶 -->
-    <!-- <section class="greeting">
-      <div class="greeting__container">
-        <h2 class="greeting__heading">
-          お客様や関係者の皆さまにとって<br />最良のパートナーとなれるように
-        </h2>
-        <p class="greeting__text">
-          私たちは、所属船舶の運航管理や船員配乗を通じて、...（略）
-        </p>
-      </div>
-    </section> -->
-
-    <!-- SERVICE -->
-    <!-- <section class="services">
-      <div class="services__container">
-        <h2 class="services__heading">SERVICE<br /><span>事業内容</span></h2>
-        <div class="services__items">
-          <div class="services__item">
-            <img src="service1.jpg" alt="内航船" />
-            <p>内航船船舶貸渡業</p>
-          </div>
-          <div class="services__item">
-            <img src="service2.jpg" alt="外航船" />
-            <p>外航船船舶貸渡業</p>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- COMPANY -->
-    <!-- <section class="company">
-      <div class="company__container">
-        <h2 class="company__heading">COMPANY<br /><span>会社案内</span></h2>
-        <div class="company__links">
-          <a href="#">会社概要</a>
-          <a href="#">沿革</a>
-          <a href="#">船舶一覧</a>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- NEWS -->
-    <!-- <section class="news">
-      <div class="news__container">
-        <h2 class="news__heading">NEWS<br /><span>お知らせ</span></h2>
-        <div class="news__items">
-          <div class="news__item">
-            <img src="news1.jpg" alt="" />
-            <p><strong>2025.00.00</strong><br />ホームページ公開のお知らせ</p>
-          </div>
-          <div class="news__item">
-            <img src="news2.jpg" alt="" />
-            <p><strong>2025.00.00</strong><br />ホームページ公開のお知らせ</p>
+    <main class="main-content">
+      <section id="message" class="message-section section-padding">
+        <div class="message-section__bg-shape" aria-hidden="true"></div>
+        <div class="container">
+          <h2 class="section-title message-section__title">
+            お客様や関係者の皆さまにとって<br />最良のパートナーに
+          </h2>
+          <p class="message-section__text">
+            私たち三豊運輸は、創業以来、海運業界の発展に貢献すべく、安全かつ効率的な船舶運航をサポートしてまいりました。<br />
+            変化の激しい時代においても、常にお客様のニーズを的確に捉え、信頼されるサービスを提供し続けることをお約束します。<br />
+            これからも、海上輸送の未来を担う企業として、挑戦と成長を続けてまいります。
+          </p>
+          <div class="hero__scroll-down hero__scroll-down--message">
+            <a
+              href="#service"
+              class="hero__scroll-link"
+              aria-label="次のセクションへスクロール"
+            >
+              <svg
+                class="hero__scroll-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 16.59l-6-6 1.41-1.41L12 13.76l4.59-4.58L18 10.59z"
+                />
+              </svg>
+            </a>
           </div>
         </div>
-      </div>
-    </section> -->
+      </section>
 
-    <!-- <%- include('_includes/footer') %> -->
-    <%- include('_includes/scripts') %>
+      <section
+        id="service"
+        class="service-section section-padding section--blue-bg"
+      >
+        <div
+          class="service-section__bg-image"
+          style="
+            background-image: url('<%= path %>assets/images/service_background_ship.jpg');
+          "
+          aria-hidden="true"
+        ></div>
+        <div class="container">
+          <h2
+            class="section-title section-title--on-dark-bg service-section__title"
+          >
+            SERVICE
+          </h2>
+          <div class="service-section__grid">
+            <article class="service-card">
+              <a
+                href="<%= path %>service/manning-domestic/"
+                class="service-card__link"
+              >
+                <div class="service-card__image-wrapper">
+                  <img
+                    src="<%= path %>assets/images/service_manning_domestic.jpg"
+                    alt="内航船員配乗"
+                    class="service-card__image"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="service-card__content">
+                  <h3 class="service-card__title">内航船員配乗</h3>
+                </div>
+              </a>
+            </article>
+            <article class="service-card">
+              <a
+                href="<%= path %>service/manning-foreign/"
+                class="service-card__link"
+              >
+                <div class="service-card__image-wrapper">
+                  <img
+                    src="<%= path %>assets/images/service_manning_foreign.jpg"
+                    alt="外航船員配乗"
+                    class="service-card__image"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="service-card__content">
+                  <h3 class="service-card__title">外航船員配乗</h3>
+                </div>
+              </a>
+            </article>
+          </div>
+          <div class="section__more-button">
+            <a href="<%= path %>service/" class="button button--outline-white"
+              >事業案内一覧へ</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section id="company" class="company-section section-padding">
+        <div class="container">
+          <h2 class="section-title company-section__title">COMPANY</h2>
+          <div class="company-section__grid">
+            <div class="company-section__item">
+              <a href="<%= path %>company/about/" class="company-section__link">
+                <img
+                  src="<%= path %>assets/images/company_image_01.jpg"
+                  alt="街並みと青空"
+                  class="company-section__image"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+            <div class="company-section__item">
+              <a
+                href="<%= path %>company/message/"
+                class="company-section__link"
+              >
+                <img
+                  src="<%= path %>assets/images/company_image_02.jpg"
+                  alt="会議室のテーブルと椅子"
+                  class="company-section__image"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+            <div class="company-section__item">
+              <a
+                href="<%= path %>company/history/"
+                class="company-section__link"
+              >
+                <img
+                  src="<%= path %>assets/images/company_image_03.jpg"
+                  alt="航行する赤い船"
+                  class="company-section__image"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="section__more-button">
+            <a href="<%= path %>company/" class="button button--primary"
+              >会社概要ページへ</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section id="news" class="news-section section-padding section--light-bg">
+        <div class="container">
+          <h2 class="section-title news-section__title">NEWS</h2>
+          <ul class="news-list">
+            <li class="news-list__item">
+              <a href="<%= path %>news/article01/" class="news-list__link">
+                <div class="news-list__image-wrapper">
+                  <img
+                    src="<%= path %>assets/images/news_thumb01.jpg"
+                    alt=""
+                    class="news-list__image"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="news-list__content">
+                  <time class="news-list__date" datetime="2024-03-10"
+                    >2024.03.10</time
+                  >
+                  <h3 class="news-list__title">
+                    新しい船舶管理システムを導入しました。
+                  </h3>
+                </div>
+              </a>
+            </li>
+            <li class="news-list__item">
+              <a href="<%= path %>news/article02/" class="news-list__link">
+                <div class="news-list__image-wrapper">
+                  <img
+                    src="<%= path %>assets/images/news_thumb02.jpg"
+                    alt=""
+                    class="news-list__image"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="news-list__content">
+                  <time class="news-list__date" datetime="2024-02-20"
+                    >2024.02.20</time
+                  >
+                  <h3 class="news-list__title">
+                    安全運航に関する研修会を実施しました。
+                  </h3>
+                </div>
+              </a>
+            </li>
+          </ul>
+          <div class="section__more-button">
+            <a href="<%= path %>news/" class="button button--secondary"
+              >お知らせ一覧へ</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <%- include('_includes/footer', { path: path }) %> <%-
+    include('_includes/scripts', { path: path }) %>
   </body>
 </html>

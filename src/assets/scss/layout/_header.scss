@@ -1,58 +1,233 @@
-@use "abstracts" as *;
+@use "../abstracts" as *;
+@use "./grid"; // これで .container を解決できるはず
+@use "../components" as comp;
+// @use "sass:color"; // color.adjust等を使う場合は必要
 
 .header {
-  // background-color: $color-primary;
-  color: $color-white;
+  color: $color-dark;
   position: fixed;
-  z-index: 9;
+  z-index: $z-index-header;
   top: 0;
   left: 0;
   width: 100%;
+  @include transition(
+    background-color,
+    box-shadow,
+    height
+  ); // 高さもトランジション対象に
+
+  // --- トップページ用のデフォルトスタイル ---
+  background-color: rgba($color-white, 0.9);
+  box-shadow: 0 2px 10px rgba($color-dark, 0.1);
+  height: $header-height-top;
+  display: flex;
+
+  // --- 下層ページ用のスタイル ---
+  .page-top & {
+    // トップページの場合のスタイルを維持
+    // 特に変更なし、上記がデフォルト
+  }
+
+  body:not(.page-top) & {
+    // トップページ以外 (下層ページ) の場合
+    background-color: $color-primary;
+    color: $color-white; // 下層ページヘッダーの基本文字色
+    box-shadow: 0 2px 8px rgba(darken($color-primary, 15%), 0.3);
+    height: $header-height-subpage;
+
+    .header__logo {
+      background-color: transparent; // 下層ではロゴの背景色なし
+      border-radius: 0; // 角丸なし
+      padding-left: 0; // 左パディング調整
+      &-ja,
+      &-en {
+        color: $color-white; // ロゴ文字色も白
+      }
+    }
+    .nav-global__link {
+      color: rgba($color-white, 0.85); // 下層ナビリンク色
+      &:hover,
+      &--active {
+        color: $color-white;
+        &::after {
+          background-color: $color-white; // 下線も白
+        }
+      }
+    }
+    .header__lang-switch {
+      color: $color-white;
+      border-color: rgba($color-white, 0.5);
+      a {
+        color: $color-white;
+        &:hover {
+          color: darken($color-white, 15%);
+        }
+      }
+      span {
+        color: $color-white;
+      }
+    }
+    .header__menu-toggle {
+      // 下層のトグルボタン
+      color: $color-white;
+      border-color: $color-white;
+    }
+  }
 
   &__container {
+    @extend .container; // エラーが解消している前提
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100%;
   }
 
   &__logo {
-    font-size: 1.2rem;
-    font-weight: bold;
     background-color: $color-primary;
-    padding: 15px 40px 15px 20px;
+    padding: 10px 25px 10px 20px;
     display: flex;
     flex-direction: column;
-    border-radius: 0 0 60px 0;
+    border-radius: 0 0 40px 0;
+    color: $color-white;
+    text-decoration: none;
+    @include transition(background-color, border-radius, padding);
+
     &-ja {
-      font-size: 3rem;
-      font-family: "Aoboshi One", sans-serif;
+      font-family: $font-heading;
+      font-size: 2.2rem;
       font-weight: normal;
+      line-height: 1.2;
+      color: $color-white; // デフォルトは白
+      @include transition(color);
     }
     &-en {
-      font-size: 1.4rem;
-      font-family: "Roboto", sans-serif;
+      font-family: $font-roboto;
+      font-size: 1rem;
       font-weight: normal;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.1em;
+      margin-top: 2px;
+      color: $color-white; // デフォルトは白
+      @include transition(color);
     }
   }
 
+  &__nav-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
   &__lang-switch {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 1.6rem;
-    // background-color: $color-primary;
-    padding: 10px;
+    font-size: 1.3rem;
+    padding: 5px 10px;
+    margin-left: 20px;
+    color: $color-gray-text; // トップページのデフォルト
+    border: 1px solid #ddd; // トップページのデフォルト
+    border-radius: 4px;
+    @include transition(color, border-color);
+
     a {
-      color: #fff;
+      color: $color-gray-text; // トップページのデフォルト
+      text-decoration: none;
+      @include transition(color);
+      &:hover {
+        color: $color-primary;
+      }
+    }
+    span {
+      font-weight: bold;
+    }
+  }
+
+  &__menu-toggle {
+    // クラス名変更
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: none; // PCでは基本非表示 (ナビで制御)
+    align-items: center;
+    color: $color-primary; // トップページのデフォルト
+    @include transition(color);
+
+    @include tab {
+      // SP・タブレットで表示
+      display: flex;
+      z-index: $z-index-nav-global + 1; // ナビメニューより手前
+      border: 2px solid $color-primary; // トップページのデフォルト
+      border-radius: 5px;
+      padding: 8px 10px;
+      @include transition(border-color);
     }
   }
 
   &__menu-icon {
-    display: none;
+    // Material Icons
+    font-size: 2.8rem; // アイコンサイズ調整
+    line-height: 1; // アイコンの上下位置調整用
+  }
+  &__menu-icon-text {
+    // "MENU" テキスト
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    @include sp {
+      // さらに小さい画面ではテキストを隠す例
+      // display: none;
+    }
+  }
+}
 
-    @media (max-width: 768px) {
-      display: block;
+.nav-global {
+  &__menu {
+    // ... (既存のスタイル、SP時の背景色を $color-primary-dark から $color-primary に変更など検討) ...
+    @include tab {
+      background-color: rgba(
+        $color-primary,
+        0.98
+      ); // 下層ヘッダーの色と合わせる
+      // ...
+      body:not(.page-top) & {
+        // 下層ページではナビの背景をさらに濃くするなど
+        // background-color: rgba($color-primary-dark, 0.98);
+      }
+    }
+  }
+
+  &__link {
+    font-family: $font-base;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $color-gray-text; // トップページのデフォルト
+    // ... (既存のスタイル) ...
+    @include tab {
+      color: $color-white; // SPナビ内は常に白文字
+      // ... (既存のスタイル) ...
+    }
+  }
+
+  &__contact-button {
+    @extend comp.button;
+    @extend comp.button--primary;
+    // ... (既存のスタイル) ...
+    body:not(.page-top) & {
+      // 下層ページのナビ内お問い合わせボタン
+      // @extend comp.button--outline-white; // もしデザインを変えるなら
+    }
+  }
+}
+
+// bodyに .nav-open クラスが付与された時のスタイル
+body.nav-open {
+  overflow: hidden;
+  .header__menu-toggle {
+    // ここにメニューアイコンを「閉じる」アイコン（例: close）に変形させるスタイルなどを記述
+    // .header__menu-icon { content: 'close'; } など (JSでアイコン自体を差し替える方が良いかも)
+    // または、アイコンの色や背景色を変える
+    body:not(.page-top) & {
+      // 下層ページで開いた時
+      background-color: rgba($color-white, 0.1);
     }
   }
 }

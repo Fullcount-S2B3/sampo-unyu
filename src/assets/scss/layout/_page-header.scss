@@ -1,0 +1,83 @@
+@use "../abstracts" as *;
+
+.page-header {
+  position: relative;
+  padding: 4rem 0 3rem; // 上下パディング調整
+  background-color: $color-blue-page-header-bg; // デフォルトの背景色
+  color: $color-white;
+  text-align: center;
+  margin-top: $header-height-subpage; // ヘッダーの高さ分下げる (下層ページ用)
+
+  .page-top & {
+    // トップページではこのセクションは表示しない想定
+    display: none;
+  }
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2; // 背景画像を薄く
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: $z-index-page-header;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-page-title;
+    color: $color-white;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+
+    @include tab {
+      font-size: calc(#{$font-size-page-title} * 0.8);
+    }
+  }
+}
+
+// Breadcrumbs
+.breadcrumbs {
+  font-size: $font-size-breadcrumbs;
+  color: rgba($color-white, 0.8);
+  margin-top: 1rem;
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    &:not(:last-child)::after {
+      content: ">"; // 区切り文字
+      margin: 0 0.8em;
+      color: rgba($color-white, 0.6);
+    }
+  }
+
+  &__link {
+    color: rgba($color-white, 0.8);
+    text-decoration: none;
+    &:hover {
+      color: $color-white;
+      text-decoration: underline;
+    }
+  }
+
+  &__current {
+    font-weight: bold;
+    color: $color-white;
+  }
+}

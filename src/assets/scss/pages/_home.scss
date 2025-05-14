@@ -1,217 +1,227 @@
-@use "abstracts" as *;
+@use "../abstracts" as *;
+@use "../components/buttons" as *; // ボタンコンポーネントを読み込み
+@use "../components/cards" as *; // カードコンポーネントを読み込み
 
-.hero {
+.page-top ._hero_scroll-down {
+  position: absolute;
+  bottom: 30px; // これは既存の hero セクションのSCSSから
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3; // hero__text より手前に来るように調整
+
+  .hero__scroll-link {
+    display: block;
+  }
+  .hero__scroll-icon {
+    width: 40px;
+    height: 40px;
+    fill: $color-white;
+    animation: bounce 2s infinite; // bounce アニメーションは abstracts/_mixins.scss などで定義
+  }
+}
+
+.message-section {
   position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: $color-white;
+  color: $color-dark;
+  text-align: center;
 
-  &__video-wrapper {
-    // HTML構造に合わせて追加
+  &__bg-shape {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    z-index: -1; // 動画を一番後ろに
-  }
-
-  &__video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  &__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.4) 25%,
-        transparent 25%,
-        transparent 75%,
-        rgba(0, 0, 0, 0.4) 75%,
-        rgba(0, 0, 0, 0.4)
-      ),
-      linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0.2) 25%,
-        transparent 25%,
-        transparent 75%,
-        rgba(0, 0, 0, 0.2) 75%,
-        rgba(0, 0, 0, 0.2)
-      );
-    background-size: 2px 2px;
-    z-index: 0;
-  }
-
-  &__wave {
-    position: absolute;
-    left: 3%;
-    z-index: 1;
-    width: 90vw;
-    max-width: 1368px;
-    mask-image: linear-gradient(to right, black 60%, transparent 100%);
-    mask-size: 0% 100%;
-    mask-repeat: no-repeat;
-    mask-position: left center;
-
-    .wave {
-      display: block;
+    height: 120px; // 波の高さ
+    // background-image: url('/assets/images/wave_shape_top.svg'); // SVGで波形を作る想定
+    // background-repeat: no-repeat;
+    // background-position: top center;
+    // background-size: cover;
+    // 今回はCSSで簡易的な曲線を表現 (SVGがあればそちらを優先)
+    &::before {
+      // 上の波
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: auto;
+      height: 80px; // 波の高さ
+      background: $color-white;
+      border-radius: 0 0 50% 50% / 0 0 100% 100%;
+      transform: scaleX(1.5) translateY(-40px); // スケールと位置調整で波っぽく
+      z-index: -1; // 背景なので
     }
+    // 下にも同様の波を反転させて配置することも可能
+  }
 
-    &.is-active {
-      animation: wipe-fade-right 4s ease-out forwards;
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__title.section-title {
+    // .section-titleを継承しつつ詳細指定
+    color: $color-primary;
+    margin-bottom: 3rem;
+    font-size: $font-size-h2;
+    @include tab {
+      font-size: calc(#{$font-size-h2} * 0.8);
     }
   }
 
   &__text {
+    font-size: $font-size-base;
+    line-height: 2; // 行間広め
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // メッセージセクション下のスクロールアロー
+  .hero__scroll-down--message {
+    margin-top: 4rem;
+    .hero__scroll-icon {
+      fill: $color-primary; // アイコンの色を変更
+    }
+  }
+}
+
+.service-section {
+  // 既存の .services からクラス名変更を推奨 (よりBEM的)
+  // background: #f2f8fc; // デザイン画像では青背景
+  position: relative; // 背景画像のため
+  background-color: $color-primary; // メインの青背景
+  color: $color-white;
+
+  &__bg-image {
+    // 背景画像用エレメント
     position: absolute;
-    top: 50%;
-    left: 8.33%;
-    transform: translateY(-50%);
-    z-index: 2;
-    color: #fff;
-    max-width: 80%;
-
-    h1 {
-      font-size: clamp(1rem, 3vw + 1rem, 9rem);
-      line-height: 1.4;
-      margin-bottom: 1rem;
-      opacity: 1;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-
-      span.char-span {
-        display: inline-block;
-        opacity: 0;
-        // transform: translateY(15px);
-        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        transition-delay: var(--char-delay, 0.5s);
-      }
-    }
-
-    p {
-      margin-top: 1rem;
-      font-size: 3rem;
-      opacity: 0;
-      transition: opacity 1s ease-in;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-
-      &.is-visible {
-        opacity: 1;
-      }
-    }
-  }
-}
-
-@keyframes wipe-fade-right {
-  to {
-    mask-size: 100% 100%;
-  }
-}
-
-.services {
-  background: #f2f8fc;
-  padding: 4rem 1rem;
-
-  &__heading {
-    text-align: center;
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1; // 背景画像を薄く表示
+    z-index: 0;
+    pointer-events: none; // クリックイベントを透過
   }
 
-  &__items {
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__title.section-title {
+    margin-bottom: 5rem;
+  }
+
+  &__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    // grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // カードサイズによって調整
+    grid-template-columns: repeat(2, 1fr); // デザインでは2カラム固定に見える
+    gap: 3rem;
 
-    @media (max-width: 768px) {
+    @include tab {
       grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+  // .service-card のスタイルは components/_cards.scss に記述
+}
+
+.company-section {
+  // 既存の .company からクラス名変更を推奨
+  background-color: $color-primary; // デザイン画像の背景色
+  color: $color-white; // 文字色
+
+  &__title.section-title {
+    color: $color-white; // 背景が濃色なのでタイトルも白
+    margin-bottom: 4rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // 3カラム
+    gap: 1.5rem; // 画像間の隙間を狭めに
+
+    @include tab {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
     }
   }
 
   &__item {
-    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px; // 画像に角丸
+    aspect-ratio: 4 / 3; // アスペクト比を保持 (ブラウザ対応注意)
 
-    img {
-      width: 100%;
-      height: auto;
+    &:hover .company-section__image {
+      transform: scale(1.1);
     }
+  }
 
-    p {
-      margin-top: 1rem;
-    }
+  &__link {
+    display: block;
+    height: 100%; // アスペクト比を活かすため
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    @include transition(transform);
+  }
+
+  // &__item-title { (今回は未使用)
+  //   position: absolute;
+  //   bottom: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   background-color: rgba($color-primary-dark, 0.8);
+  //   color: $color-white;
+  //   padding: 1.5rem;
+  //   text-align: center;
+  //   font-size: $font-size-medium;
+  //   font-weight: bold;
+  //   @include transition(background-color);
+  //   &:hover {
+  //     background-color: rgba(darken($color-primary-dark, 5%), 0.9);
+  //   }
+  // }
+}
+
+.news-section {
+  // 既存の .news からクラス名変更を推奨
+  // background: #f9f9f9; // 変数使用
+  background-color: $color-light-bg;
+
+  &__title.section-title {
+    margin-bottom: 4rem;
+  }
+  // .news-list のスタイルは components/_cards.scss に記述
+}
+
+// 汎用セクションタイトル (base/_typography.scss や utility/_text.scss でも可)
+.section-title {
+  font-family: $font-heading;
+  font-size: $font-size-h2;
+  text-align: center;
+  color: $color-primary;
+
+  &--on-dark-bg {
+    // 暗い背景用の修飾子
+    color: $color-white;
+  }
+
+  @include tab {
+    font-size: calc(#{$font-size-h2} * 0.85);
   }
 }
 
-.company {
-  padding: 4rem 1rem;
-  background: #fff;
-
-  &__heading {
-    text-align: center;
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  &__links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-
-    a {
-      color: $color-primary;
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-}
-
-.news {
-  background: #f9f9f9;
-  padding: 4rem 1rem;
-
-  &__heading {
-    text-align: center;
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  &__items {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
-    @media (min-width: 768px) {
-      flex-direction: row;
-    }
-  }
-
-  &__item {
-    background: #fff;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    text-align: left;
-
-    img {
-      width: 100%;
-      height: auto;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 0.875rem;
-    }
-  }
+// 汎用もっと見るボタンコンテナ
+.section__more-button {
+  text-align: center;
+  margin-top: 4rem;
 }

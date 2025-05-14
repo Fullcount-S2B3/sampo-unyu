@@ -1,9 +1,10 @@
-<% var path = './'; %>
+<% var path = './'; var pageId = 'top'; %>
 <!DOCTYPE html>
 <html lang="<%= lang || 'ja' %>">
-  <%- include('_includes/head', { path: path }) %>
+  <%- include('_includes/head', { path: path, data: data, lang: lang }) %>
   <body class="page-top">
-    <%- include('_includes/header', { path: path }) %>
+    <%- include('_includes/header', { path: path, pageId: pageId, lang: lang })
+    %>
 
     <section class="hero">
       <div class="hero__video-wrapper">
@@ -243,7 +244,7 @@
       </section>
     </main>
 
-    <%- include('_includes/footer', { path: path }) %> <%-
-    include('_includes/scripts', { path: path }) %>
+    <%- include('_includes/footer', { path: path, data: data, lang: lang }) %>
+    <%- include('_includes/scripts', { path: path, data: data, lang: lang }) %>
   </body>
 </html>

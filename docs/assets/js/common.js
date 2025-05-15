@@ -16,6 +16,72 @@ function hideLoading() {
 
 showLoading();
 
+///ナビゲーション開閉
+document.addEventListener('DOMContentLoaded', function () {
+  const menuToggle = document.querySelector('.header__menu-toggle');
+  const globalNavMenu = document.getElementById('global-nav-menu');
+  const body = document.body;
+
+  if (menuToggle && globalNavMenu) {
+    menuToggle.addEventListener('click', function () {
+      const isOpen = this.getAttribute('aria-expanded') === 'true';
+
+      this.setAttribute('aria-expanded', !isOpen);
+      globalNavMenu.classList.toggle('is-open');
+      body.classList.toggle('nav-open');
+
+      // メニューアイコンのテキストを変更する場合 (例: anchor と close)
+      const menuIcon = this.querySelector('.header__menu-icon');
+      if (menuIcon) {
+        if (!isOpen) {
+          // メニューを開いた時、「閉じる」アイコンに変更
+          menuIcon.textContent = 'close'; // Material Icons の 'close' アイコン
+          // menuIcon.classList.remove('material-icons-outlined'); // 必要に応じてクラス調整
+          // menuIcon.classList.add('material-icons'); // filled な close を使う場合など
+        } else {
+          // メニューを閉じた時、「アンカー」アイコンに戻す
+          menuIcon.textContent = 'anchor';
+          // menuIcon.classList.add('material-icons-outlined');
+        }
+      }
+    });
+  }
+
+  // --- (オプション) メニュー外クリックで閉じる ---
+  // document.addEventListener('click', function(event) {
+  //   const isClickInsideMenu = globalNavMenu.contains(event.target);
+  //   const isClickOnToggleButton = menuToggle.contains(event.target);
+  //   const isMenuOpen = globalNavMenu.classList.contains('is-open');
+
+  //   if (!isClickInsideMenu && !isClickOnToggleButton && isMenuOpen) {
+  //     menuToggle.click(); // トグルボタンのクリックイベントを発火させて閉じる
+  //   }
+  // });
+
+  // --- (オプション) ESCキーでメニューを閉じる ---
+  // document.addEventListener('keydown', function(event) {
+  //   if (event.key === 'Escape' && globalNavMenu.classList.contains('is-open')) {
+  //     menuToggle.click();
+  //   }
+  // });
+
+
+  // --- (オプション) トップページでヘッダーのスクロール変化 ---
+  const header = document.querySelector('.header');
+  if (body.classList.contains('page-top') && header) {
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) { // 50px以上スクロールしたら
+        header.classList.add('header--scrolled');
+      } else {
+        header.classList.remove('header--scrolled');
+      }
+    });
+  }
+
+  // --- (オプション) ローディングスピナーを非表示にする ---
+  const loading
+
+///動画再生
 document.addEventListener("DOMContentLoaded", () => {
   const video = document.querySelector(".hero__video");
   const heroWave = document.querySelector(".hero__wave");

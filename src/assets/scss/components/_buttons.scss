@@ -1,7 +1,7 @@
 @use "../abstracts" as *;
 @use "sass:color";
 
-.button {
+%button {
   display: inline-block;
   padding: 1.2rem 3rem;
   font-family: $font-base;
@@ -9,53 +9,57 @@
   font-weight: bold;
   text-align: center;
   text-decoration: none;
-  border-radius: 8px; // 角丸を少し大きく
+  border-radius: 8px;
   border: 2px solid transparent;
   cursor: pointer;
   @include transition(background-color, color, border-color, transform);
   position: relative;
-  overflow: hidden; // エフェクト用
+  overflow: hidden;
 
   &:hover {
     transform: translateY(-2px);
-    text-decoration: none; // ホバー時下線不要
+    text-decoration: none;
   }
+}
 
-  &--primary {
-    background-color: $color-primary;
+%button--primary {
+  @extend %button;
+  background-color: $color-primary;
+  color: $color-white;
+  border-color: $color-primary;
+
+  &:hover {
+    background-color: color.adjust($color-primary, $lightness: -8%);
+    border-color: color.adjust($color-primary, $lightness: -8%);
     color: $color-white;
-    border-color: $color-primary;
-
-    &:hover {
-      background-color: color.adjust($color-primary, $lightness: -8%);
-      border-color: color.adjust($color-primary, $lightness: -8%);
-      color: $color-white;
-    }
   }
+}
 
-  &--secondary {
-    background-color: $color-secondary;
-    color: $color-white;
-    border-color: $color-secondary;
-
-    &:hover {
-      background-color: color.adjust($color-secondary, $lightness: -8%); // 新
-      border-color: color.adjust($color-secondary, $lightness: -8%); // 新
-      color: $color-white;
-    }
+// 通常のクラスも定義しておく (HTMLで直接使う場合)
+.button {
+  @extend %button;
+}
+.button--primary {
+  @extend %button--primary;
+}
+.button--secondary {
+  // 他の修飾子も同様に
+  @extend %button;
+  background-color: $color-secondary;
+  color: $color-white;
+  border-color: $color-secondary;
+  &:hover {
+    background-color: color.adjust($color-secondary, $lightness: -8%);
+    border-color: color.adjust($color-secondary, $lightness: -8%);
   }
-
-  &--outline-white {
-    background-color: transparent;
-    color: $color-white;
-    border-color: $color-white;
-
-    &:hover {
-      background-color: $color-white;
-      color: $color-primary; // ホバー時テキスト色をメインの青に
-    }
+}
+.button--outline-white {
+  @extend %button;
+  background-color: transparent;
+  color: $color-white;
+  border-color: $color-white;
+  &:hover {
+    background-color: $color-white;
+    color: $color-primary;
   }
-
-  // &--large {}
-  // &--small {}
 }

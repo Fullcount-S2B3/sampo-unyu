@@ -1,7 +1,7 @@
 @use "../abstracts" as *;
-@use "./grid"; // これで .container を解決できるはず
+@use "./grid";
 @use "../components" as comp;
-// @use "sass:color"; // color.adjust等を使う場合は必要
+@use "sass:color";
 
 .header {
   color: $color-dark;
@@ -17,22 +17,21 @@
   ); // 高さもトランジション対象に
 
   // --- トップページ用のデフォルトスタイル ---
-  background-color: rgba($color-white, 0.9);
   box-shadow: 0 2px 10px rgba($color-dark, 0.1);
   height: $header-height-top;
   display: flex;
 
   // --- 下層ページ用のスタイル ---
   .page-top & {
-    // トップページの場合のスタイルを維持
-    // 特に変更なし、上記がデフォルト
+    // background-color: rgba($color-white, 0.9);
   }
 
   body:not(.page-top) & {
     // トップページ以外 (下層ページ) の場合
     background-color: $color-primary;
     color: $color-white; // 下層ページヘッダーの基本文字色
-    box-shadow: 0 2px 8px rgba(darken($color-primary, 15%), 0.3);
+    box-shadow: 0 2px 8px
+      rgba(color.adjust($color-primary, $lightness: -15%), 0.3);
     height: $header-height-subpage;
 
     .header__logo {
@@ -60,7 +59,7 @@
       a {
         color: $color-white;
         &:hover {
-          color: darken($color-white, 15%);
+          color: color.adjust($color-white, $lightness: -15%);
         }
       }
       span {
@@ -75,26 +74,31 @@
   }
 
   &__container {
-    @extend .container; // エラーが解消している前提
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     height: 100%;
   }
 
   &__logo {
     background-color: $color-primary;
-    padding: 10px 25px 10px 20px;
+    padding: 0 40px 0 40px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     border-radius: 0 0 40px 0;
     color: $color-white;
     text-decoration: none;
+    height: 100%;
     @include transition(background-color, border-radius, padding);
+    &:hover {
+      text-decoration: none;
+    }
 
     &-ja {
       font-family: $font-heading;
-      font-size: 2.2rem;
+      font-size: 3rem;
       font-weight: normal;
       line-height: 1.2;
       color: $color-white; // デフォルトは白
@@ -102,7 +106,7 @@
     }
     &-en {
       font-family: $font-roboto;
-      font-size: 1rem;
+      font-size: 1.4.4rem;
       font-weight: normal;
       letter-spacing: 0.1em;
       margin-top: 2px;
@@ -114,19 +118,23 @@
   &__nav-wrapper {
     display: flex;
     align-items: center;
+    @include tab {
+      // SP・タブレットではナビメニューは初期非表示
+      // display: none; // JSで制御するのでSCSSでは不要、nav-global__menu側で制御
+    }
   }
 
   &__lang-switch {
     font-size: 1.3rem;
     padding: 5px 10px;
     margin-left: 20px;
-    color: $color-gray-text; // トップページのデフォルト
-    border: 1px solid #ddd; // トップページのデフォルト
+    color: $color-gray-text;
+    border: 1px solid #ddd;
     border-radius: 4px;
     @include transition(color, border-color);
 
     a {
-      color: $color-gray-text; // トップページのデフォルト
+      color: $color-gray-text;
       text-decoration: none;
       @include transition(color);
       &:hover {
@@ -139,95 +147,200 @@
   }
 
   &__menu-toggle {
-    // クラス名変更
     background: none;
-    border: none;
-    padding: 0;
+    border: 2px solid $color-primary;
+    padding: 8px 10px;
     cursor: pointer;
-    display: none; // PCでは基本非表示 (ナビで制御)
+    display: flex; // ★変更: 常に表示（SP/PC共通）
     align-items: center;
-    color: $color-primary; // トップページのデフォルト
-    @include transition(color);
+    color: $color-primary;
+    border-radius: 5px;
+    @include transition(color, border-color, background-color);
+    line-height: 1;
+    z-index: $z-index-nav-global + 1; // ナビメニューより手前
 
-    @include tab {
-      // SP・タブレットで表示
-      display: flex;
-      z-index: $z-index-nav-global + 1; // ナビメニューより手前
-      border: 2px solid $color-primary; // トップページのデフォルト
-      border-radius: 5px;
-      padding: 8px 10px;
-      @include transition(border-color);
+    // @include tab のブロックを削除し、常に表示されるようにする
+    // @include tab {
+    //   display: flex;
+    //   z-index: $z-index-nav-global + 1;
+    //   border: 2px solid $color-primary;
+    //   border-radius: 5px;
+    //   padding: 8px 10px;
+    //   @include transition(border-color);
+    // }
+
+    body:not(.page-top) & {
+      // 下層ページのトグルボタンの色の調整は維持
+      color: $color-white;
+      border-color: $color-white;
     }
   }
 
   &__menu-icon {
-    // Material Icons
-    font-size: 2.8rem; // アイコンサイズ調整
-    line-height: 1; // アイコンの上下位置調整用
+    font-size: 2.4rem;
+    line-height: 1;
+    margin-right: 5px;
   }
   &__menu-icon-text {
-    // "MENU" テキスト
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: bold;
-    margin-left: 6px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    @include sp {
-      // さらに小さい画面ではテキストを隠す例
-      // display: none;
-    }
+    line-height: 1;
+    // @include sp { // 必要ならSPでテキスト非表示
+    //   display: none;
+    // }
   }
 }
 
 .nav-global {
   &__menu {
-    // ... (既存のスタイル、SP時の背景色を $color-primary-dark から $color-primary に変更など検討) ...
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
     @include tab {
+      // SP・タブレット時のスライドメニューのスタイル
+      // display: none; // 初期状態は非表示 (is-openで表示)
+      display: block; // ★変更: JSでis-openを付けるので、blockにしておく (transformで隠す)
+      position: fixed;
+      top: 0;
+      right: -100%; // ★変更: 初期位置は画面外 (transform: translateX(100%) でも可)
+      width: 300px; // メニュー幅
+      max-width: 80vw; // 最大幅
+      height: 100vh;
       background-color: rgba(
         $color-primary,
         0.98
       ); // 下層ヘッダーの色と合わせる
-      // ...
+      flex-direction: column;
+      padding-top: $header-height-top + 20px; // ヘッダー高さ分下げる
+      box-shadow: -5px 0 15px rgba($color-dark, 0.2);
+      z-index: $z-index-nav-global;
+      overflow-y: auto;
+      transition: right 0.35s ease-in-out; // ★変更: トランジション調整
+
+      &.is-open {
+        right: 0; // 表示
+      }
+
       body:not(.page-top) & {
-        // 下層ページではナビの背景をさらに濃くするなど
-        // background-color: rgba($color-primary-dark, 0.98);
+        // 下層ページの場合のナビのpadding-top調整
+        padding-top: $header-height-subpage + 20px;
       }
     }
+  }
+
+  &__menu {
+    display: block; // 初期状態 (transformで隠すか、rightで隠す)
+    position: fixed;
+    top: 0;
+    right: -100%; // 初期位置は画面右外
+    width: 300px;
+    max-width: 80vw;
+    height: 100vh;
+    background-color: rgba($color-primary, 0.98);
+    // flex-direction: column; // display: block; なので不要
+    padding-top: $header-height-top + 20px; // ヘッダー高さに応じて調整
+    box-shadow: -5px 0 15px rgba($color-dark, 0.2);
+    z-index: $z-index-nav-global;
+    overflow-y: auto;
+    transition: right 0.35s ease-in-out;
+
+    &.is-open {
+      right: 0; // 表示
+    }
+
+    // body:not(.page-top) & { // 下層ページの場合の padding-top 調整
+    //   padding-top: $header-height-subpage + 20px;
+    // }
+    // ↓ ヘッダー高さがページによって変わることを考慮した動的なpadding-topはJSで調整するか、
+    //   固定値にするか、またはヘッダーの高さを統一する方がシンプル
+    .page-top & {
+      padding-top: $header-height-top + 20px;
+    }
+    body:not(.page-top) & {
+      padding-top: $header-height-subpage + 20px;
+    }
+
+    // 以前の @include tab 内のスタイルを、PC表示にも適用されるようにする
+    // (display: flex; align-items: center; list-style: none; margin: 0; padding: 0; は
+    //  PC横並び用だったので、スライドメニューでは不要 or 調整)
+    list-style: none; // これらは残す
+    margin: 0;
+    padding-left: 0; // 左のpaddingをリセット
+  }
+
+  &__item {
+    // margin-left: 30px; // PC横並び用だったので不要
+    width: 100%; // スライドメニューでは常に幅100%
+    // @include tab のブロックは不要になる
   }
 
   &__link {
     font-family: $font-base;
     font-size: 1.5rem;
     font-weight: bold;
-    color: $color-gray-text; // トップページのデフォルト
-    // ... (既存のスタイル) ...
-    @include tab {
-      color: $color-white; // SPナビ内は常に白文字
-      // ... (既存のスタイル) ...
+    // color: $color-gray-text; // スライドメニュー内では常に白文字にする
+    color: $color-white; // ★変更: PCでもスライドメニュー内は白文字
+    text-decoration: none;
+    padding: 18px 25px; // SPナビ内のスタイルをPCにも適用
+    position: relative;
+    display: block;
+    @include transition(
+      color,
+      background-color
+    ); // background-colorもトランジション対象に
+    border-bottom: 1px solid rgba($color-white, 0.1);
+
+    // &::after { // PC横並び用の下線は不要になる
+    //   content: '';
+    //   position: absolute;
+    //   bottom: -2px;
+    //   left: 0;
+    //   width: 0;
+    //   height: 2px;
+    //   background-color: $color-primary;
+    //   @include transition(width);
+    // }
+
+    &:hover,
+    &--active {
+      // color: $color-primary; // PC横並び用
+      background-color: rgba(
+        $color-white,
+        0.08
+      ); // スライドメニューのホバー/アクティブ
+      color: $color-white;
+      // &::after { // PC横並び用
+      //   width: 100%;
+      // }
     }
+
+    &:first-child {
+      // スライドメニューの最初の項目
+      border-top: 1px solid rgba($color-white, 0.1);
+    }
+    // @include tab のブロックは不要になる
   }
 
   &__contact-button {
-    @extend comp.button;
-    @extend comp.button--primary;
-    // ... (既存のスタイル) ...
-    body:not(.page-top) & {
-      // 下層ページのナビ内お問い合わせボタン
-      // @extend comp.button--outline-white; // もしデザインを変えるなら
-    }
+    @extend %button;
+    @extend %button--primary;
+    // margin-left: 25px; // PC横並び用だったので調整
+    margin: 25px auto; // スライドメニュー内でのマージン
+    display: block; // スライドメニュー内ではブロック要素
+    width: calc(100% - 50px); // スライドメニュー内での幅
+    text-align: center;
+    font-size: 1.5rem; // SPナビ内のスタイルをPCにも適用
+    padding: 12px 20px; // SPナビ内のスタイルをPCにも適用
+
+    // @include tab のブロックは不要になる
   }
 }
 
-// bodyに .nav-open クラスが付与された時のスタイル
 body.nav-open {
   overflow: hidden;
-  .header__menu-toggle {
-    // ここにメニューアイコンを「閉じる」アイコン（例: close）に変形させるスタイルなどを記述
-    // .header__menu-icon { content: 'close'; } など (JSでアイコン自体を差し替える方が良いかも)
-    // または、アイコンの色や背景色を変える
-    body:not(.page-top) & {
-      // 下層ページで開いた時
-      background-color: rgba($color-white, 0.1);
-    }
-  }
 }

@@ -8,17 +8,22 @@
   color: rgba($color-white, 0.8);
   padding: 5rem 0 2rem;
   font-size: $font-size-small;
+  @include sp {
+    padding: 2rem 0 5rem;
+  }
 
   &__container {
     @extend .container;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
     gap: 3rem;
-    text-align: center;
 
     @include tab {
       gap: 2rem;
+    }
+    @include sp {
+      flex-direction: column-reverse;
+      gap: 5rem;
     }
   }
 
@@ -29,20 +34,77 @@
     }
   }
 
-  &__links {
+  &__company-name {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem 3rem;
+    flex-direction: column;
+    margin-bottom: 1.5em;
 
-    a {
-      color: $color-white;
-      text-decoration: none;
-      font-weight: bold;
+    .footer__logo-ja,
+    .footer__logo-en {
+      font-size: 3rem;
+      font-weight: normal;
+      line-height: 1.2;
+      @include sp {
+        font-size: 2rem;
+      }
+    }
+  }
 
-      &:hover {
-        text-decoration: underline;
-        color: color.adjust($color-white, $lightness: -15%);
+  &__links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    @include tab {
+      gap: 1.5rem;
+    }
+    @include sp {
+      grid-template-columns: repeat(3, auto);
+      gap: 1rem;
+    }
+
+    .footer__nav-column {
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          margin-bottom: 0.5rem;
+
+          &.nav-footer__item > a,
+          &.nav-footer__item > span {
+            font-weight: bold;
+            color: $color-white;
+            text-decoration: none;
+            display: block;
+
+            &.nav-footer__link--active {
+              text-decoration: underline;
+            }
+          }
+
+          &.nav-footer__submenu-item > a {
+            position: relative;
+            padding-left: 1.5rem;
+            font-weight: normal;
+            color: rgba($color-white, 0.8);
+            text-decoration: none;
+            display: block;
+
+            &::before {
+              content: "└";
+              position: absolute;
+              left: 0;
+              color: rgba($color-white, 0.8);
+              font-weight: normal;
+            }
+
+            &:hover {
+              text-decoration: underline;
+              color: $color-white;
+            }
+          }
+        }
       }
     }
   }
@@ -55,5 +117,32 @@
     border-top: 1px solid rgba($color-white, 0.2);
     font-size: 1.2rem;
     color: rgba($color-white, 0.6);
+  }
+}
+
+// 言語ごとの表示切り替え
+html[lang="ja"] .footer__company-name {
+  .footer__logo-ja {
+    display: inline;
+  }
+  .footer__logo-en {
+    font-size: 1.8rem;
+    font-family: $font-roboto;
+    letter-spacing: 0.03em;
+    @include sp {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+html[lang="en"] .footer__company-name {
+  .footer__logo-ja {
+    display: none;
+  }
+  .footer__logo-en {
+    display: inline;
+    font-size: 3rem;
+    font-family: $font-roboto;
+    letter-spacing: 0.03em;
   }
 }

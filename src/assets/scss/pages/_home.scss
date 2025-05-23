@@ -1,7 +1,14 @@
-@use "../abstracts" as *;
-@use "../components/buttons" as *;
-@use "../components/cards" as *;
+// ==========================================================================
+// Imports
+// ==========================================================================
+@use '../abstracts' as *;
+@use '../components/buttons' as *;
+@use '../components/cards' as *;
+@use 'sass:math';
 
+// ==========================================================================
+// Hero Section
+// ==========================================================================
 .hero {
   position: relative;
   width: 100%;
@@ -10,15 +17,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  @include tab {
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+  body.page-top & {
+    @include sp {
+      margin-top: $header-height-sp;
+    }
+  }
 
   &__video-wrapper {
-    // HTML構造に合わせて追加
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; // 動画を一番後ろに
+    z-index: -1;
   }
 
   &__video {
@@ -33,7 +48,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(
+    background-image:
+      linear-gradient(
         0deg,
         rgba(0, 0, 0, 0.4) 25%,
         transparent 25%,
@@ -83,6 +99,12 @@
     z-index: 2;
     color: #fff;
     max-width: 80%;
+    @include tab {
+      margin-top: 3em;
+    }
+    @include sp {
+      margin-top: 0;
+    }
 
     h1 {
       font-size: clamp(1rem, 3vw + 1rem, 9rem);
@@ -90,12 +112,15 @@
       margin-bottom: 1rem;
       opacity: 1;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+      color: $color-white;
 
       span.char-span {
         display: inline-block;
         opacity: 0;
         // transform: translateY(15px);
-        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        transition:
+          opacity 0.5s ease-out,
+          transform 0.5s ease-out;
         transition-delay: var(--char-delay, 0.5s);
       }
     }
@@ -106,6 +131,12 @@
       opacity: 0;
       transition: opacity 1s ease-in;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+      @include tab {
+        font-size: 2rem;
+      }
+      @include sp {
+        font-size: 1.4rem;
+      }
 
       &.is-visible {
         opacity: 1;
@@ -114,119 +145,254 @@
   }
 }
 
-@keyframes wipe-fade-right {
-  to {
-    mask-size: 100% 100%;
-  }
-}
+// ==========================================================================
+// Main Content Section (Background Shapes & Waves)
+// ==========================================================================
 
-.page-top ._hero_scroll-down {
-  position: absolute;
-  bottom: 30px; // これは既存の hero セクションのSCSSから
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3; // hero__text より手前に来るように調整
+$circle-diameter-vw: 308.33vw;
+$circle-radius-vw: math.div($circle-diameter-vw, 2);
+$center-circle-left: calc(50% - #{$circle-radius-vw});
+$base-offset-for-overlap: 5vw;
+$visual-spacing-from-center-circle: 2vw;
 
-  .hero__scroll-link {
-    display: block;
-  }
-  .hero__scroll-icon {
-    width: 40px;
-    height: 40px;
-    fill: $color-white;
-    animation: bounce 2s infinite; // bounce アニメーションは abstracts/_mixins.scss などで定義
-  }
-}
-
-.message-section {
+.main-content {
   position: relative;
-  background-color: $color-white;
-  color: $color-dark;
-  text-align: center;
+  z-index: 0;
+  overflow: hidden;
+  body.page-top & {
+    background-color: $color-accent;
+    @include sp {
+    }
+    &::before {
+      position: absolute;
+      z-index: -1;
+      content: '';
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vw;
+      background-color: $color-white;
+    }
+  }
 
   &__bg-shape {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 120px; // 波の高さ
-    // background-image: url('/assets/images/wave_shape_top.svg'); // SVGで波形を作る想定
-    // background-repeat: no-repeat;
-    // background-position: top center;
-    // background-size: cover;
-    // 今回はCSSで簡易的な曲線を表現 (SVGがあればそちらを優先)
-    &::before {
-      // 上の波
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 80px; // 波の高さ
-      background: $color-white;
-      border-radius: 0 0 50% 50% / 0 0 100% 100%;
-      transform: scaleX(1.5) translateY(-40px); // スケールと位置調整で波っぽく
-      z-index: -1; // 背景なので
+    height: 100%;
+    z-index: 2;
+
+    .circle {
+      &::before {
+        position: absolute;
+        border-radius: 50%;
+        width: $circle-diameter-vw;
+        height: $circle-diameter-vw;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+      }
+
+      &--1 {
+        position: relative;
+        &::before {
+          content: '';
+          background-color: $color-wave-teal;
+          left: calc(
+            #{$center-circle-left} - #{$base-offset-for-overlap} -
+              #{$visual-spacing-from-center-circle}
+          );
+          top: 350px;
+          opacity: 0.7;
+          animation-name: wave-animation-left;
+          animation-duration: 11s;
+          animation-delay: 0s;
+          @include tab {
+            top: 200px;
+          }
+          @include sp {
+            top: 120px;
+          }
+        }
+      }
+
+      &--2 {
+        position: relative;
+        &::before {
+          content: '';
+          background-color: $color-accent;
+          left: $center-circle-left;
+          top: 360px;
+          opacity: 1;
+          animation: none;
+          z-index: 2;
+          @include tab {
+            top: 210px;
+          }
+          @include sp {
+            top: 130px;
+          }
+        }
+      }
+
+      &--3 {
+        position: relative;
+        &::before {
+          content: '';
+          background-color: $color-wave-cyan-light;
+          left: calc(
+            #{$center-circle-left} + #{$base-offset-for-overlap} +
+              #{$visual-spacing-from-center-circle}
+          );
+          top: 350px;
+          opacity: 0.75;
+          animation-name: wave-animation-right;
+          animation-duration: 13s;
+          animation-delay: -2.5s;
+          @include tab {
+            top: 200px;
+          }
+          @include sp {
+            top: 120px;
+          }
+        }
+      }
     }
-    // 下にも同様の波を反転させて配置することも可能
+  }
+
+  &__wave {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > img.wave-image {
+      width: 4500px;
+      height: 4500px;
+      max-width: none;
+      opacity: 0.1;
+      animation-name: slow-rotate;
+      animation-duration: 300s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      transform-origin: center center;
+    }
+  }
+}
+
+// ==========================================================================
+// Message Section
+// ==========================================================================
+.message-section {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  color: $color-dark;
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 60px;
+  @include tab {
+    padding-top: 60px;
+  }
+  @include sp {
+    padding-top: 30px;
   }
 
   .container {
     position: relative;
-    z-index: 1;
+    z-index: 1; // Content within message-section
   }
 
   &__title.section-title {
-    // .section-titleを継承しつつ詳細指定
+    position: relative;
     color: $color-primary;
-    margin-bottom: 3rem;
-    font-size: $font-size-h2;
+    margin-bottom: 18rem;
+    padding-bottom: 10px;
+    font-size: $font-size-h2 * 1.5;
     @include tab {
       font-size: calc(#{$font-size-h2} * 0.8);
+      margin-bottom: 12rem;
+    }
+    @include sp {
+      font-size: calc(#{$font-size-h2} * 0.65);
+      margin-bottom: 8rem;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0; /* タイトルの下端に配置 */
+      left: 50%; /* 中央から開始 */
+      width: 0; /* 初期状態では幅なし */
+      height: 2px; /* 下線の太さ */
+      background-color: $color-primary-dark; /* 下線の色（適宜変更してください） */
+      transform: translateX(-50%); /* 中央揃えを維持 */
+      transition: width 0.5s ease-in-out; /* 幅の変化を0.5秒でアニメーション */
+    }
+    &.is-visible::after {
+      width: 15em; /* 表示されたら幅を100%にする */
     }
   }
 
   &__text {
     font-size: $font-size-base;
-    line-height: 2; // 行間広め
+    color: $color-white;
+    line-height: 2;
     max-width: 860px;
     margin-left: auto;
     margin-right: auto;
-  }
-
-  // メッセージセクション下のスクロールアロー
-  .hero__scroll-down--message {
-    margin-top: 4rem;
-    .hero__scroll-icon {
-      fill: $color-primary; // アイコンの色を変更
+    @include sp {
+      font-size: 1.4rem;
+      text-align: left;
     }
   }
 }
 
-.service-section {
-  // 既存の .services からクラス名変更を推奨 (よりBEM的)
-  // background: #f2f8fc; // デザイン画像では青背景
-  position: relative; // 背景画像のため
-  background-color: $color-primary; // メインの青背景
-  color: $color-white;
+// ==========================================================================
+// Parallax Strip Section
+// ==========================================================================
+.parallax-strip {
+  position: relative;
+  z-index: 2;
 
-  &__bg-image {
-    // 背景画像用エレメント
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.1; // 背景画像を薄く表示
-    z-index: 0;
-    pointer-events: none; // クリックイベントを透過
+  &__viewport {
+    height: 65vh;
+    overflow: hidden;
+    position: relative;
+    @include tab {
+      height: 30vh;
+    }
   }
+
+  &__image {
+    width: 100%;
+    height: calc(100% + 400px);
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: -200px;
+    will-change: transform;
+  }
+}
+
+// ==========================================================================
+// Service Section
+// ==========================================================================
+.service-section {
+  position: relative;
+  z-index: 2;
+  color: $color-white;
 
   .container {
     position: relative;
-    z-index: 1;
+    z-index: 3;
   }
 
   &__title.section-title {
@@ -235,33 +401,52 @@
 
   &__grid {
     display: grid;
-    // grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // カードサイズによって調整
-    grid-template-columns: repeat(2, 1fr); // デザインでは2カラム固定に見える
+    grid-template-columns: repeat(2, 1fr);
     gap: 3rem;
-
-    @include tab {
+    @include sp {
       grid-template-columns: 1fr;
       gap: 2.5rem;
     }
   }
-  // .service-card のスタイルは components/_cards.scss に記述
+
+  .service-card__link {
+    text-decoration: none;
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      color: $color-accent;
+    }
+  }
+
+  .section__more-button {
+    .button {
+      text-decoration: none;
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+  }
 }
 
+// ==========================================================================
+// Company Section
+// ==========================================================================
 .company-section {
-  // 既存の .company からクラス名変更を推奨
-  background-color: $color-primary; // デザイン画像の背景色
-  color: $color-white; // 文字色
+  position: relative;
+  z-index: 2;
+  color: $color-white;
+  // background-color: $color-accent;
 
   &__title.section-title {
-    color: $color-white; // 背景が濃色なのでタイトルも白
+    color: $color-white;
     margin-bottom: 4rem;
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); // 3カラム
-    gap: 1.5rem; // 画像間の隙間を狭めに
-
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
     @include tab {
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
@@ -271,17 +456,25 @@
   &__item {
     position: relative;
     overflow: hidden;
-    border-radius: 8px; // 画像に角丸
-    aspect-ratio: 4 / 3; // アスペクト比を保持 (ブラウザ対応注意)
+    border-radius: 8px;
+    aspect-ratio: 16/9;
+    border: 2px solid $color-white;
 
     &:hover .company-section__image {
       transform: scale(1.1);
+    }
+
+    &:hover .company-section__item-overlay {
+      background-color: rgba(0, 0, 0, 0.25);
     }
   }
 
   &__link {
     display: block;
-    height: 100%; // アスペクト比を活かすため
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
   }
 
   &__image {
@@ -289,47 +482,76 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    @include transition(transform);
+    @include transition(transform 0.3s ease-out);
   }
 
-  // &__item-title { (今回は未使用)
-  //   position: absolute;
-  //   bottom: 0;
-  //   left: 0;
-  //   width: 100%;
-  //   background-color: rgba($color-primary-dark, 0.8);
-  //   color: $color-white;
-  //   padding: 1.5rem;
-  //   text-align: center;
-  //   font-size: $font-size-medium;
-  //   font-weight: bold;
-  //   @include transition(background-color);
-  //   &:hover {
-  //     background-color: rgba(darken($color-primary-dark, 5%), 0.9);
-  //   }
-  // }
+  &__item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+    pointer-events: none;
+    @include transition(background-color 0.3s ease-out);
+  }
+
+  &__item-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    text-align: center;
+    color: $color-white;
+    font-size: 2.8rem;
+    font-weight: bold;
+    z-index: 2;
+    padding: 0.5em;
+    pointer-events: none;
+    line-height: 1.3;
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.7);
+  }
 }
 
+// ==========================================================================
+// News Section
+// ==========================================================================
 .news-section {
-  // 既存の .news からクラス名変更を推奨
-  // background: #f9f9f9; // 変数使用
-  background-color: $color-light-bg;
+  position: relative;
+  z-index: 2;
 
-  &__title.section-title {
-    margin-bottom: 4rem;
+  &__container {
+    display: flex;
+    gap: 3rem;
+    @include tab {
+      flex-direction: column;
+    }
   }
-  // .news-list のスタイルは components/_cards.scss に記述
+
+  &__left-column {
+    flex: 0 0 250px;
+    @include tab {
+      flex: 1;
+    }
+  }
+
+  &__right-column {
+    flex: 1;
+  }
 }
 
-// 汎用セクションタイトル (base/_typography.scss や utility/_text.scss でも可)
+// ==========================================================================
+// Utility / Generic Section Components
+// ==========================================================================
 .section-title {
-  font-family: $font-heading;
-  font-size: $font-size-h2;
+  font-family: $font-roboto;
+  font-size: calc(#{$font-size-h2} * 2);
   text-align: center;
   color: $color-primary;
 
   &--on-dark-bg {
-    // 暗い背景用の修飾子
     color: $color-white;
   }
 
@@ -338,8 +560,83 @@
   }
 }
 
-// 汎用もっと見るボタンコンテナ
+.section-subtitle {
+  display: block;
+  font-family: $font-base;
+  font-size: 2rem;
+  color: $color-primary;
+  text-align: center;
+
+  &--on-dark-bg {
+    color: $color-white;
+  }
+
+  @include tab {
+    font-size: calc(#{$font-size-h2} * 0.85);
+  }
+}
+
 .section__more-button {
   text-align: center;
   margin-top: 4rem;
+}
+
+// ==========================================================================
+// Keyframes
+// ==========================================================================
+@keyframes wipe-fade-right {
+  to {
+    mask-size: 100% 100%;
+  }
+}
+
+@keyframes wave-animation-left {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(8vw, 0.8vh) scale(1.01);
+    opacity: 0.65;
+  }
+}
+
+@keyframes wave-animation-right {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translate(-8vw, -0.8vh) scale(0.99);
+    opacity: 0.7;
+  }
+}
+
+@keyframes slow-rotate {
+  0% {
+    transform: rotate(0) scaleX(1) scaleY(1);
+  }
+  20% {
+    transform: rotate(50deg) scaleX(1.5) scaleY(1);
+  }
+  30% {
+    transform: rotate(30deg) scaleX(1) scaleY(1.5);
+  }
+  45% {
+    transform: rotate(190deg) scaleX(1.5) scaleY(1);
+  }
+  55% {
+    transform: rotate(170deg) scaleX(1) scaleY(1.5);
+  }
+  70% {
+    transform: rotate(280deg) scaleX(1.5) scaleY(1);
+  }
+  80% {
+    transform: rotate(260deg) scaleX(1) scaleY(1.5);
+  }
+  100% {
+    transform: rotate(360deg) scaleX(1) scaleY(1);
+  }
 }

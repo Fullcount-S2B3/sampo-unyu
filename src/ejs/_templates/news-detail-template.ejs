@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+  <%- include('../_includes/_head', { path: assetPath, lang: lang, pageTitle:
+  currentPageData.meta_title || currentPageData.title || data.common.title,
+  pageDescription: currentPageData.meta_description || data.common.description
+  }) %>
+  <body class="page-news page-news-detail" data-page-id="news-detail">
+    <%- include('../_includes/_header', { assetPath: assetPath,
+    pageLinkBasePath: pageLinkBasePath, pageLinkToOtherLangRoot:
+    pageLinkToOtherLangRoot, pageId: pageId, data: data, lang: lang }) %>
+
+    <div class="page-header">
+      <div
+        class="page-header__bg"
+        style="
+          background-image: url('<%= assetPath %>images/news/header_bg-news.jpg');
+        "
+      ></div>
+      <div class="container">
+        <h1 class="page-header__title">お知らせ</h1>
+      </div>
+    </div>
+
+    <main class="main-content main-content--subpage">
+      <div class="container content-area">
+        <article class="post-content news-article">
+          <header class="news-article__header">
+            <time
+              class="news-article__date"
+              datetime="<%- currentPageData.date_iso %>"
+            >
+              <%- currentPageData.date_display %>
+            </time>
+            <h2 class="section-title section-title--left-align">
+              <%- currentPageData.title %>
+            </h2>
+          </header>
+
+          <% if (currentPageData.image) { %>
+          <figure class="news-article__figure">
+            <picture>
+              <source
+                srcset="<%= assetPath %>images/news/<%= currentPageData.image.replace(/\.(jpg|jpeg|png|gif)$/i, '.webp') %>"
+                type="image/webp"
+              />
+              <img
+                src="<%= assetPath %>images/news/<%= currentPageData.image %>"
+                alt="<%- currentPageData.alt || currentPageData.title %>"
+                class="news-article__image js-modal-trigger"
+              />
+            </picture>
+          </figure>
+          <% } %>
+
+          <div class="news-article__body">
+            <%- currentPageData.content_html %>
+          </div>
+
+          <div class="news-list__load-more-wrapper">
+            <a
+              href="<%= pageLinkBasePath %>news/"
+              class="button button--outline-primary"
+            >
+              <%- data.common.back_to_news_list_text || 'お知らせ一覧へ戻る' %>
+            </a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <%- include('../_includes/_footer', { assetPath: assetPath,
+    pageLinkBasePath: pageLinkBasePath, pageLinkToOtherLangRoot:
+    pageLinkToOtherLangRoot, pageId: pageId, data: data, lang: lang }) %> <%-
+    include('../_includes/_scripts', { path: assetPath, data: data, lang: lang
+    }) %>
+
+    <div id="imageModal" class="image-modal">
+      <span class="image-modal__close-button">&times;</span>
+      <img class="image-modal__content" id="modalImage" src="" alt="拡大画像" />
+      <div class="image-modal__caption" id="modalCaption"></div>
+    </div>
+  </body>
+</html>

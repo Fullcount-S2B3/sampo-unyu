@@ -1,0 +1,39 @@
+{
+  "meta_title": "Domestic Ship Manning Services | Business Overview | SANPO Shipping Co., Ltd.",
+  "meta_description": "Learn about our Domestic Ship Manning Services, including cargo transportation between domestic ports, ship management, and crew deployment.",
+  "page_title": "Domestic Ship Manning Services",
+  "sections": [
+    {
+      "id": "section-transport",
+      "title": "Maritime Transport & Domestic Cargo Shipping",
+      "heading_level": "h2",
+      "paragraphs": [
+        "In recent years, maritime transport has played an important role as a means suitable for large-volume and long-distance transportation.\nWe provide domestic cargo shipping services between Japanese ports using our owned vessels."
+      ]
+    },
+    {
+      "id": "section-manning",
+      "title": "Ship Management & Crew Deployment",
+      "heading_level": "h2",
+      "paragraphs": [
+        "We consistently handle ship operation and maintenance, which are essential to maritime transport, along with crew deployment to ensure proper operation.\nWe support the safe and efficient operation of our owned vessels."
+      ]
+    },
+    {
+      "id": "section-example1",
+      "title": "Future Outlook",
+      "heading_level": "h3",
+      "paragraphs": [
+        "This section will contain text about our future outlook.\nIf line breaks are necessary, you can write across\nmultiple lines like this."
+      ]
+    },
+    {
+      "id": "section-example2",
+      "title": "Commitment to Safety",
+      "heading_level": "h3",
+      "paragraphs": [
+        "This section will contain text about our commitment to safety.\nAt SANPO Shipping, we place the highest priority on safe operation and maintain a thorough management system."
+      ]
+    }
+  ]
+}

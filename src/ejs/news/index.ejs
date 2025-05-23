@@ -1,0 +1,109 @@
+<% const pageId = 'news'; const commonData = data.common; const currentPageData
+= data.pages[pageId] || {}; const allArticles = (data.news_data &&
+data.news_data.articles) || []; const initialDisplayCount = 10; const
+initiallyDisplayedArticles = allArticles.slice(0, initialDisplayCount); %>
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+  <%- include('../_includes/_head', { path: assetPath, lang: lang, pageTitle:
+  currentPageData.meta_title || commonData.nav_news, pageDescription:
+  currentPageData.meta_description || commonData.description }) %>
+  <body class="page-<%= pageId %>" data-page-id="<%= pageId %>">
+    <%- include('../_includes/_header', { assetPath: assetPath,
+    pageLinkBasePath: pageLinkBasePath, pageLinkToOtherLangRoot:
+    pageLinkToOtherLangRoot, pageId: pageId, lang: lang, data: data,
+    currentPageData: currentPageData }) %>
+
+    <div class="page-header">
+      <div
+        class="page-header__bg"
+        style="
+          background-image: url('<%= assetPath %>images/news/header_bg-news.jpg');
+        "
+      ></div>
+      <div class="container">
+        <h1 class="page-header__title">
+          <%- currentPageData.page_title || commonData.nav_news %>
+        </h1>
+      </div>
+    </div>
+
+    <main class="main-content main-content--subpage">
+      <div class="container">
+        <% if (allArticles.length > 0) { %>
+        <ul
+          class="news-list news-list--page"
+          id="newsListContainer"
+          data-page-link-base-path="<%= pageLinkBasePath %>"
+          data-asset-path="<%= assetPath %>"
+        >
+          <% initiallyDisplayedArticles.forEach(function(article) { %>
+          <li class="news-list__item">
+            <a
+              href="<%= pageLinkBasePath %>news/<%= article.id %>/"
+              class="news-list__link"
+            >
+              <% if (article.image) { %>
+              <div class="news-list__image-wrapper">
+                <picture>
+                  <source
+                    srcset="<%= assetPath %>images/news/<%= article.image.replace(/\.(jpg|jpeg|png|gif)$/i, '.webp') %>"
+                    type="image/webp"
+                  />
+                  <img
+                    src="<%= assetPath %>images/news/<%= article.image %>"
+                    alt="<%- article.alt || '' %>"
+                    class="news-list__image"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+              <% } %>
+              <div
+                class="news-list__content <%= article.image ? '' : 'news-list__content--no-image' %>"
+              >
+                <time
+                  class="news-list__date"
+                  datetime="<%- article.date_iso %>"
+                >
+                  <%- article.date_display %>
+                </time>
+                <h3 class="news-list__title"><%- article.title %></h3>
+                <% if (article.content_html) { %>
+                <div class="news-list__body"><%- article.content_html %></div>
+                <% } %>
+              </div>
+            </a>
+          </li>
+          <% }); %>
+        </ul>
+
+        <script id="allNewsData" type="application/json">
+          <%- JSON.stringify(allArticles) %>
+        </script>
+
+        <% if (allArticles.length > initialDisplayCount) { %>
+        <div class="news-list__load-more-wrapper">
+          <button
+            type="button"
+            id="loadMoreNewsButton"
+            class="button button--outline-primary"
+          >
+            <%- (data.common && data.common.load_more_text) %>
+          </button>
+        </div>
+        <% } %> <% } else { %>
+        <p>
+          <%- (currentPageData.no_news_message) || (data.common &&
+          data.common.no_news_message) %>
+        </p>
+        <% } %>
+      </div>
+    </main>
+
+    <%- include('../_includes/_footer', { assetPath: assetPath,
+    pageLinkBasePath: pageLinkBasePath, pageLinkToOtherLangRoot:
+    pageLinkToOtherLangRoot, pageId: pageId, data: data, lang: lang }) %> <%-
+    include('../_includes/_scripts', { assetPath: assetPath, data: data, lang:
+    lang }) %>
+  </body>
+</html>

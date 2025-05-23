@@ -1,0 +1,111 @@
+<footer class="footer">
+  <div class="footer__container">
+    <div class="footer__info">
+      <div class="footer__company-name">
+        <span class="footer__logo-ja"><%- data.common.company_name_ja %></span>
+        <span class="footer__logo-en"><%- data.common.company_name_en %></span>
+      </div>
+      <p class="footer__address">
+        <%- data.common.footer_address_postcode %><br />
+        <%- data.common.footer_address_line1 %><br />
+        <span class="footer__tel">TEL. <%- data.common.footer_tel %></span>（<%-
+        data.common.footer_tel_hours %>）
+      </p>
+    </div>
+
+    <div class="footer__links">
+      <div class="footer__nav-column">
+        <ul class="nav-footer__menu">
+          <li class="nav-footer__item">
+            <a
+              href="<%= pageLinkBasePath %>"
+              class="nav-footer__link <% if (pageId === 'home' || pageId === 'top') { %>nav-footer__link--active<% } %>"
+            >
+              <%- data.common.nav_home %>
+            </a>
+          </li>
+          <li class="nav-footer__item">
+            <a
+              href="<%= pageLinkBasePath %>news/"
+              class="nav-footer__link <% if (pageId === 'news') { %>nav-footer__link--active<% } %>"
+            >
+              <%- data.common.nav_news %>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__nav-column">
+        <ul class="nav-footer__menu">
+          <li class="nav-footer__item">
+            <% if (data.common.url_service_top) { %>
+            <a
+              href="<%= pageLinkBasePath %><%= data.common.url_service_top %>"
+              class="nav-footer__link"
+            >
+              <%- data.common.nav_service %>
+            </a>
+            <% } else { %>
+            <span class="nav-footer__link"><%- data.common.nav_service %></span>
+            <% } %>
+          </li>
+          <li class="nav-footer__submenu-item">
+            <a
+              href="<%= pageLinkBasePath %>domestic-charter/"
+              class="nav-footer__submenu-link"
+            >
+              <%- data.common.nav_service_naiko %>
+            </a>
+          </li>
+          <li class="nav-footer__submenu-item">
+            <a
+              href="<%= pageLinkBasePath %>international-charter/"
+              class="nav-footer__submenu-link"
+            >
+              <%- data.common.nav_service_gaiko %>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__nav-column">
+        <ul class="nav-footer__menu">
+          <li class="nav-footer__item">
+            <a
+              href="<%= pageLinkBasePath %>company/"
+              class="nav-footer__link <% if (pageId === 'company') { %>nav-footer__link--active<% } %>"
+            >
+              <%- data.common.nav_company %>
+            </a>
+          </li>
+          <li class="nav-footer__submenu-item">
+            <a
+              href="<%= pageLinkBasePath %>about/"
+              class="nav-footer__submenu-link"
+            >
+              <%- data.common.nav_about %>
+            </a>
+          </li>
+          <li class="nav-footer__submenu-item">
+            <a
+              href="<%= pageLinkBasePath %>fleet/"
+              class="nav-footer__submenu-link"
+            >
+              <%- data.common.nav_fleet %>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer__copyright"><%- data.common.footer_copyright %></p>
+</footer>
+<a
+  href="#"
+  id="pageTopButton"
+  class="page-top-button"
+  aria-label="ページトップへ戻る"
+>
+  <span class="material-icons-outlined">arrow_upward</span>
+</a>

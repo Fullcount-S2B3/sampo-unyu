@@ -7,15 +7,17 @@ $color-secondary: #0e6eb8;
 $color-accent: #005cac;
 $color-white: #fff;
 $color-dark: #1a1a1a;
+$color-gray-line: #adadad;
 $color-gray-text: #555;
 $color-light-bg: #f8f9fa;
 $color-blue-page-header-bg: #002a54;
+$color-wave-teal: #008fac;
+$color-wave-cyan-light: #60cae0;
 
 // Fonts
-$font-base: "Noto Sans JP", sans-serif;
-// $font-heading: "Aoboshi One", serif; // ← コメントアウトまたは削除
-$font-heading: $font-base; // ★★★ 見出しも Noto Sans JP に変更 ★★★
-$font-roboto: "Roboto", sans-serif;
+$font-base: 'Noto Sans JP', sans-serif;
+$font-heading: $font-base;
+$font-roboto: 'Roboto', sans-serif;
 
 // Font Sizes
 $font-size-base: 1.6rem;
@@ -28,12 +30,12 @@ $font-size-h2: 3.2rem;
 $font-size-h3: 2rem;
 
 $font-size-breadcrumbs: 1.3rem;
-$font-size-page-title: 3.6rem;
+$font-size-page-title: 3.2rem;
 
 // Breakpoints
-$breakpoint-sp: 480px;
-$breakpoint-tab: 768px;
-$breakpoint-pc-small: 992px;
+$breakpoint-sp: 768px;
+$breakpoint-tab: 992px;
+// $breakpoint-pc-small: 992px;
 $breakpoint-pc-medium: 1200px;
 
 // Container widths
@@ -43,11 +45,12 @@ $container-padding-pc: 20px;
 
 // Header
 $header-height-top: 100px;
-$header-height-subpage: 70px;
+$header-height-subpage: 152px;
+$header-height-sp: 80px;
 
 // Z-indexes
 $z-index-header: 1000;
 $z-index-nav-global: 1010;
 $z-index-loading: 9999;
-$z-index-page-header: 10; // page-headerはheaderより下なので、値は小さくても良い
+$z-index-page-header: 10;
 $z-index-breadcrumbs: 11;

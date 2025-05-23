@@ -1,0 +1,127 @@
+<div class="loading-spinner is-loading"></div>
+<header class="header">
+  <div class="header__container">
+    <a href="<%= pageLinkBasePath %>" class="header__logo">
+      <span class="header__logo-ja"><%- data.common.company_name_ja %></span>
+      <span class="header__logo-en"><%- data.common.company_name_en %></span>
+    </a>
+
+    <div class="header__nav-wrapper">
+      <nav class="nav-global" aria-label="<%- data.common.main_nav_label %>">
+        <ul class="nav-global__menu" id="global-nav-menu">
+          <li class="nav-global__item">
+            <a
+              href="<%= pageLinkBasePath %>"
+              class="nav-global__link <% if (pageId === 'top') { %>nav-global__link--active<% } %>"
+            >
+              <%- data.common.nav_home %>
+            </a>
+          </li>
+
+          <li class="nav-global__item has-submenu">
+            <a
+              href="<%= pageLinkBasePath %>domestic-charter/"
+              class="nav-global__link <% if (pageId === 'service') { %>nav-global__link--active<% } %>"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <%- data.common.nav_service %>
+              <span class="nav-global__submenu-indicator"></span>
+            </a>
+            <ul class="nav-global__submenu">
+              <li class="nav-global__submenu-item">
+                <a
+                  href="<%= pageLinkBasePath %>domestic-charter/"
+                  class="nav-global__submenu-link"
+                >
+                  <%- data.common.nav_service_naiko %>
+                </a>
+              </li>
+              <li class="nav-global__submenu-item">
+                <a
+                  href="<%= pageLinkBasePath %>international-charter/"
+                  class="nav-global__submenu-link"
+                >
+                  <%- data.common.nav_service_gaiko %>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-global__item has-submenu">
+            <a
+              href="<%= pageLinkBasePath %>company/"
+              class="nav-global__link <% if (pageId === 'company') { %>nav-global__link--active<% } %>"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <%- data.common.nav_company %>
+              <span class="nav-global__submenu-indicator"></span>
+            </a>
+            <ul class="nav-global__submenu">
+              <li class="nav-global__submenu-item">
+                <a
+                  href="<%= pageLinkBasePath %>about/"
+                  class="nav-global__submenu-link"
+                >
+                  <%- data.common.nav_about %>
+                </a>
+              </li>
+              <li class="nav-global__submenu-item">
+                <a
+                  href="<%= pageLinkBasePath %>fleet/"
+                  class="nav-global__submenu-link"
+                >
+                  <%- data.common.nav_fleet %>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-global__item">
+            <a
+              href="<%= pageLinkBasePath %>news/"
+              class="nav-global__link <% if (pageId === 'news') { %>nav-global__link--active<% } %>"
+            >
+              <%- data.common.nav_news %>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="header__lang-switch">
+        <% if (lang === 'ja') { %>
+        <span>JP</span> | <a href="<%= pageLinkToOtherLangRoot %>">EN</a>
+        <% } else if (lang === 'en') { %>
+        <a href="<%= pageLinkToOtherLangRoot %>">JP</a> | <span>EN</span>
+        <% } %>
+      </div>
+    </div>
+
+    <button
+      class="header__menu-toggle"
+      aria-expanded="false"
+      aria-controls="global-nav-menu"
+      aria-label="<%- data.common.menu_toggle_label %>"
+    >
+      <span class="header__menu-icon-wrapper">
+        <span
+          class="material-icons-outlined header__menu-icon header__menu-icon--anchor is-visible"
+          aria-hidden="false"
+          >anchor</span
+        >
+        <span
+          class="material-icons-outlined header__menu-icon header__menu-icon--close"
+          aria-hidden="true"
+          >close</span
+        >
+      </span>
+      <span class="header__menu-icon-text"><%- data.common.menu_text %></span>
+    </button>
+  </div>
+
+  <% if (pageId && pageId !== 'home') { %> <%-
+  include('../_includes/_breadcrumbs', { data: data, path: pageLinkBasePath,
+  lang: lang, pageId: pageId,currentPageDataForBreadcrumb: currentPageData }) %>
+  <% } %>
+</header>

@@ -1,0 +1,141 @@
+{
+  "meta_title": "船舶一覧 | 会社案内 | 三豊運輸株式会社",
+  "meta_description": "三豊運輸が保有する内航船および外航船（ケミカルタンカー）の一覧と詳細情報をご覧いただけます。",
+  "page_title": "船舶一覧",
+  "summary_table_headers": {
+    "name": "船舶名",
+    "gt": "G/T",
+    "dwt": "DWT",
+    "type": "船種",
+    "built_year": "建造年月",
+    "area": "航行区域"
+  },
+  "fleet_list": [
+    {
+      "id": "dai31eihoumaru",
+      "name": "第31栄豊丸",
+      "images": [
+        {
+          "base_filename": "eihoumaru-01",
+          "alt_text": "第31栄豊丸 写真1"
+        }
+      ],
+      "specs": {
+        "name": "第31栄豊丸",
+        "gt": "498",
+        "dwt": "1,265",
+        "type": "白油タンカー",
+        "built_year": "H25年9月(’13)",
+        "area": "内航・限定近海"
+      }
+    },
+    {
+      "id": "dai18houwamaru",
+      "name": "第18豊和丸",
+      "images": [
+        {
+          "base_filename": "houwamaru-01",
+          "alt_text": "第18豊和丸 写真1"
+        }
+      ],
+      "specs": {
+        "name": "第18豊和丸",
+        "gt": "499",
+        "dwt": "1,223",
+        "type": "白・黒油タンカー",
+        "built_year": "H18年10月(’06)",
+        "area": "内航・限定近海"
+      }
+    },
+    {
+      "id": "shoshun",
+      "name": "SHOSHUN",
+      "images": [
+        {
+          "base_filename": "shoshun-01",
+          "alt_text": "SHOSHUN 写真1"
+        }
+      ],
+      "specs": {
+        "name": "SHOSHUN",
+        "gt": "5,523",
+        "dwt": "8,721",
+        "type": "ケミカルタンカー IMO Ⅱ&Ⅲ",
+        "built_year": "H28年3月(’16)",
+        "area": "外航・近海"
+      }
+    },
+    {
+      "id": "shoko",
+      "name": "SHOKO",
+      "images": [
+        {
+          "base_filename": "shoko-01",
+          "alt_text": "SHOKO 写真1"
+        }
+      ],
+      "specs": {
+        "name": "SHOKO",
+        "gt": "7,387",
+        "dwt": "11,653",
+        "type": "ケミカルタンカー IMO Ⅱ&Ⅲ",
+        "built_year": "R02年8月(’20)",
+        "area": "外航・近海"
+      }
+    },
+    {
+      "id": "oriental-sakura",
+      "name": "ORIENTAL SAKURA",
+      "images": [
+        {
+          "base_filename": "orientalsakura-01",
+          "alt_text": "ORIENTAL SAKURA 写真1"
+        }
+      ],
+      "specs": {
+        "name": "ORIENTAL SAKURA",
+        "gt": "9,141",
+        "dwt": "16,090",
+        "type": "ケミカルタンカー IMO Ⅱ&Ⅲ",
+        "built_year": "H27年2月(’15)",
+        "area": "外航・WorldWide"
+      }
+    },
+    {
+      "id": "sarus-crane",
+      "name": "SARUS CRANE",
+      "images": [
+        {
+          "base_filename": "saruscrane-01",
+          "alt_text": "SARUS CRANE 写真1"
+        }
+      ],
+      "specs": {
+        "name": "SARUS CRANE",
+        "gt": "11,821",
+        "dwt": "19,772",
+        "type": "ケミカルタンカー IMO Ⅱ&Ⅲ",
+        "built_year": "R04年11月(‘22)",
+        "area": "外航・WorldWide"
+      }
+    },
+    {
+      "id": "chemstar-sapphire",
+      "name": "CHEMSTAR SAPPHIRE",
+      "images": [
+        {
+          "base_filename": "chemstarsapphire-01",
+          "alt_text": "CHEMSTAR SAPPHIRE 写真1"
+        }
+      ],
+      "specs": {
+        "name": "CHEMSTAR SAPPHIRE",
+        "gt": "12,149",
+        "dwt": "19,993",
+        "type": "ケミカルタンカー IMO Ⅱ&Ⅲ",
+        "built_year": "R01年10月(’19)",
+        "area": "外航・WorldWide"
+      }
+    }
+  ]
+}

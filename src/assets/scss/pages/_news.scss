@@ -1,0 +1,66 @@
+@use '../abstracts' as *;
+
+.page-news {
+  .news-list {
+    &__item {
+      position: relative;
+      margin-bottom: 3em;
+      box-shadow: none;
+
+      &::after {
+        position: absolute;
+        content: '';
+        display: block;
+        bottom: -1.5rem;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        border-bottom: 1px dotted $color-gray-line;
+      }
+
+      &:hover {
+        transform: translateY(0);
+      }
+
+      &:nth-child(n + 2) {
+        margin-top: 3rem;
+      }
+    }
+
+    &__image-wrapper {
+      width: 300px;
+      height: auto;
+    }
+
+    &__link {
+      &:hover {
+        color: $color-dark;
+      }
+    }
+
+    &__load-more-wrapper {
+      text-align: center;
+      margin-top: 6rem;
+    }
+  }
+  .news-article {
+    &__figure {
+      width: 100%;
+      max-width: 100%;
+      max-height: 480px;
+      margin-bottom: 3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    &__image {
+      height: 100%;
+      max-height: 480px;
+      width: auto;
+      object-fit: contain;
+      cursor: pointer;
+    }
+  }
+}

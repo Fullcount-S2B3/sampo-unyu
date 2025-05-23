@@ -1,11 +1,15 @@
-<% var path = './'; var pageId = 'top'; %>
+<% const pageId = 'home'; const commonData = data.common; const currentPageData
+= data.pages[pageId] || {}; const newsArticles = (data.news_data &&
+data.news_data.articles) || []; const newsData = data.news; %>
 <!DOCTYPE html>
-<html lang="<%= lang || 'ja' %>">
-  <%- include('_includes/head', { path: path, data: data, lang: lang }) %>
-  <body class="page-top">
-    <%- include('_includes/header', { path: path, pageId: pageId, lang: lang })
-    %>
-
+<html lang="<%= lang %>">
+  <%- include('./_includes/_head', { path: assetPath, lang: lang, pageTitle:
+  currentPageData.meta_title || commonData.title, pageDescription:
+  currentPageData.meta_description || commonData.description }) %>
+  <body class="page-<%= pageId %> page-top" data-page-id="<%= pageId %>"></body>
+    <%- include('_includes/_header', { pageLinkBasePath: pageLinkBasePath,
+    assetPath: assetPath, pageLinkToOtherLangRoot: pageLinkToOtherLangRoot,
+    pageId: pageId, data: data, lang: lang }) %>
     <section class="hero">
       <div class="hero__video-wrapper">
         <video
@@ -16,11 +20,9 @@
           playsinline
           loading="lazy"
         >
-          <source
-            src="<%= path %>assets/video/hero-video.mp4"
-            type="video/mp4"
-          />
-          お使いのブラウザは動画タグに対応していません。
+          <source src="<%= assetPath %>video/hero-video.mp4" type="video/mp4" />
+          <%- (currentPageData.hero && currentPageData.hero.video_fallback_text)
+          || 'お使いのブラウザは動画タグに対応していません。' %>
         </video>
         <div class="hero__overlay"></div>
       </div>
@@ -40,211 +42,272 @@
         </svg>
       </div>
       <div class="hero__text">
-        <h1><%- data.hero.heading %></h1>
-        <p><%- data.hero.text %></p>
+        <h1><%- (currentPageData.hero && currentPageData.hero.heading) %></h1>
+        <p><%- (currentPageData.hero && currentPageData.hero.text) %></p>
       </div>
     </section>
 
     <main class="main-content">
-      <section id="message" class="message-section section-padding">
-        <div class="message-section__bg-shape" aria-hidden="true"></div>
+      <div class="main-content__bg-shape">
+        <div class="circle circle--1"></div>
+        <div class="circle circle--2"></div>
+        <div class="circle circle--3"></div>
+      </div>
+      <div class="main-content__wave">
+        <img
+          src="/assets/images/common/ocean.svg"
+          alt="Decorative wave"
+          class="wave-image"
+        />
+      </div>
+      <section id="message" class="message-section">
         <div class="container">
           <h2 class="section-title message-section__title">
-            お客様や関係者の皆さまにとって<br />最良のパートナーに
+            <%- (currentPageData.message_section &&
+            currentPageData.message_section.title) %>
           </h2>
           <p class="message-section__text">
-            私たち三豊運輸は、創業以来、海運業界の発展に貢献すべく、安全かつ効率的な船舶運航をサポートしてまいりました。<br />
-            変化の激しい時代においても、常にお客様のニーズを的確に捉え、信頼されるサービスを提供し続けることをお約束します。<br />
-            これからも、海上輸送の未来を担う企業として、挑戦と成長を続けてまいります。
+            <%- (currentPageData.message_section &&
+            currentPageData.message_section.text) %>
           </p>
-          <div class="hero__scroll-down hero__scroll-down--message">
-            <a
-              href="#service"
-              class="hero__scroll-link"
-              aria-label="次のセクションへスクロール"
-            >
-              <svg
-                class="hero__scroll-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  d="M12 16.59l-6-6 1.41-1.41L12 13.76l4.59-4.58L18 10.59z"
-                />
-              </svg>
-            </a>
-          </div>
         </div>
       </section>
 
-      <section
-        id="service"
-        class="service-section section-padding section--blue-bg"
-      >
-        <div
-          class="service-section__bg-image"
-          style="
-            background-image: url('<%= path %>assets/images/service_background_ship.jpg');
-          "
-          aria-hidden="true"
-        ></div>
+      <div class="parallax-strip">
+        <div class="parallax-strip__viewport">
+          <img
+            src="<%= assetPath %>images/home/parallax_ship01.jpg"
+            alt="<%- (currentPageData.parallax_section && currentPageData.parallax_section.ship01_alt) %>"
+            class="parallax-strip__image"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <section id="service" class="service-section section-padding">
         <div class="container">
           <h2
             class="section-title section-title--on-dark-bg service-section__title"
           >
-            SERVICE
+            <%- (currentPageData.service_section &&
+            currentPageData.service_section.title) %>
+            <span class="section-subtitle section-subtitle--on-dark-bg"
+              ><%- (currentPageData.service_section &&
+              currentPageData.service_section.subtitle) %></span
+            >
           </h2>
+
           <div class="service-section__grid">
             <article class="service-card">
               <a
-                href="<%= path %>service/manning-domestic/"
+                href="<%= pageLinkBasePath %>domestic-charter/"
                 class="service-card__link"
               >
                 <div class="service-card__image-wrapper">
                   <img
-                    src="<%= path %>assets/images/service_manning_domestic.jpg"
-                    alt="内航船員配乗"
+                    src="<%= assetPath %>images/home/service_manning_domestic.jpg"
+                    alt="<%- (currentPageData.service_section && currentPageData.service_section.manning_domestic_title) %>"
                     class="service-card__image"
                     loading="lazy"
                   />
                 </div>
+
                 <div class="service-card__content">
-                  <h3 class="service-card__title">内航船員配乗</h3>
+                  <h3 class="service-card__title">
+                    <%- (currentPageData.service_section &&
+                    currentPageData.service_section.manning_domestic_title) %>
+                  </h3>
                 </div>
               </a>
             </article>
+
             <article class="service-card">
               <a
-                href="<%= path %>service/manning-foreign/"
+                href="<%= pageLinkBasePath %>international-charter/"
                 class="service-card__link"
               >
                 <div class="service-card__image-wrapper">
                   <img
-                    src="<%= path %>assets/images/service_manning_foreign.jpg"
-                    alt="外航船員配乗"
+                    src="<%= assetPath %>images/home/service_manning_foreign.jpg"
+                    alt="<%- (currentPageData.service_section && currentPageData.service_section.manning_foreign_title) %>"
                     class="service-card__image"
                     loading="lazy"
                   />
                 </div>
+
                 <div class="service-card__content">
-                  <h3 class="service-card__title">外航船員配乗</h3>
+                  <h3 class="service-card__title">
+                    <%- (currentPageData.service_section &&
+                    currentPageData.service_section.manning_foreign_title) %>
+                  </h3>
                 </div>
               </a>
             </article>
           </div>
-          <div class="section__more-button">
-            <a href="<%= path %>service/" class="button button--outline-white"
-              >事業案内一覧へ</a
-            >
-          </div>
         </div>
       </section>
-
+      <div class="parallax-strip">
+        <div class="parallax-strip__viewport">
+          <img
+            src="<%= assetPath %>images/home/parallax_ship02.jpg"
+            alt="<%- (currentPageData.parallax_section && currentPageData.parallax_section.ship02_alt) %>"
+            class="parallax-strip__image"
+            loading="lazy"
+          />
+        </div>
+      </div>
       <section id="company" class="company-section section-padding">
         <div class="container">
-          <h2 class="section-title company-section__title">COMPANY</h2>
+          <h2 class="section-title company-section__title">
+            <%- (currentPageData.company_section &&
+            currentPageData.company_section.title) %>
+            <span class="section-subtitle section-subtitle--on-dark-bg"
+              ><%- (currentPageData.company_section &&
+              currentPageData.company_section.subtitle) %></span
+            >
+          </h2>
           <div class="company-section__grid">
             <div class="company-section__item">
-              <a href="<%= path %>company/about/" class="company-section__link">
+              <a
+                href="<%= pageLinkBasePath %>company/about/"
+                class="company-section__link"
+              >
                 <img
-                  src="<%= path %>assets/images/company_image_01.jpg"
-                  alt="街並みと青空"
+                  src="<%= assetPath %>images/home/company_image_01.jpg"
+                  alt="<%- (currentPageData.company_section && currentPageData.company_section.image01_alt) %>"
                   class="company-section__image"
                   loading="lazy"
                 />
+                <div class="company-section__item-overlay"></div>
+                <h3 class="company-section__item-title">
+                  <%- (currentPageData.company_section &&
+                  currentPageData.company_section.title_about) %>
+                </h3>
               </a>
             </div>
             <div class="company-section__item">
               <a
-                href="<%= path %>company/message/"
+                href="<%= pageLinkBasePath %>company/history/"
                 class="company-section__link"
               >
                 <img
-                  src="<%= path %>assets/images/company_image_02.jpg"
-                  alt="会議室のテーブルと椅子"
+                  src="<%= assetPath %>images/home/company_image_02.jpg"
+                  alt="<%- (currentPageData.company_section && currentPageData.company_section.image02_alt) %>"
                   class="company-section__image"
                   loading="lazy"
                 />
-              </a>
-            </div>
-            <div class="company-section__item">
-              <a
-                href="<%= path %>company/history/"
-                class="company-section__link"
-              >
-                <img
-                  src="<%= path %>assets/images/company_image_03.jpg"
-                  alt="航行する赤い船"
-                  class="company-section__image"
-                  loading="lazy"
-                />
+                <div class="company-section__item-overlay"></div>
+                <h3 class="company-section__item-title">
+                  <%- (currentPageData.company_section &&
+                  currentPageData.company_section.title_fleet) %>
+                </h3>
               </a>
             </div>
           </div>
           <div class="section__more-button">
-            <a href="<%= path %>company/" class="button button--primary"
-              >会社概要ページへ</a
+            <a
+              href="<%= pageLinkBasePath %>company/"
+              class="button button--primary"
+              ><%- (currentPageData.company_section &&
+              currentPageData.company_section.more_button_text) %></a
             >
           </div>
         </div>
       </section>
-
       <section id="news" class="news-section section-padding section--light-bg">
-        <div class="container">
-          <h2 class="section-title news-section__title">NEWS</h2>
-          <ul class="news-list">
-            <li class="news-list__item">
-              <a href="<%= path %>news/article01/" class="news-list__link">
-                <div class="news-list__image-wrapper">
-                  <img
-                    src="<%= path %>assets/images/news_thumb01.jpg"
-                    alt=""
-                    class="news-list__image"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-list__content">
-                  <time class="news-list__date" datetime="2024-03-10"
-                    >2024.03.10</time
-                  >
-                  <h3 class="news-list__title">
-                    新しい船舶管理システムを導入しました。
-                  </h3>
-                </div>
+        <div class="container news-section__container">
+          <div class="news-section__left-column">
+            <h2 class="section-title news-section__title">
+              <%- (currentPageData.news_section &&
+              currentPageData.news_section.title) || "News" %> <% if
+              (currentPageData.news_section &&
+              currentPageData.news_section.subtitle) { %>
+              <span class="section-subtitle">
+                <%- currentPageData.news_section.subtitle %>
+              </span>
+              <% } %>
+            </h2>
+            <div class="section__more-button u-show-pc">
+              <a
+                href="<%= pageLinkBasePath %>news/"
+                class="button button--outline-primary"
+              >
+                <%- (currentPageData.news_section &&
+                currentPageData.news_section.more_button_text) || "View All" %>
               </a>
-            </li>
-            <li class="news-list__item">
-              <a href="<%= path %>news/article02/" class="news-list__link">
-                <div class="news-list__image-wrapper">
-                  <img
-                    src="<%= path %>assets/images/news_thumb02.jpg"
-                    alt=""
-                    class="news-list__image"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-list__content">
-                  <time class="news-list__date" datetime="2024-02-20"
-                    >2024.02.20</time
+            </div>
+          </div>
+          <div class="news-section__right-column">
+            <ul class="news-list">
+              <% const topNewsArticles = (data.news_data &&
+              data.news_data.articles) ? data.news_data.articles.slice(0, 3) :
+              []; %> <% if (topNewsArticles.length > 0) { %> <%
+              topNewsArticles.forEach(function(article) { %>
+              <li class="news-list__item">
+                <a
+                  href="<%= pageLinkBasePath %>news/<%= article.id %>/"
+                  class="news-list__link"
+                >
+                  <% if (article.image) { %>
+                  <div class="news-list__image-wrapper">
+                    <picture>
+                      <source
+                        srcset="<%= assetPath %>images/news/<%= article.image.replace(/\.(jpg|jpeg|png|gif)$/i, '.webp') %>"
+                        type="image/webp"
+                      />
+                      <img
+                        src="<%= assetPath %>images/news/<%= article.image %>"
+                        alt="<%- article.alt || '' %>"
+                        class="news-list__image"
+                        loading="lazy"
+                      />
+                    </picture>
+                  </div>
+                  <% } %>
+                  <div
+                    class="news-list__content <%= article.image ? '' : 'news-list__content--no-image' %>"
                   >
-                  <h3 class="news-list__title">
-                    安全運航に関する研修会を実施しました。
-                  </h3>
-                </div>
-              </a>
-            </li>
-          </ul>
-          <div class="section__more-button">
-            <a href="<%= path %>news/" class="button button--secondary"
-              >お知らせ一覧へ</a
+                    <time
+                      class="news-list__date"
+                      datetime="<%- article.date_iso %>"
+                    >
+                      <%- article.date_display %>
+                    </time>
+                    <h3 class="news-list__title"><%- article.title %></h3>
+                    <% if (article.plain_text_content) { %> <%#
+                    HTMLタグが除去されたプレーンテキストを表示。文字数制限はCSSで行う
+                    %>
+                    <p class="news-list__excerpt news-list__body--clamp">
+                      <%- article.plain_text_content %>
+                    </p>
+                    <% } %>
+                  </div>
+                </a>
+              </li>
+              <% }); %> <% } else { %> <%# お知らせがない場合のメッセージ %>
+              <p>
+                <%- (data.common && data.common.no_news_message) ||
+                'お知らせはまだありません。' %>
+              </p>
+              <% } %>
+            </ul>
+          </div>
+          <div class="section__more-button u-hide-pc">
+            <a
+              href="<%= pageLinkBasePath %>news/"
+              class="button button--outline-primary"
             >
+              <%- (currentPageData.news_section &&
+              currentPageData.news_section.more_button_text) || "View All" %>
+            </a>
           </div>
         </div>
       </section>
     </main>
 
-    <%- include('_includes/footer', { path: path, data: data, lang: lang }) %>
-    <%- include('_includes/scripts', { path: path, data: data, lang: lang }) %>
+    <%- include('_includes/_footer', { pageLinkBasePath: pageLinkBasePath,
+    assetPath: assetPath, pageLinkToOtherLangRoot: pageLinkToOtherLangRoot,
+    pageId: pageId, data: data, lang: lang }) %> <%-
+    include('_includes/_scripts', { assetPath: assetPath, data: data, lang: lang
+    }) %>
   </body>
 </html>

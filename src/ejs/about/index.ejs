@@ -1,0 +1,66 @@
+<% const pageId = 'about'; const commonData = data.common; const currentPageData
+= data.pages[pageId] || {}; %>
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+  <%- include('../_includes/_head', { assetPath: assetPath, pageLinkBasePath:
+  pageLinkBasePath, lang: lang, pageTitle: currentPageData.meta_title ||
+  commonData.title, pageDescription: currentPageData.meta_description ||
+  commonData.description }) %>
+  <body class="page-<%= pageId %>" data-page-id="<%= pageId %>">
+    <%- include('../_includes/_header', { assetPath: assetPath,
+    pageLinkBasePath: pageLinkBasePath, pageLinkToOtherLangRoot:
+    pageLinkToOtherLangRoot, pageId: pageId, lang: lang, data: data }) %>
+
+    <div class="page-header">
+      <div
+        class="page-header__bg"
+        style="
+          background-image: url('<%= assetPath %>images/about/header_bg-about.jpg');
+        "
+      ></div>
+      <div class="container">
+        <h1 class="page-header__title">
+          <%- currentPageData.page_title || commonData.nav_about %>
+        </h1>
+      </div>
+    </div>
+
+    <main class="main-content main-content--subpage">
+      <div class="container">
+        <% if (currentPageData.profile_items &&
+        currentPageData.profile_items.length > 0) { %>
+        <table>
+          <% currentPageData.profile_items.forEach(function(item) { %>
+          <tr>
+            <th><%- item.label %></th>
+            <td>
+              <% if (item.value) { %> <%- item.value %> <% } else if
+              (item.value_html) { %> <%- item.value_html %> <% } else if
+              (item.lines && item.lines.length > 0) { %> <%-
+              item.lines.join('<br />') %> <% } %>
+            </td>
+          </tr>
+          <% }); %>
+        </table>
+        <% } else { %>
+        <p>会社概要の情報は現在準備中です。</p>
+        <% } %>
+      </div>
+      <picture class="page-about__bg-image">
+        <source
+          srcset="<%= assetPath %>images/about/about_bg.webp"
+          type="image/webp" />
+        <img
+          src="<%= assetPath %>images/about/about_bg.png"
+          alt="背景画像"
+          class="background-image"
+      /></picture>
+    </main>
+
+    <%- include('../_includes/_footer', { assetPath: assetPath,
+    pageLinkBasePath: pageLinkBasePath, pageLinkToOtherLangRoot:
+    pageLinkToOtherLangRoot, pageId: pageId, data: data, lang: lang }) %> <%-
+    include('../_includes/_scripts', { path: assetPath, data: data, lang: lang
+    }) %>
+  </body>
+</html>

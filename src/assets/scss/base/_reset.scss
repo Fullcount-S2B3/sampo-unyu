@@ -1,5 +1,6 @@
 @use "abstracts" as *;
 
+/* すべての要素のマージン・パディングをリセット */
 *,
 *::before,
 *::after {
@@ -8,9 +9,76 @@
   box-sizing: border-box;
 }
 
+/* HTML5の要素のデフォルトスタイルを打ち消す */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section {
+  display: block;
+}
+
+/* ボディの基本スタイル */
 body {
-  font-family: $font-base;
-  font-size: $font-size-base;
-  line-height: 1.6;
-  color: $color-dark;
+  line-height: 1.5;
+  font-family: sans-serif;
+  background-color: #fff;
+  color: #000;
+}
+
+/* リストのデフォルトスタイルを除去 */
+ol,
+ul {
+  list-style: none;
+}
+
+/* テーブルのセル間のスペースを除去 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 見出しのデフォルトスタイルをリセット */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+/* フォーム系要素のリセット */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* リンクのスタイルリセット */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 画像のデフォルトの余白を削除 */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }

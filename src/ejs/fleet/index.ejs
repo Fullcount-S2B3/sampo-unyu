@@ -1,0 +1,143 @@
+<% const pageId = 'fleet'; data.common; const currentPageData =
+data.pages[pageId] || {}; %>
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+  <%- include('../_includes/_head', { assetPath: assetPath, pageLinkBasePath:
+  pageLinkBasePath, lang: lang, pageTitle: currentPageData.meta_title ||
+  commonData.title, pageDescription: currentPageData.meta_description ||
+  commonData.description }) %>
+  <body class="page-<%- pageId %>" data-page-id="<%- pageId %>">
+    <%- include('../_includes/_header', { assetPath: assetPath,
+    pageLinkBasePath: pageLinkBasePath, pageLinkToOtherLangRoot:
+    pageLinkToOtherLangRoot, pageId: pageId, lang: lang, data: data }) %>
+
+    <div class="page-header">
+      <div
+        class="page-header__bg"
+        style="
+          background-image: url('<%= assetPath %>images/fleet/header_bg-fleet.jpg');
+        "
+      ></div>
+      <div class="container">
+        <h1 class="page-header__title">
+          <%- currentPageData.page_title || commonData.nav_fleet %>
+        </h1>
+      </div>
+    </div>
+
+    <%# --- main要素から最後まで --- %>
+    <main class="main-content main-content--subpage">
+      <div class="container fleet__container">
+        <% if (currentPageData.fleet_list && currentPageData.fleet_list.length >
+        0) { %> <% const headers = currentPageData.summary_table_headers || {};
+        %> <%# --- サマリーテーブル --- %>
+        <section class="page-fleet__table">
+          <table class="page-fleet__summary-table">
+            <thead>
+              <tr>
+                <th><%- headers.name || '船舶名' %></th>
+                <th><%- headers.gt || 'G/T' %></th>
+                <th><%- headers.dwt || 'DWT' %></th>
+                <th><%- headers.type || '船種' %></th>
+                <th><%- headers.built_year || '建造年月' %></th>
+                <th><%- headers.area || '航行区域' %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% currentPageData.fleet_list.forEach(function(ship) { %>
+              <tr data-scroll-to-id="fleet-item-<%- ship.id %>">
+                <td><%- ship.specs.name %></td>
+                <td><%- ship.specs.gt %></td>
+                <td><%- ship.specs.dwt %></td>
+                <td><%- ship.specs.type %></td>
+                <td><%- ship.specs.built_year %></td>
+                <td><%- ship.specs.area %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </section>
+        <%# --- 各船舶の詳細リスト --- %>
+        <section class="page-fleet__list">
+          <% currentPageData.fleet_list.forEach(function(ship) { %>
+          <div class="page-fleet__item" id="fleet-item-<%- ship.id %>">
+            <h2 class="subsection-title"><%- ship.name %></h2>
+            <%# ▼▼▼ SplideスライダーのためのHTML構造 ▼▼▼ %> <% if (ship.images
+            && ship.images.length > 0) { %>
+            <section
+              class="splide fleet-item-slider"
+              aria-label="<%- ship.name %> 画像スライダー"
+            >
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <% ship.images.forEach(function(image) { %>
+                  <li class="splide__slide">
+                    <picture>
+                      <source
+                        srcset="<%= assetPath %>images/fleet/<%- image.base_filename %>.webp"
+                        type="image/webp"
+                      />
+                      <img
+                        src="<%= assetPath %>images/fleet/<%- image.base_filename %>.jpg"
+                        alt="<%- image.alt_text || ship.name %>"
+                      />
+                    </picture>
+                  </li>
+                  <% }); %>
+                </ul>
+              </div>
+            </section>
+            <% } %> <%# ▲▲▲ SplideスライダーのためのHTML構造 ▲▲▲ %>
+
+            <div class="page-fleet__table">
+              <table class="page-fleet__summary-table">
+                <thead>
+                  <tr>
+                    <th><%- headers.name || '船舶名' %></th>
+                    <th><%- headers.gt || 'G/T' %></th>
+                    <th><%- headers.dwt || 'DWT' %></th>
+                    <th><%- headers.type || '船種' %></th>
+                    <th><%- headers.built_year || '建造年月' %></th>
+                    <th><%- headers.area || '航行区域' %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="<%- headers.name || '船舶名' %>">
+                      <%- ship.specs.name %>
+                    </td>
+                    <td data-label="<%- headers.gt || 'G/T' %>">
+                      <%- ship.specs.gt %>
+                    </td>
+                    <td data-label="<%- headers.dwt || 'DWT' %>">
+                      <%- ship.specs.dwt %>
+                    </td>
+                    <td data-label="<%- headers.type || '船種' %>">
+                      <%- ship.specs.type %>
+                    </td>
+                    <td data-label="<%- headers.built_year || '建造年月' %>">
+                      <%- ship.specs.built_year %>
+                    </td>
+                    <td data-label="<%- headers.area || '航行区域' %>">
+                      <%- ship.specs.area %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <% }); %>
+        </section>
+        <% } else { %>
+        <p>現在、船舶情報を準備中です。</p>
+        <% } %>
+      </div>
+    </main>
+    <%# --- ここまでがmain要素 --- %> <%- include('../_includes/_footer', {
+    assetPath: assetPath, pageLinkBasePath: pageLinkBasePath,
+    pageLinkToOtherLangRoot: pageLinkToOtherLangRoot, pageId: pageId, data:
+    data, lang: lang }) %> <%- include('../_includes/_scripts', { assetPath:
+    assetPath, pageLinkBasePath: pageLinkBasePath, pageLinkToOtherLangRoot:
+    pageLinkToOtherLangRoot, data: data, lang: lang }) %>
+  </body>
+</html>

@@ -2,11 +2,19 @@
 
 .page-header {
   position: relative;
-  padding: 4rem 0 3rem; // 上下パディング調整
-  background-color: $color-blue-page-header-bg; // デフォルトの背景色
+  height: 300px;
   color: $color-white;
   text-align: center;
-  margin-top: $header-height-subpage; // ヘッダーの高さ分下げる (下層ページ用)
+  margin-top: $header-height-subpage;
+  overflow: hidden;
+  @include tab {
+    margin-top: $header-height-subpage - 42px;
+    height: 200px;
+  }
+  @include sp {
+    margin-top: $header-height-subpage - 92px;
+    height: 120px;
+  }
 
   .page-top & {
     // トップページではこのセクションは表示しない想定
@@ -21,63 +29,63 @@
     height: 100%;
     background-size: cover;
     background-position: center;
-    opacity: 0.2; // 背景画像を薄く
     z-index: 0;
   }
 
   .container {
     position: relative;
     z-index: $z-index-page-header;
+    height: 100%;
   }
 
   &__title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     font-family: $font-heading;
     font-size: $font-size-page-title;
     color: $color-white;
-    margin-bottom: 1.5rem;
-    line-height: 1.3;
+    line-height: 1;
+    background-image: linear-gradient(0deg, $color-primary, $color-accent);
+    filter: drop-shadow(0 0 10px rgba($color-dark, 0.5));
+    padding: 0.6em 1.5em;
+    border-radius: 16px 16px 0 0;
+    margin-bottom: 0;
+    letter-spacing: 0.1em;
+    display: block;
+    // --- Animation styles ---
+    transform: translateY(100%); // Initially move it down by its own height
+    opacity: 0;
+    visibility: hidden; // Prevents interaction before animation & improves performance
+    transition:
+      transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s,
+      // Added a small delay (0.2s)
+      opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s,
+      visibility 0s 1s; // Delay making it hidden if it transitions out
 
+    // This class will be added by JavaScript to trigger the animation
+    &.is-visible {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      transition-delay: 0s, 0s, 0s; // Reset delays for the visible state
+    }
     @include tab {
-      font-size: calc(#{$font-size-page-title} * 0.8);
+      font-size: calc(#{$font-size-page-title} * 0.7);
     }
-  }
-}
-
-// Breadcrumbs
-.breadcrumbs {
-  font-size: $font-size-breadcrumbs;
-  color: rgba($color-white, 0.8);
-  margin-top: 1rem;
-
-  &__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  &__item {
-    &:not(:last-child)::after {
-      content: ">"; // 区切り文字
-      margin: 0 0.8em;
-      color: rgba($color-white, 0.6);
+    @include sp {
+      padding: 0.6em 1.2em;
+      margin-left: 0.5em;
+      font-size: calc(#{$font-size-page-title} * 0.6);
     }
-  }
-
-  &__link {
-    color: rgba($color-white, 0.8);
-    text-decoration: none;
-    &:hover {
-      color: $color-white;
-      text-decoration: underline;
+    &::first-letter {
+      font-size: calc($font-size-page-title * 1.4);
+      @include tab {
+        font-size: calc($font-size-page-title * 1.1);
+      }
+      @include sp {
+        font-size: calc($font-size-page-title * 1);
+      }
     }
-  }
-
-  &__current {
-    font-weight: bold;
-    color: $color-white;
   }
 }

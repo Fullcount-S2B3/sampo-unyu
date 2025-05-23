@@ -10,80 +10,74 @@
   top: 0;
   left: 0;
   width: 100%;
-  @include transition(
-    background-color,
-    box-shadow,
-    height
-  ); // 高さもトランジション対象に
-
-  // --- トップページ用のデフォルトスタイル ---
-  box-shadow: 0 2px 10px rgba($color-dark, 0.1);
+  @include transition(background-color, box-shadow, height);
   height: $header-height-top;
   display: flex;
-
-  // --- 下層ページ用のスタイル ---
-  .page-top & {
-    // background-color: rgba($color-white, 0.9);
+  @include sp {
+    height: $header-height-sp;
+    background-color: $color-white;
   }
 
   body:not(.page-top) & {
-    // トップページ以外 (下層ページ) の場合
-    background-color: $color-primary;
-    color: $color-white; // 下層ページヘッダーの基本文字色
-    box-shadow: 0 2px 8px
-      rgba(color.adjust($color-primary, $lightness: -15%), 0.3);
     height: $header-height-subpage;
+    background-color: $color-white;
+    // box-shadow: 0 2px 8px rgba(color.adjust($color-primary, $lightness: -15%), 0.3);
+    @include tab {
+      height: $header-height-subpage - 42px;
+    }
+    @include sp {
+      height: $header-height-sp;
+    }
 
     .header__logo {
-      background-color: transparent; // 下層ではロゴの背景色なし
-      border-radius: 0; // 角丸なし
-      padding-left: 0; // 左パディング調整
-      &-ja,
-      &-en {
-        color: $color-white; // ロゴ文字色も白
+      height: $header-height-top;
+      @include tab {
+        height: $header-height-top - 20px;
+      }
+      @include sp {
+        height: 60px;
       }
     }
-    .nav-global__link {
-      color: rgba($color-white, 0.85); // 下層ナビリンク色
-      &:hover,
-      &--active {
-        color: $color-white;
-        &::after {
-          background-color: $color-white; // 下線も白
+
+    .header__container {
+      &::before {
+        position: absolute;
+        content: "";
+        display: block;
+        top: 0;
+        right: 104px;
+        width: 53.263vw;
+        height: 100%;
+        background-image: url(../images/common/wave.svg);
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: cover;
+        opacity: 0.2;
+        transform: scaleX(-1);
+        @include tab {
+          width: 70%;
+          right: 80px;
+          background-size: 100%;
+          background-position: center bottom;
+        }
+        @include sp {
+          display: none;
         }
       }
-    }
-    .header__lang-switch {
-      color: $color-white;
-      border-color: rgba($color-white, 0.5);
-      a {
-        color: $color-white;
-        &:hover {
-          color: color.adjust($color-white, $lightness: -15%);
-        }
-      }
-      span {
-        color: $color-white;
-      }
-    }
-    .header__menu-toggle {
-      // 下層のトグルボタン
-      color: $color-white;
-      border-color: $color-white;
     }
   }
 
   &__container {
+    position: relative;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     height: 100%;
   }
-
   &__logo {
     background-color: $color-primary;
-    padding: 0 40px 0 40px;
+    padding: 0 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -92,8 +86,17 @@
     text-decoration: none;
     height: 100%;
     @include transition(background-color, border-radius, padding);
+    @include tab {
+      height: 80px;
+      padding: 0 30px;
+    }
+    @include sp {
+      height: 60px;
+      padding: 0 15px;
+    }
     &:hover {
       text-decoration: none;
+      background-color: rgba($color-primary, 0.75);
     }
 
     &-ja {
@@ -103,38 +106,43 @@
       line-height: 1.2;
       color: $color-white; // デフォルトは白
       @include transition(color);
+      @include tab {
+        font-size: 2.4rem;
+      }
+      @include sp {
+        font-size: 1.8rem;
+      }
     }
     &-en {
       font-family: $font-roboto;
-      font-size: 1.4.4rem;
+      font-size: 1.4rem;
       font-weight: normal;
       letter-spacing: 0.1em;
       margin-top: 2px;
       color: $color-white; // デフォルトは白
       @include transition(color);
+      @include sp {
+        font-size: 1rem;
+      }
     }
   }
 
   &__nav-wrapper {
     display: flex;
     align-items: center;
-    @include tab {
-      // SP・タブレットではナビメニューは初期非表示
-      // display: none; // JSで制御するのでSCSSでは不要、nav-global__menu側で制御
-    }
+    margin-left: auto;
+    margin-right: 26px;
   }
 
   &__lang-switch {
+    position: relative;
+    z-index: 2;
     font-size: 1.3rem;
     padding: 5px 10px;
-    margin-left: 20px;
-    color: $color-gray-text;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    @include transition(color, border-color);
-
+    color: $color-primary;
+    border-radius: 0 0 8px 8px;
+    background-color: rgba($color-white, 0.7);
     a {
-      color: $color-gray-text;
       text-decoration: none;
       @include transition(color);
       &:hover {
@@ -142,205 +150,278 @@
       }
     }
     span {
+      position: relative;
       font-weight: bold;
+      &::after {
+        position: absolute;
+        content: "";
+        display: block;
+        bottom: -3px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 2px;
+        background-color: $color-primary;
+      }
     }
   }
 
   &__menu-toggle {
-    background: none;
-    border: 2px solid $color-primary;
-    padding: 8px 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    // background: $color-accent;
+    width: 104px;
+    height: 104px;
     cursor: pointer;
-    display: flex; // ★変更: 常に表示（SP/PC共通）
-    align-items: center;
-    color: $color-primary;
-    border-radius: 5px;
+    color: $color-white;
+    border-radius: 0 0 0 999px;
     @include transition(color, border-color, background-color);
     line-height: 1;
-    z-index: $z-index-nav-global + 1; // ナビメニューより手前
-
-    // @include tab のブロックを削除し、常に表示されるようにする
-    // @include tab {
-    //   display: flex;
-    //   z-index: $z-index-nav-global + 1;
-    //   border: 2px solid $color-primary;
-    //   border-radius: 5px;
-    //   padding: 8px 10px;
-    //   @include transition(border-color);
-    // }
+    z-index: $z-index-nav-global + 1;
+    @include sp {
+      width: 80px;
+      height: 80px;
+    }
 
     body:not(.page-top) & {
-      // 下層ページのトグルボタンの色の調整は維持
       color: $color-white;
       border-color: $color-white;
     }
   }
+  &__menu-icon-wrapper {
+    position: relative;
+  }
 
   &__menu-icon {
-    font-size: 2.4rem;
+    font-size: 3rem !important;
     line-height: 1;
-    margin-right: 5px;
+    position: absolute;
+    top: 18px;
+    left: 44px;
+    transition:
+      transform 0.3s ease-in-out,
+      opacity 0.3s ease-in-out;
+    opacity: 0;
+    transform: scale(1) rotate(-90deg);
+    @include sp {
+      top: 10px;
+      left: 32px;
+    }
+
+    &.is-visible {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
   }
   &__menu-icon-text {
-    font-size: 1.1rem;
+    position: absolute;
+    top: 53px;
+    left: 40px;
+    font-size: 1.2rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     line-height: 1;
-    // @include sp { // 必要ならSPでテキスト非表示
-    //   display: none;
-    // }
+    @include sp {
+      top: 42px;
+      left: 28px;
+    }
   }
 }
 
 .nav-global {
-  &__menu {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: $color-accent;
+  width: 104px;
+  height: 104px;
+  cursor: pointer;
+  color: $color-white;
+  border-radius: 0 0 0 999px;
+  overflow: hidden;
+  // @include transition(color, border-color, background-color);
+  line-height: 1;
+  z-index: $z-index-nav-global;
+  box-shadow: 0 4px 15px rgba($color-dark, 0.5);
+  transition: all 0.35s ease-in-out;
+  @include sp {
+    width: 80px;
+    height: 80px;
+  }
 
-    @include tab {
-      // SP・タブレット時のスライドメニューのスタイル
-      // display: none; // 初期状態は非表示 (is-openで表示)
-      display: block; // ★変更: JSでis-openを付けるので、blockにしておく (transformで隠す)
-      position: fixed;
-      top: 0;
-      right: -100%; // ★変更: 初期位置は画面外 (transform: translateX(100%) でも可)
-      width: 300px; // メニュー幅
-      max-width: 80vw; // 最大幅
-      height: 100vh;
-      background-color: rgba(
-        $color-primary,
-        0.98
-      ); // 下層ヘッダーの色と合わせる
-      flex-direction: column;
-      padding-top: $header-height-top + 20px; // ヘッダー高さ分下げる
-      box-shadow: -5px 0 15px rgba($color-dark, 0.2);
-      z-index: $z-index-nav-global;
-      overflow-y: auto;
-      transition: right 0.35s ease-in-out; // ★変更: トランジション調整
-
-      &.is-open {
-        right: 0; // 表示
-      }
-
-      body:not(.page-top) & {
-        // 下層ページの場合のナビのpadding-top調整
-        padding-top: $header-height-subpage + 20px;
-      }
+  &.is-open {
+    width: 480px;
+    max-width: 80vw;
+    height: 100vh;
+    border-radius: 0;
+    background-color: $color-primary;
+    @include sp {
+      max-width: 100vw;
+      width: 100vw;
     }
   }
 
   &__menu {
-    display: block; // 初期状態 (transformで隠すか、rightで隠す)
-    position: fixed;
-    top: 0;
-    right: -100%; // 初期位置は画面右外
-    width: 300px;
-    max-width: 80vw;
-    height: 100vh;
-    background-color: rgba($color-primary, 0.98);
-    // flex-direction: column; // display: block; なので不要
-    padding-top: $header-height-top + 20px; // ヘッダー高さに応じて調整
-    box-shadow: -5px 0 15px rgba($color-dark, 0.2);
-    z-index: $z-index-nav-global;
-    overflow-y: auto;
-    transition: right 0.35s ease-in-out;
-
-    &.is-open {
-      right: 0; // 表示
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: ($header-height-top + 40px) 0 40px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.3s ease-in-out 0.25s,
+      transform 0.3s ease-in-out 0.25s;
+    @include sp {
+      padding: $header-height-sp 0 40px;
+      transform: translateY(0);
     }
-
-    // body:not(.page-top) & { // 下層ページの場合の padding-top 調整
-    //   padding-top: $header-height-subpage + 20px;
-    // }
-    // ↓ ヘッダー高さがページによって変わることを考慮した動的なpadding-topはJSで調整するか、
-    //   固定値にするか、またはヘッダーの高さを統一する方がシンプル
     .page-top & {
       padding-top: $header-height-top + 20px;
     }
-    body:not(.page-top) & {
-      padding-top: $header-height-subpage + 20px;
-    }
 
-    // 以前の @include tab 内のスタイルを、PC表示にも適用されるようにする
-    // (display: flex; align-items: center; list-style: none; margin: 0; padding: 0; は
-    //  PC横並び用だったので、スライドメニューでは不要 or 調整)
-    list-style: none; // これらは残す
-    margin: 0;
-    padding-left: 0; // 左のpaddingをリセット
+    .nav-global.is-open & {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .page-top & {
+      padding-top: $header-height-top + 40px;
+    }
+    body:not(.page-top) & {
+      padding-top: $header-height-subpage + 40px;
+    }
   }
 
   &__item {
-    // margin-left: 30px; // PC横並び用だったので不要
-    width: 100%; // スライドメニューでは常に幅100%
-    // @include tab のブロックは不要になる
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 1rem;
+    padding: 0 3rem;
+    text-align: center;
   }
 
   &__link {
     font-family: $font-base;
-    font-size: 1.5rem;
+    font-size: 2.4rem;
     font-weight: bold;
-    // color: $color-gray-text; // スライドメニュー内では常に白文字にする
-    color: $color-white; // ★変更: PCでもスライドメニュー内は白文字
+    color: $color-white;
     text-decoration: none;
-    padding: 18px 25px; // SPナビ内のスタイルをPCにも適用
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    @include transition(color, background-color);
     position: relative;
-    display: block;
-    @include transition(
-      color,
-      background-color
-    ); // background-colorもトランジション対象に
-    border-bottom: 1px solid rgba($color-white, 0.1);
-
-    // &::after { // PC横並び用の下線は不要になる
-    //   content: '';
-    //   position: absolute;
-    //   bottom: -2px;
-    //   left: 0;
-    //   width: 0;
-    //   height: 2px;
-    //   background-color: $color-primary;
-    //   @include transition(width);
-    // }
-
+    padding-right: 30px;
     &:hover,
     &--active {
-      // color: $color-primary; // PC横並び用
-      background-color: rgba(
-        $color-white,
-        0.08
-      ); // スライドメニューのホバー/アクティブ
+      background-color: rgba($color-white, 0.15);
       color: $color-white;
-      // &::after { // PC横並び用
-      //   width: 100%;
-      // }
+      text-decoration: none;
     }
-
-    &:first-child {
-      // スライドメニューの最初の項目
-      border-top: 1px solid rgba($color-white, 0.1);
-    }
-    // @include tab のブロックは不要になる
   }
 
-  &__contact-button {
-    @extend %button;
-    @extend %button--primary;
-    // margin-left: 25px; // PC横並び用だったので調整
-    margin: 25px auto; // スライドメニュー内でのマージン
-    display: block; // スライドメニュー内ではブロック要素
-    width: calc(100% - 50px); // スライドメニュー内での幅
-    text-align: center;
-    font-size: 1.5rem; // SPナビ内のスタイルをPCにも適用
-    padding: 12px 20px; // SPナビ内のスタイルをPCにも適用
+  &__submenu-indicator {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    width: 12px;
+    height: 12px;
+    transform: translateY(-50%);
 
-    // @include tab のブロックは不要になる
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      background-color: currentColor;
+      transition: transform 0.3s ease;
+    }
+    &::before {
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      transform: translateX(-50%);
+    }
+    &::after {
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      transform: translateY(-50%);
+    }
+  }
+
+  .nav-global__item.is-submenu-open
+    > .nav-global__link
+    > .nav-global__submenu-indicator {
+    &::before {
+      transform: translateX(-50%) scaleY(0);
+    }
+  }
+
+  &__submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    background-color: rgba($color-white, 0.05);
+    border-radius: 4px;
+    max-height: 0;
+    overflow: hidden;
+    transition:
+      max-height 0.35s ease-in-out,
+      padding 0.35s ease-in-out;
+  }
+
+  &__submenu-link {
+    font-size: 1.6rem;
+    font-weight: normal;
+    color: rgba($color-white, 0.9);
+    padding: 1.5rem;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    transition:
+      color 0.3s ease,
+      background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgba($color-white, 0.1);
+      color: $color-white;
+      text-decoration: none;
+    }
   }
 }
 
 body.nav-open {
   overflow: hidden;
+}
+
+// 言語ごとの表示切り替え
+html[lang="ja"] .header__logo {
+  .header__logo-ja {
+    display: inline;
+  }
+  .header__logo-en {
+    font-family: $font-roboto;
+    letter-spacing: 0.03em;
+  }
+}
+
+html[lang="en"] .header__logo {
+  .header__logo-ja {
+    display: none;
+  }
+  .header__logo-en {
+    display: inline;
+    font-size: 3rem;
+    font-family: $font-roboto;
+    letter-spacing: 0.03em;
+  }
 }

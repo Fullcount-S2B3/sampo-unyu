@@ -1,4 +1,4 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 
 body {
   font-family: $font-base;
@@ -8,6 +8,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  @include sp {
+    font-size: $font-size-base * 0.875;
+  }
 }
 
 a {
@@ -17,7 +20,6 @@ a {
 
   &:hover {
     color: $color-secondary;
-    text-decoration: underline;
   }
 }
 

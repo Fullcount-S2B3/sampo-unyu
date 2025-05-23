@@ -1,0 +1,113 @@
+{
+  "meta_title": "Fleet List | Company Information | SANPO Shipping Co., Ltd.",
+  "meta_description": "View the list and detailed information of our domestic and international vessels (chemical tankers) owned by SANPO Shipping.",
+  "page_title": "Fleet List",
+  "summary_table_headers": {
+    "name": "Vessel Name",
+    "gt": "G/T",
+    "dwt": "DWT",
+    "type": "Type",
+    "built_year": "Built",
+    "area": "Sailing Area"
+  },
+  "fleet_list": [
+    {
+      "id": "dai31eihoumaru",
+      "name": "Dai 31 Eihou Maru",
+      "image_base_name": "fleet01-eihoumaru",
+      "alt_text": "Image of Dai 31 Eihou Maru",
+      "specs": {
+        "name": "Dai 31 Eihou Maru",
+        "gt": "498",
+        "dwt": "1,265",
+        "type": "White Oil Tanker",
+        "built_year": "Sep 2013",
+        "area": "Domestic / Limited Near-Sea"
+      }
+    },
+    {
+      "id": "dai18houwamaru",
+      "name": "Dai 18 Houwa Maru",
+      "image_base_name": "fleet02-houwamaru",
+      "alt_text": "Image of Dai 18 Houwa Maru",
+      "specs": {
+        "name": "Dai 18 Houwa Maru",
+        "gt": "499",
+        "dwt": "1,223",
+        "type": "White/Black Oil Tanker",
+        "built_year": "Oct 2006",
+        "area": "Domestic / Limited Near-Sea"
+      }
+    },
+    {
+      "id": "shoshun",
+      "name": "SHOSHUN",
+      "image_base_name": "fleet03-shoshun",
+      "alt_text": "Image of SHOSHUN",
+      "specs": {
+        "name": "SHOSHUN",
+        "gt": "5,523",
+        "dwt": "8,721",
+        "type": "Chemical Tanker IMO II & III",
+        "built_year": "Mar 2016",
+        "area": "Overseas / Near-Sea"
+      }
+    },
+    {
+      "id": "shoko",
+      "name": "SHOKO",
+      "image_base_name": "fleet04-shoko",
+      "alt_text": "Image of SHOKO",
+      "specs": {
+        "name": "SHOKO",
+        "gt": "7,387",
+        "dwt": "11,653",
+        "type": "Chemical Tanker IMO II & III",
+        "built_year": "Aug 2020",
+        "area": "Overseas / Near-Sea"
+      }
+    },
+    {
+      "id": "oriental-sakura",
+      "name": "ORIENTAL SAKURA",
+      "image_base_name": "fleet05-orientalsakura",
+      "alt_text": "Image of ORIENTAL SAKURA",
+      "specs": {
+        "name": "ORIENTAL SAKURA",
+        "gt": "9,141",
+        "dwt": "16,090",
+        "type": "Chemical Tanker IMO II & III",
+        "built_year": "Feb 2015",
+        "area": "Overseas / Worldwide"
+      }
+    },
+    {
+      "id": "sarus-crane",
+      "name": "SARUS CRANE",
+      "image_base_name": "fleet06-saruscrane",
+      "alt_text": "Image of SARUS CRANE",
+      "specs": {
+        "name": "SARUS CRANE",
+        "gt": "11,821",
+        "dwt": "19,772",
+        "type": "Chemical Tanker IMO II & III",
+        "built_year": "Nov 2022",
+        "area": "Overseas / Worldwide"
+      }
+    },
+    {
+      "id": "chemstar-sapphire",
+      "name": "CHEMSTAR SAPPHIRE",
+      "image_base_name": "fleet07-chemstarsapphire",
+      "alt_text": "Image of CHEMSTAR SAPPHIRE",
+      "specs": {
+        "name": "CHEMSTAR SAPPHIRE",
+        "gt": "12,149",
+        "dwt": "19,993",
+        "type": "Chemical Tanker IMO II & III",
+        "built_year": "Oct 2019",
+        "area": "Overseas / Worldwide"
+      }
+    }
+  ]
+}

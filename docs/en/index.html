@@ -5,7 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SANPO Shipping Co., Ltd.</title>
-  <link rel="stylesheet" href="./assets/css/style.css" />
+  <meta
+    name="description"
+    content="This is a sample multilingual website."
+  />
+
+  <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -16,10 +21,21 @@
     href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
     rel="stylesheet"
   />
-  <link rel="icon" href="./favicon.ico" />
+  
+  <!-- <link rel="icon" href="../assets/favicon.ico" /> -->
+
+  <meta property="og:title" content="SANPO Shipping Co., Ltd." />
+  <meta
+    property="og:description"
+    content="This is a sample multilingual website."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="" />
+  <meta property="og:image" content="../assets/images/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
 </head>
 
-  <body class="page-top">
+  <body class="page-home page-top" data-page-id="home"></body>
     <div class="loading-spinner is-loading"></div>
 <header class="header">
   <div class="header__container">
@@ -27,61 +43,121 @@
       <span class="header__logo-ja">三豊運輸株式会社</span>
       <span class="header__logo-en">Sampo Unyu Co.,Ltd</span>
     </a>
+
     <div class="header__nav-wrapper">
-      <nav class="nav-global" aria-label="メインナビゲーション">
+      <nav class="nav-global" aria-label="Main Navigation">
         <ul class="nav-global__menu" id="global-nav-menu">
           <li class="nav-global__item">
             <a
               href="./"
-              class="nav-global__link nav-global__link--active"
-              >ホーム</a
-            >
-          </li>
-          <li class="nav-global__item">
-            <a
-              href="./service/"
               class="nav-global__link "
-              >事業案内</a
             >
+              Home
+            </a>
           </li>
-          <li class="nav-global__item">
+
+          <li class="nav-global__item has-submenu">
+            <a
+              href="./domestic-charter/"
+              class="nav-global__link "
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Services
+              <span class="nav-global__submenu-indicator"></span>
+            </a>
+            <ul class="nav-global__submenu">
+              <li class="nav-global__submenu-item">
+                <a
+                  href="./domestic-charter/"
+                  class="nav-global__submenu-link"
+                >
+                  Domestic Shipping Chartering
+                </a>
+              </li>
+              <li class="nav-global__submenu-item">
+                <a
+                  href="./international-charter/"
+                  class="nav-global__submenu-link"
+                >
+                  International Shipping Chartering
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-global__item has-submenu">
             <a
               href="./company/"
               class="nav-global__link "
-              >会社概要</a
+              aria-haspopup="true"
+              aria-expanded="false"
             >
+              Company
+              <span class="nav-global__submenu-indicator"></span>
+            </a>
+            <ul class="nav-global__submenu">
+              <li class="nav-global__submenu-item">
+                <a
+                  href="./about/"
+                  class="nav-global__submenu-link"
+                >
+                  About Us
+                </a>
+              </li>
+              <li class="nav-global__submenu-item">
+                <a
+                  href="./fleet/"
+                  class="nav-global__submenu-link"
+                >
+                  Fleet
+                </a>
+              </li>
+            </ul>
           </li>
+
           <li class="nav-global__item">
             <a
               href="./news/"
               class="nav-global__link "
-              >お知らせ</a
             >
-          </li>
-          <li class="nav-global__item">
-            <a href="./contact/" class="nav-global__contact-button"
-              >お問い合わせ</a
-            >
+              News
+            </a>
           </li>
         </ul>
       </nav>
+
       <div class="header__lang-switch">
         
-        <a href="./">JP</a> | <span>EN</span> 
+        <a href="../">JP</a> | <span>EN</span>
+        
       </div>
     </div>
+
     <button
       class="header__menu-toggle"
       aria-expanded="false"
       aria-controls="global-nav-menu"
-      aria-label="メニューを開閉する"
+      aria-label="Toggle Menu"
     >
-      <span class="material-icons-outlined header__menu-icon">anchor</span>
+      <span class="header__menu-icon-wrapper">
+        <span
+          class="material-icons-outlined header__menu-icon header__menu-icon--anchor is-visible"
+          aria-hidden="false"
+          >anchor</span
+        >
+        <span
+          class="material-icons-outlined header__menu-icon header__menu-icon--close"
+          aria-hidden="true"
+          >close</span
+        >
+      </span>
       <span class="header__menu-icon-text">MENU</span>
     </button>
   </div>
-</header>
 
+  
+</header>
 
     <section class="hero">
       <div class="hero__video-wrapper">
@@ -93,11 +169,8 @@
           playsinline
           loading="lazy"
         >
-          <source
-            src="./assets/video/hero-video.mp4"
-            type="video/mp4"
-          />
-          お使いのブラウザは動画タグに対応していません。
+          <source src="../assets/video/hero-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
         <div class="hero__overlay"></div>
       </div>
@@ -117,132 +190,137 @@
         </svg>
       </div>
       <div class="hero__text">
-        <h1>Supporting ship safety<br />through crew assignments</h1>
-        <p>We contribute to the development of the maritime industry<br />through ship operation management and crew assignments.</p>
+        <h1>Supporting Maritime Safety<br />Through Crew Manning</h1>
+        <p>We contribute to the development of the maritime industry<br />through vessel management and crew manning.</p>
       </div>
     </section>
 
     <main class="main-content">
-      <section id="message" class="message-section section-padding">
-        <div class="message-section__bg-shape" aria-hidden="true"></div>
+      <div class="main-content__bg-shape">
+        <div class="circle circle--1"></div>
+        <div class="circle circle--2"></div>
+        <div class="circle circle--3"></div>
+      </div>
+      <div class="main-content__wave">
+        <img
+          src="/assets/images/common/ocean.svg"
+          alt="Decorative wave"
+          class="wave-image"
+        />
+      </div>
+      <section id="message" class="message-section">
         <div class="container">
           <h2 class="section-title message-section__title">
-            お客様や関係者の皆さまにとって<br />最良のパートナーに
+            Striving to Be the Best Partner<br />for Our Clients and Stakeholders
           </h2>
           <p class="message-section__text">
-            私たち三豊運輸は、創業以来、海運業界の発展に貢献すべく、安全かつ効率的な船舶運航をサポートしてまいりました。<br />
-            変化の激しい時代においても、常にお客様のニーズを的確に捉え、信頼されるサービスを提供し続けることをお約束します。<br />
-            これからも、海上輸送の未来を担う企業として、挑戦と成長を続けてまいります。
+            Thank you for visiting our website.<br>We contribute to the development of the maritime industry through vessel management and crew manning.<br>With years of experience and expertise, we provide reliable maritime transportation<br class="u-hide-sp">and are committed to delivering sustainable shipping solutions.<br>We also actively support and train the seafarers who will lead the future of the maritime industry,<br class="u-show-tab">and promote the creation of a safe and secure working environment.<br>We will continue to pursue greater trust and quality,<br>and strive to be the best partner for our clients and stakeholders.
           </p>
-          <div class="hero__scroll-down hero__scroll-down--message">
-            <a
-              href="#service"
-              class="hero__scroll-link"
-              aria-label="次のセクションへスクロール"
-            >
-              <svg
-                class="hero__scroll-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  d="M12 16.59l-6-6 1.41-1.41L12 13.76l4.59-4.58L18 10.59z"
-                />
-              </svg>
-            </a>
-          </div>
         </div>
       </section>
 
-      <section
-        id="service"
-        class="service-section section-padding section--blue-bg"
-      >
-        <div
-          class="service-section__bg-image"
-          style="
-            background-image: url('./assets/images/service_background_ship.jpg');
-          "
-          aria-hidden="true"
-        ></div>
+      <div class="parallax-strip">
+        <div class="parallax-strip__viewport">
+          <img
+            src="../assets/images/home/parallax_ship01.jpg"
+            alt="A large cargo ship sailing offshore"
+            class="parallax-strip__image"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <section id="service" class="service-section section-padding">
         <div class="container">
           <h2
             class="section-title section-title--on-dark-bg service-section__title"
           >
             SERVICE
+            <span class="section-subtitle section-subtitle--on-dark-bg"
+              >Our Services</span
+            >
           </h2>
+
           <div class="service-section__grid">
             <article class="service-card">
               <a
-                href="./service/manning-domestic/"
+                href="./domestic-charter/"
                 class="service-card__link"
               >
                 <div class="service-card__image-wrapper">
                   <img
-                    src="./assets/images/service_manning_domestic.jpg"
-                    alt="内航船員配乗"
+                    src="../assets/images/home/service_manning_domestic.jpg"
+                    alt="Domestic Ship Manning Services"
                     class="service-card__image"
                     loading="lazy"
                   />
                 </div>
+
                 <div class="service-card__content">
-                  <h3 class="service-card__title">内航船員配乗</h3>
+                  <h3 class="service-card__title">
+                    Domestic Ship Manning Services
+                  </h3>
                 </div>
               </a>
             </article>
+
             <article class="service-card">
               <a
-                href="./service/manning-foreign/"
+                href="./international-charter/"
                 class="service-card__link"
               >
                 <div class="service-card__image-wrapper">
                   <img
-                    src="./assets/images/service_manning_foreign.jpg"
-                    alt="外航船員配乗"
+                    src="../assets/images/home/service_manning_foreign.jpg"
+                    alt="International Ship Manning Services"
                     class="service-card__image"
                     loading="lazy"
                   />
                 </div>
+
                 <div class="service-card__content">
-                  <h3 class="service-card__title">外航船員配乗</h3>
+                  <h3 class="service-card__title">
+                    International Ship Manning Services
+                  </h3>
                 </div>
               </a>
             </article>
-          </div>
-          <div class="section__more-button">
-            <a href="./service/" class="button button--outline-white"
-              >事業案内一覧へ</a
-            >
           </div>
         </div>
       </section>
-
+      <div class="parallax-strip">
+        <div class="parallax-strip__viewport">
+          <img
+            src="../assets/images/home/parallax_ship02.jpg"
+            alt="A large cargo ship sailing offshore"
+            class="parallax-strip__image"
+            loading="lazy"
+          />
+        </div>
+      </div>
       <section id="company" class="company-section section-padding">
         <div class="container">
-          <h2 class="section-title company-section__title">COMPANY</h2>
+          <h2 class="section-title company-section__title">
+            COMPANY
+            <span class="section-subtitle section-subtitle--on-dark-bg"
+              >About Us</span
+            >
+          </h2>
           <div class="company-section__grid">
             <div class="company-section__item">
-              <a href="./company/about/" class="company-section__link">
-                <img
-                  src="./assets/images/company_image_01.jpg"
-                  alt="街並みと青空"
-                  class="company-section__image"
-                  loading="lazy"
-                />
-              </a>
-            </div>
-            <div class="company-section__item">
               <a
-                href="./company/message/"
+                href="./company/about/"
                 class="company-section__link"
               >
                 <img
-                  src="./assets/images/company_image_02.jpg"
-                  alt="会議室のテーブルと椅子"
+                  src="../assets/images/home/company_image_01.jpg"
+                  alt="Company Overview"
                   class="company-section__image"
                   loading="lazy"
                 />
+                <div class="company-section__item-overlay"></div>
+                <h3 class="company-section__item-title">
+                  
+                </h3>
               </a>
             </div>
             <div class="company-section__item">
@@ -251,71 +329,148 @@
                 class="company-section__link"
               >
                 <img
-                  src="./assets/images/company_image_03.jpg"
-                  alt="航行する赤い船"
+                  src="../assets/images/home/company_image_02.jpg"
+                  alt="Fleet List"
                   class="company-section__image"
                   loading="lazy"
                 />
+                <div class="company-section__item-overlay"></div>
+                <h3 class="company-section__item-title">
+                  
+                </h3>
               </a>
             </div>
           </div>
           <div class="section__more-button">
-            <a href="./company/" class="button button--primary"
-              >会社概要ページへ</a
+            <a
+              href="./company/"
+              class="button button--primary"
+              >Go to Company Overview</a
             >
           </div>
         </div>
       </section>
-
       <section id="news" class="news-section section-padding section--light-bg">
-        <div class="container">
-          <h2 class="section-title news-section__title">NEWS</h2>
-          <ul class="news-list">
-            <li class="news-list__item">
-              <a href="./news/article01/" class="news-list__link">
-                <div class="news-list__image-wrapper">
-                  <img
-                    src="./assets/images/news_thumb01.jpg"
-                    alt=""
-                    class="news-list__image"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-list__content">
-                  <time class="news-list__date" datetime="2024-03-10"
-                    >2024.03.10</time
-                  >
-                  <h3 class="news-list__title">
-                    新しい船舶管理システムを導入しました。
-                  </h3>
-                </div>
+        <div class="container news-section__container">
+          <div class="news-section__left-column">
+            <h2 class="section-title news-section__title">
+              NEWS 
+              <span class="section-subtitle">
+                Announcements
+              </span>
+              
+            </h2>
+            <div class="section__more-button u-show-pc">
+              <a
+                href="./news/"
+                class="button button--outline-primary"
+              >
+                View All News
               </a>
-            </li>
-            <li class="news-list__item">
-              <a href="./news/article02/" class="news-list__link">
-                <div class="news-list__image-wrapper">
-                  <img
-                    src="./assets/images/news_thumb02.jpg"
-                    alt=""
-                    class="news-list__image"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="news-list__content">
-                  <time class="news-list__date" datetime="2024-02-20"
-                    >2024.02.20</time
+            </div>
+          </div>
+          <div class="news-section__right-column">
+            <ul class="news-list">
+                
+              <li class="news-list__item">
+                <a
+                  href="./news/article_2025310/"
+                  class="news-list__link"
+                >
+                  
+                  <div class="news-list__image-wrapper">
+                    <picture>
+                      <source
+                        srcset="../assets/images/news/img_20250310.webp"
+                        type="image/webp"
+                      />
+                      <img
+                        src="../assets/images/news/img_20250310.jpg"
+                        alt=""
+                        class="news-list__image"
+                        loading="lazy"
+                      />
+                    </picture>
+                  </div>
+                  
+                  <div
+                    class="news-list__content "
                   >
-                  <h3 class="news-list__title">
-                    安全運航に関する研修会を実施しました。
-                  </h3>
-                </div>
-              </a>
-            </li>
-          </ul>
-          <div class="section__more-button">
-            <a href="./news/" class="button button--secondary"
-              >お知らせ一覧へ</a
+                    <time
+                      class="news-list__date"
+                      datetime="2024-03-10"
+                    >
+                      2024.03.10
+                    </time>
+                    <h3 class="news-list__title">We have introduced a new ship management system.</h3>
+                     
+                    <p class="news-list__excerpt news-list__body--clamp">
+                      This is where the detailed content of Article 1 goes. HTML tags can also be used. Paragraphs can be divided like this.
+                    </p>
+                    
+                  </div>
+                </a>
+              </li>
+              
+              <li class="news-list__item">
+                <a
+                  href="./news/article_20250220/"
+                  class="news-list__link"
+                >
+                  
+                  <div
+                    class="news-list__content news-list__content--no-image"
+                  >
+                    <time
+                      class="news-list__date"
+                      datetime="2024-02-20"
+                    >
+                      2024.02.20
+                    </time>
+                    <h3 class="news-list__title">We held a training session on safe navigation. We held a training session on safe navigation. We held a training session on safe navigation. We held a training session on safe navigation.</h3>
+                     
+                    <p class="news-list__excerpt news-list__body--clamp">
+                      We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly. We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly. We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly.
+                    </p>
+                    
+                  </div>
+                </a>
+              </li>
+              
+              <li class="news-list__item">
+                <a
+                  href="./news/article_20250220/"
+                  class="news-list__link"
+                >
+                  
+                  <div
+                    class="news-list__content news-list__content--no-image"
+                  >
+                    <time
+                      class="news-list__date"
+                      datetime="2024-02-20"
+                    >
+                      2024.02.20
+                    </time>
+                    <h3 class="news-list__title">We held a training session on safe navigation. We held a training session on safe navigation. We held a training session on safe navigation. We held a training session on safe navigation.</h3>
+                     
+                    <p class="news-list__excerpt news-list__body--clamp">
+                      We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly. We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly. We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly.
+                    </p>
+                    
+                  </div>
+                </a>
+              </li>
+               
+            </ul>
+          </div>
+          <div class="section__more-button u-hide-pc">
+            <a
+              href="./news/"
+              class="button button--outline-primary"
             >
+              View All News
+            </a>
           </div>
         </div>
       </section>
@@ -324,26 +479,107 @@
     <footer class="footer">
   <div class="footer__container">
     <div class="footer__info">
-      <p>
-        三豊運輸株式会社<br />
-        〒710-0065 岡山県倉敷市宮前1丁目14-18 中川ビル6F<br />
-        TEL: 000-0000-0000（平日 9:00〜18:00）
+      <div class="footer__company-name">
+        <span class="footer__logo-ja">三豊運輸株式会社</span>
+        <span class="footer__logo-en">Sampo Unyu Co.,Ltd</span>
+      </div>
+      <p class="footer__address">
+        210-0006<br />
+        6F, JTB Kawasaki Kyodo Bldg., 1-1-14 Sunako, Kawasaki-ku, Kawasaki-shi, Kanagawa<br />
+        <span class="footer__tel">TEL. 044-201-6474</span>（Weekdays 9:00 AM – 5:00 PM）
       </p>
     </div>
+
     <div class="footer__links">
-      <a href="./">ホーム</a>
-      <a href="./company/">会社概要</a>
-      <a href="./company/history/">沿革</a>
-      <a href="./fleet/">船舶一覧</a>
-      <a href="./contact/">お問い合わせ</a>
+      <div class="footer__nav-column">
+        <ul class="nav-footer__menu">
+          <li class="nav-footer__item">
+            <a
+              href="./"
+              class="nav-footer__link nav-footer__link--active"
+            >
+              Home
+            </a>
+          </li>
+          <li class="nav-footer__item">
+            <a
+              href="./news/"
+              class="nav-footer__link "
+            >
+              News
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__nav-column">
+        <ul class="nav-footer__menu">
+          <li class="nav-footer__item">
+            
+            <span class="nav-footer__link">Services</span>
+            
+          </li>
+          <li class="nav-footer__submenu-item">
+            <a
+              href="./domestic-charter/"
+              class="nav-footer__submenu-link"
+            >
+              Domestic Shipping Chartering
+            </a>
+          </li>
+          <li class="nav-footer__submenu-item">
+            <a
+              href="./international-charter/"
+              class="nav-footer__submenu-link"
+            >
+              International Shipping Chartering
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__nav-column">
+        <ul class="nav-footer__menu">
+          <li class="nav-footer__item">
+            <a
+              href="./company/"
+              class="nav-footer__link "
+            >
+              Company
+            </a>
+          </li>
+          <li class="nav-footer__submenu-item">
+            <a
+              href="./about/"
+              class="nav-footer__submenu-link"
+            >
+              About Us
+            </a>
+          </li>
+          <li class="nav-footer__submenu-item">
+            <a
+              href="./fleet/"
+              class="nav-footer__submenu-link"
+            >
+              Fleet
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-  <p class="footer__copyright">
-    Copyright &copy; 三豊運輸株式会社 All rights reserved.
-  </p>
-</footer>
 
-    <script src="./assets/js/common.js"></script>
+  <p class="footer__copyright">Copyright © SANPO Shipping Co., Ltd. All rights reserved.</p>
+</footer>
+<a
+  href="#"
+  id="pageTopButton"
+  class="page-top-button"
+  aria-label="ページトップへ戻る"
+>
+  <span class="material-icons-outlined">arrow_upward</span>
+</a>
+ <script src="../assets/js/bundle.js"></script>
 <!-- <script>
   (function () {
     const correctPassword = "sanpo2025"; // パスワードをここで設定

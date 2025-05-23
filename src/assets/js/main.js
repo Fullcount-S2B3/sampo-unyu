@@ -7,7 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { showLoading, hideLoading } from './modules/utils/loadingSpinner.js' //
 import { initMenu } from './modules/components/menu.js' //
 import { initHeaderScroll } from './modules/components/headerScroll.js' //
-// import { initPageTop } from './modules/components/pageTop.js';
+import { initPageTop } from './modules/components/pageTop.js'
 import { initPageHeaderTitleAnimation } from './modules/animations/pageHeaderTitleAnimation.js' //
 
 // --- HOMEページ専用モジュール ---
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 全ページで初期化するモジュール
   initMenu() //
   initHeaderScroll() //
-  // initPageTop();
+  initPageTop()
   initPageHeaderTitleAnimation() //
 
   const currentPageId = document.body.dataset.pageId

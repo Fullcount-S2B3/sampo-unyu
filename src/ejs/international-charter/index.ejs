@@ -1,0 +1,67 @@
+<%
+  const pageId = 'international';
+  const commonData = data.common;
+  const currentPageData = data.pages[pageId] || {}; 
+%>
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+  <%- include('../_includes/_head', { assetPath: assetPath, pageLinkBasePath:
+  pageLinkBasePath, lang: lang, pageTitle: currentPageData.meta_title ||
+  commonData.title, pageDescription: currentPageData.meta_description ||
+  commonData.description }) %>
+  <body class="page-service page-service-detail">
+    <%- include('../_includes/_header', { assetPath: assetPath,
+    pageLinkBasePath: pageLinkBasePath, pageLinkToOtherLangRoot:
+    pageLinkToOtherLangRoot, pageId: pageId, lang: lang, data: data }) %>
+    <div class="page-header">
+      <div
+        class="page-header__bg"
+        style="
+          background-image: url('<%= assetPath %>images/service/header_bg-international.jpg');
+        "
+      ></div>
+      <div class="container">
+        <h1 class="page-header__title"><%- data.common.nav_service_gaiko %></h1>
+      </div>
+    </div>
+
+    <main class="main-content main-content--subpage">
+      <div class="container content-area">
+        <article class="post-content">
+          <% if (currentPageData.sections && currentPageData.sections.length > 0) { %>
+            <% currentPageData.sections.forEach(function(section) { %>
+              <section class="content-section" <% if (section.id) { %>id="<%- section.id %>"<% } %>>
+                
+                <% if (section.title) { %>
+                  <% if (section.heading_level === 'h3') { %>
+                    <h3 class="subsection-title"><%- section.title %></h3>
+                  <% } else { %> 
+                    <h2 class="section-title section-title--left-align">
+                      <%- section.title %>
+                    </h2>
+                  <% } %>
+                <% } %>
+
+                <% if (section.paragraphs && section.paragraphs.length > 0) { %>
+                  <% section.paragraphs.forEach(function(paragraphText) { %>
+                    <p><%- paragraphText.replace(/\n/g, '<br />') %></p>
+                  <% }); %>
+                <% } %>
+              </section>
+            <% }); %>
+          <% } else { %>
+            <p>現在、コンテンツを準備中です。</p>
+          <% } %>
+        </article>
+      </div>
+    </main>
+
+    <%- include('../_includes/_footer', {
+      assetPath: assetPath,
+      pageLinkBasePath: pageLinkBasePath,
+      pageLinkToOtherLangRoot: pageLinkToOtherLangRoot, pageId: pageId, data: data, lang: lang }) %>
+    <%- include('../_includes/_scripts', { assetPath: assetPath,
+      pageLinkBasePath: pageLinkBasePath,
+      pageLinkToOtherLangRoot: pageLinkToOtherLangRoot, data: data, lang: lang }) %>
+  </body>
+</html>

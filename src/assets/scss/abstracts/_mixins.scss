@@ -17,13 +17,13 @@
 }
 
 @mixin pc-small {
-  @media (max-width: #{$breakpoint-pc-small}) {
+  @media (max-width: var.$breakpoint-pc-small) {
     @content;
   }
 }
 
 @mixin pc-medium-up {
-  @media (min-width: #{$breakpoint-pc-medium}) {
+  @media (min-width: var.$breakpoint-pc-medium) {
     @content;
   }
 }

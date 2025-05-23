@@ -1,0 +1,36 @@
+{
+  "hero": {
+    "heading": "Supporting Maritime Safety<br />Through Crew Manning",
+    "text": "We contribute to the development of the maritime industry<br />through vessel management and crew manning.",
+    "video_fallback_text": "Your browser does not support the video tag.",
+    "scroll_down_label": "Scroll to the next section"
+  },
+  "message_section": {
+    "title": "Striving to Be the Best Partner<br />for Our Clients and Stakeholders",
+    "text": "Thank you for visiting our website.<br>We contribute to the development of the maritime industry through vessel management and crew manning.<br>With years of experience and expertise, we provide reliable maritime transportation<br class=\"u-hide-sp\">and are committed to delivering sustainable shipping solutions.<br>We also actively support and train the seafarers who will lead the future of the maritime industry,<br class=\"u-show-tab\">and promote the creation of a safe and secure working environment.<br>We will continue to pursue greater trust and quality,<br>and strive to be the best partner for our clients and stakeholders."
+  },
+  "parallax_section": {
+    "ship01_alt": "A large cargo ship sailing offshore",
+    "ship02_alt": "A large cargo ship sailing offshore"
+  },
+  "service_section": {
+    "title": "SERVICE",
+    "subtitle": "Our Services",
+    "manning_domestic_alt": "Domestic Ship Manning Services",
+    "manning_domestic_title": "Domestic Ship Manning Services",
+    "manning_foreign_alt": "International Ship Manning Services",
+    "manning_foreign_title": "International Ship Manning Services"
+  },
+  "company_section": {
+    "title": "COMPANY",
+    "subtitle": "About Us",
+    "image01_alt": "Company Overview",
+    "image02_alt": "Fleet List",
+    "more_button_text": "Go to Company Overview"
+  },
+  "news_section": {
+    "title": "NEWS",
+    "subtitle": "Announcements",
+    "more_button_text": "View All News"
+  }
+}

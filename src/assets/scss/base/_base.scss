@@ -1,6 +1,11 @@
+@use "abstracts" as *;
+
 html {
   font-size: 62.5%;
 }
 body {
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: $font-base;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $color-dark;
 }

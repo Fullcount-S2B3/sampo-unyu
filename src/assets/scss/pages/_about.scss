@@ -1,0 +1,51 @@
+@use "../abstracts" as *;
+
+.page-about {
+  position: relative;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+  }
+  td {
+    border-bottom: 1px solid $color-gray-line;
+    padding: 20px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    font-weight: bold;
+    width: 25%;
+    padding: 20px 0;
+    border-bottom: 2px solid $color-primary;
+    text-align: left;
+    vertical-align: top;
+  }
+  td ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+  .note {
+    font-size: 0.9em;
+    color: #555;
+  }
+  .highlight {
+    color: #005bac;
+    font-weight: bold;
+  }
+  &__bg-image {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    max-width: 50%;
+    width: auto;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: right top;
+    }
+  }
+}

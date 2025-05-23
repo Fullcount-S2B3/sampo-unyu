@@ -1,13 +1,13 @@
 // components/_cards.scss
-@use "../abstracts" as *;
-@use "sass:color";
+@use '../abstracts' as *;
+@use 'sass:color';
 
 // Service Card
 .service-card {
   background-color: $color-white;
   border-radius: 12px;
   box-shadow: 0 8px 25px
-    rgba(color.adjust($color-primary-dark, $lightness: -10%), 0.15); // 修正済み
+    rgba(color.adjust($color-primary-dark, $lightness: -10%), 0.15);
   overflow: hidden;
   @include transition(transform, box-shadow);
   text-decoration: none;
@@ -16,13 +16,11 @@
   &:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 35px
-      rgba(color.adjust($color-primary-dark, $lightness: -10%), 0.2); // ★★★ ここを修正 ★★★
+      rgba(color.adjust($color-primary-dark, $lightness: -10%), 0.2);
   }
 
-  // ... (以下、変更なし) ...
   &__link {
     display: block;
-    color: $color-dark;
   }
 
   &__image-wrapper {
@@ -30,6 +28,10 @@
     height: 220px;
     overflow: hidden;
     position: relative;
+    @include tab {
+      height: auto;
+      aspect-ratio: 2/1;
+    }
 
     img.service-card__image {
       width: 100%;
@@ -51,7 +53,7 @@
     font-family: $font-heading;
     font-size: $font-size-h3;
     font-weight: bold;
-    color: $color-white;
+    color: inherit;
     margin-bottom: 0;
   }
 }
@@ -66,7 +68,7 @@
     background-color: $color-white;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba($color-dark, 0.08);
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
     @include transition(transform, box-shadow);
 
     &:last-child {
@@ -76,6 +78,7 @@
     &:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 20px rgba($color-dark, 0.12);
+      background-color: $color-light-bg;
     }
   }
 
@@ -89,6 +92,9 @@
     @include sp {
       flex-direction: column;
       padding: 1.5rem;
+    }
+    &::hover {
+      text-decoration: none;
     }
   }
 
@@ -115,9 +121,17 @@
       object-fit: cover;
     }
   }
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   &__content {
-    flex-grow: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   &__date {
@@ -130,11 +144,26 @@
 
   &__title {
     font-family: $font-base; // お知らせタイトルはNotoSansで
-    font-size: 1.7rem; // 少し調整
+    font-size: 1.8rem; // 少し調整
     font-weight: bold;
     color: $color-primary;
     line-height: 1.5;
-    margin-bottom: 0;
+    margin-bottom: 0.5em;
     // @include line-clamp(2); // 必要であれば行数制限
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__excerpt {
+    font-size: 1.4rem;
+    color: $color-dark;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

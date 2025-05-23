@@ -1,0 +1,29 @@
+{
+  "articles": [
+    {
+      "id": "article_2025310",
+      "date_iso": "2024-03-10",
+      "date_display": "2024.03.10",
+      "title": "We have introduced a new ship management system.",
+      "excerpt": "To achieve more efficient and safer ship management, we have implemented the latest management system.",
+      "image": "img_20250310.jpg",
+      "content_html": "<p>This is where the <strong>detailed content</strong> of Article 1 goes. HTML tags can also be used.</p><p>Paragraphs can be divided like this.</p>"
+    },
+    {
+      "id": "article_20250220",
+      "date_iso": "2024-02-20",
+      "date_display": "2024.02.20",
+      "title": "We held a training session on safe navigation. We held a training session on safe navigation. We held a training session on safe navigation. We held a training session on safe navigation.",
+      "excerpt": "We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly. We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly. We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly.",
+      "content_html": "We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly. We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly. We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly."
+    },
+    {
+      "id": "article_20250220",
+      "date_iso": "2024-02-20",
+      "date_display": "2024.02.20",
+      "title": "We held a training session on safe navigation. We held a training session on safe navigation. We held a training session on safe navigation. We held a training session on safe navigation.",
+      "excerpt": "We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly. We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly. We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly.",
+      "content_html": "We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly. We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly. We are pleased to announce the launch of our company website. We hope you will find it useful and continue to visit us regularly."
+    }
+  ]
+}

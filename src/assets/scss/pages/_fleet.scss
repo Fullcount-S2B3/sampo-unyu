@@ -1,0 +1,265 @@
+@use '../abstracts' as *;
+
+.page-fleet {
+  &__table {
+    width: 100%;
+    @include sp {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; /* iOSでの慣性スクロールを有効に */
+      display: block; /* overflowを正しく機能させるため */
+      width: 100%;
+    }
+  }
+
+  &__summary-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 4px;
+    @include sp {
+      min-width: 800px;
+    }
+    tr[data-scroll-to-id] {
+      cursor: pointer;
+      @include transition(background-color, color);
+      &:hover {
+        background-color: $color-light-bg;
+        color: $color-accent;
+      }
+    }
+    th {
+      padding: 10px;
+      border-bottom: 3px solid $color-accent;
+    }
+    td {
+      padding: 20px;
+      border-bottom: 1px dotted $color-gray-line;
+      @include tab {
+        padding: 10px;
+      }
+      &:nth-child(2),
+      &:nth-child(3) {
+        text-align: right;
+      }
+      &:nth-child(5) {
+        text-align: center;
+      }
+    }
+  }
+
+  &__item {
+    margin-top: 5em;
+    @include sp {
+      .page-fleet__table {
+        overflow: hidden;
+        -webkit-overflow-scrolling: inherit;
+      }
+      .page-fleet__summary-table,
+      .page-fleet__summary-table tbody,
+      .page-fleet__summary-table tr,
+      .page-fleet__summary-table th,
+      .page-fleet__summary-table td {
+        display: block;
+        box-sizing: border-box;
+      }
+      .page-fleet__summary-table {
+        width: 100%;
+        min-width: 100%;
+      }
+      .page-fleet__summary-table thead {
+        display: none;
+      }
+      .page-fleet__summary-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75em 0.5em;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: right;
+      }
+
+      .page-fleet__summary-table td:last-child {
+        border-bottom: none; /* 最後の項目は区切り線をなしに */
+      }
+
+      .page-fleet__summary-table td::before {
+        /* data-label属性の内容をラベルとして表示します */
+        content: attr(data-label);
+        font-weight: bold;
+        text-align: left;
+        margin-right: 1em; /* ラベルと値の間のスペース */
+        /* 必要に応じてラベルの幅を固定することも可能 */
+        /* flex-basis: 30%; */
+      }
+    }
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  &__image {
+    margin-bottom: 1rem;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  &__detail-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+}
+
+.fleet-item-slider.is-single-slide .splide__arrows,
+.fleet-item-slider.is-single-slide .splide__pagination {
+  display: none !important;
+}
+
+.fleet-item-slider .splide__slide img,
+.fleet-item-slider .splide__slide picture {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* スライダー全体のコンテナに対して相対的な位置指定を可能にする */
+.fleet-item-slider {
+  position: relative;
+}
+
+/* 矢印ボタンの基本スタイル調整 */
+.fleet-item-slider .splide__arrow {
+  position: absolute;
+  top: 50%; /* 上下中央に配置 */
+  transform: translateY(-50%); /* 正確に中央揃えするための調整 */
+  z-index: 1; /* 画像の上に表示 */
+  background: rgba($color-primary, 0.3); /* 半透明の背景 */
+  border: none;
+  border-radius: 50%; /* 円形にする */
+  width: 48px; /* ボタンの幅 (アイコンサイズに合わせて調整) */
+  height: 48px; /* ボタンの高さ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.7;
+  transition:
+    opacity 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.fleet-item-slider .splide__arrow svg {
+  fill: #fff; /* アイコンの色を白に */
+  width: 20px; /* アイコンの幅 */
+  height: 20px; /* アイコンの高さ */
+}
+
+/* 前へボタンの位置とアイコンの向き調整 */
+.fleet-item-slider .splide__arrow--prev {
+  left: 15px; /* スライダーの左端からの距離 */
+}
+.fleet-item-slider .splide__arrow--prev svg {
+  transform: rotate(180deg); /* ★★★ 左向きにするために回転 ★★★ */
+}
+
+/* 次へボタンの位置 */
+.fleet-item-slider .splide__arrow--next {
+  right: 15px; /* スライダーの右端からの距離 */
+}
+/* .fleet-item-slider .splide__arrow--next svg はデフォルトで右向きなので回転不要 */
+
+/* ホバー時のスタイル */
+.fleet-item-slider .splide__arrow:hover {
+  background: rgba($color-primary, 0.6);
+  opacity: 1;
+}
+
+/* フォーカス時のスタイル (アクセシビリティのため) */
+.fleet-item-slider .splide__arrow:focus {
+  outline: 2px solid Highlight;
+  outline: 2px solid -webkit-focus-ring-color;
+}
+.fleet-item-slider .splide__arrow:focus:not(:focus-visible) {
+  outline: none;
+}
+.fleet-item-slider .splide__arrow:focus-visible {
+  outline: 2px solid Highlight;
+  outline: 2px solid -webkit-focus-ring-color;
+}
+
+/* disabled状態のボタン */
+.fleet-item-slider .splide__arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+  background: rgba($color-primary, 0.1);
+}
+
+// SCSS変数定義（例として）
+// $color-accent: #007bff; // あなたのプロジェクトのアクセントカラーを指定してください
+// $color-pagination-inactive: #ccc;
+// $color-pagination-hover: darken($color-accent, 10%);
+
+.fleet-item-slider {
+  // ... 他のスライダースタイル ...
+
+  .splide__pagination {
+    // bottom: 1em; // 位置調整 (デフォルトは0.5em、矢印とのバランスを見て調整)
+    // もし矢印をスライダーの内側に配置しているなら、ページネーションが重ならないように bottom の値を増やす
+    bottom: calc(
+      1em + 10px + 10px
+    ); // (デフォルトの矢印の高さ/2 + bottomからのマージン) ぐらいを想定
+    // または、矢印の高さと位置によって固定値を指定
+    // 例: bottom: 60px;
+    margin-top: 10px;
+    li {
+      margin: 0 5px; // ドット間のマージンを少し広げる
+    }
+  }
+
+  .splide__pagination__page {
+    background: $color-dark; // 非アクティブ時のドットの色 (例: #ccc)
+    width: 12px; // ドットの幅
+    height: 12px; // ドットの高さ
+    border-radius: 50%; // 円形にする
+    opacity: 0.6;
+    transition:
+      transform 0.2s ease-out,
+      background-color 0.2s ease-out,
+      opacity 0.2s ease-out;
+    border: none; // Splideのデフォルトボーダーをリセット
+    padding: 0; // Splideのデフォルトパディングをリセット
+    margin: 0; // Splideのデフォルトマージンをリセット（li側で制御）
+
+    &:hover {
+      background: $color-primary; // ホバー時の色 (例: $color-accent の少し暗い色)
+      opacity: 0.8;
+      transform: scale(1.1); // ホバー時に少し拡大
+    }
+
+    // アクティブなドットのスタイル
+    &.is-active {
+      background: $color-accent; // アクティブ時のドットの色 (アクセントカラー)
+      transform: scale(1.2); // アクティブなドットを少し大きく
+      opacity: 1;
+    }
+
+    // フォーカス時のスタイル (アクセシビリティ)
+    &:focus {
+      outline: 2px solid Highlight; // ブラウザデフォルト、またはカスタムスタイル
+      outline: 2px solid -webkit-focus-ring-color;
+      outline-offset: 2px;
+    }
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+    &:focus-visible {
+      outline: 2px solid Highlight;
+      outline: 2px solid -webkit-focus-ring-color;
+      outline-offset: 2px;
+    }
+  }
+}

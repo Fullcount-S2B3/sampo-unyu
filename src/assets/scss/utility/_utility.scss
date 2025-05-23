@@ -1,0 +1,114 @@
+// utility/_utility.scss (または _responsive-visibility.scss など)
+
+@use "../abstracts" as *; // abstractsディレクトリのindexファイルから全てを読み込み、名前空間なしで使用
+
+// -----------------------------------------------------------------------------
+// Helper Mixins for specific ranges (if not already in abstracts/_mixins.scss)
+// これらが abstracts/_mixins.scss にあれば、ここでの定義は不要です。
+// -----------------------------------------------------------------------------
+@mixin tab-only {
+  @media (min-width: #{$breakpoint-sp + 1px}) and (max-width: $breakpoint-tab) {
+    @content;
+  }
+}
+
+@mixin pc-only {
+  @media (min-width: #{$breakpoint-tab + 1px}) {
+    @content;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Responsive Visibility Utilities
+// -----------------------------------------------------------------------------
+$utility-prefix: "u-";
+
+// --- Default: Hide elements that will be shown by utility classes ---
+.#{$utility-prefix}show-sp,
+.#{$utility-prefix}show-tab,
+.#{$utility-prefix}show-pc,
+.#{$utility-prefix}show-pc-tab,
+.#{$utility-prefix}show-tab-sp {
+  display: none !important;
+}
+
+// --- Show on SP Only ---
+// Uses `sp` mixin from abstracts/_mixins.scss
+@include sp {
+  .#{$utility-prefix}show-sp {
+    display: block !important; // Or your preferred display type like 'inherit'
+  }
+}
+
+// --- Show on Tablet Only ---
+// Uses `tab-only` mixin (defined above or in abstracts/_mixins.scss)
+@include tab-only {
+  .#{$utility-prefix}show-tab {
+    display: block !important;
+  }
+}
+
+// --- Show on PC Only ---
+// Uses `pc-only` mixin (defined above or in abstracts/_mixins.scss)
+@include pc-only {
+  .#{$utility-prefix}show-pc {
+    display: block !important;
+  }
+}
+
+// --- Show on PC and Tablet (which means Hide on SP) ---
+@media (min-width: #{$breakpoint-sp + 1px}) {
+  // Not SP
+  .#{$utility-prefix}show-pc-tab {
+    display: block !important;
+  }
+}
+
+// --- Show on Tablet and SP (which means Hide on PC) ---
+// Uses `tab` mixin from abstracts/_mixins.scss (covers SP and Tablet)
+@include tab {
+  .#{$utility-prefix}show-tab-sp {
+    display: block !important;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Hide Utilities (elements are visible by default, hidden by these classes)
+// -----------------------------------------------------------------------------
+
+// --- Hide on SP ---
+@include sp {
+  .#{$utility-prefix}hide-sp {
+    display: none !important;
+  }
+}
+
+// --- Hide on Tablet Only ---
+@include tab-only {
+  .#{$utility-prefix}hide-tab {
+    display: none !important;
+  }
+}
+
+// --- Hide on PC Only ---
+@include pc-only {
+  .#{$utility-prefix}hide-pc {
+    display: none !important;
+  }
+}
+
+// --- Hide on PC and Tablet (which means Show only on SP) ---
+@media (min-width: #{$breakpoint-sp + 1px}) {
+  // Not SP
+  .#{$utility-prefix}hide-pc-tab {
+    display: none !important;
+  }
+}
+
+// --- Hide on Tablet and SP (which means Show only on PC) ---
+@include tab {
+  // Covers SP and Tablet
+  .#{$utility-prefix}hide-tab-sp {
+    display: none !important;
+  }
+}

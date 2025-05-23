@@ -1,0 +1,900 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>船舶一覧 | 会社案内 | 三豊運輸株式会社</title>
+  <meta
+    name="description"
+    content="三豊運輸が保有する内航船および外航船（ケミカルタンカー）の一覧と詳細情報をご覧いただけます。"
+  />
+
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+    rel="stylesheet"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide-core.min.css"
+  />
+  
+  <!-- <link rel="icon" href="../assets/favicon.ico" /> -->
+
+  <meta property="og:title" content="船舶一覧 | 会社案内 | 三豊運輸株式会社" />
+  <meta
+    property="og:description"
+    content="三豊運輸が保有する内航船および外航船（ケミカルタンカー）の一覧と詳細情報をご覧いただけます。"
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="" />
+  <meta property="og:image" content="../assets/images/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+</head>
+
+  <body class="page-fleet" data-page-id="fleet">
+    <div class="loading-spinner is-loading"></div>
+<header class="header">
+  <div class="header__container">
+    <a href="../" class="header__logo">
+      <span class="header__logo-ja">三豊運輸株式会社</span>
+      <span class="header__logo-en">Sampo Unyu Co.,Ltd</span>
+    </a>
+
+    <div class="header__nav-wrapper">
+      <nav class="nav-global" aria-label="メインナビゲーション">
+        <ul class="nav-global__menu" id="global-nav-menu">
+          <li class="nav-global__item">
+            <a
+              href="../"
+              class="nav-global__link "
+            >
+              HOME
+            </a>
+          </li>
+
+          <li class="nav-global__item has-submenu">
+            <a
+              href="../domestic-charter/"
+              class="nav-global__link "
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              事業案内
+              <span class="nav-global__submenu-indicator"></span>
+            </a>
+            <ul class="nav-global__submenu">
+              <li class="nav-global__submenu-item">
+                <a
+                  href="../domestic-charter/"
+                  class="nav-global__submenu-link"
+                >
+                  内航船舶貸渡業
+                </a>
+              </li>
+              <li class="nav-global__submenu-item">
+                <a
+                  href="../international-charter/"
+                  class="nav-global__submenu-link"
+                >
+                  外航船舶貸渡業
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-global__item has-submenu">
+            <a
+              href="../company/"
+              class="nav-global__link "
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              会社案内
+              <span class="nav-global__submenu-indicator"></span>
+            </a>
+            <ul class="nav-global__submenu">
+              <li class="nav-global__submenu-item">
+                <a
+                  href="../about/"
+                  class="nav-global__submenu-link"
+                >
+                  会社概要
+                </a>
+              </li>
+              <li class="nav-global__submenu-item">
+                <a
+                  href="../fleet/"
+                  class="nav-global__submenu-link"
+                >
+                  船舶一覧
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-global__item">
+            <a
+              href="../news/"
+              class="nav-global__link "
+            >
+              お知らせ
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="header__lang-switch">
+        
+        <span>JP</span> | <a href="../en/">EN</a>
+        
+      </div>
+    </div>
+
+    <button
+      class="header__menu-toggle"
+      aria-expanded="false"
+      aria-controls="global-nav-menu"
+      aria-label="メニューを開閉する"
+    >
+      <span class="header__menu-icon-wrapper">
+        <span
+          class="material-icons-outlined header__menu-icon header__menu-icon--anchor is-visible"
+          aria-hidden="false"
+          >anchor</span
+        >
+        <span
+          class="material-icons-outlined header__menu-icon header__menu-icon--close"
+          aria-hidden="true"
+          >close</span
+        >
+      </span>
+      <span class="header__menu-icon-text">MENU</span>
+    </button>
+  </div>
+
+    
+<nav
+  class="breadcrumb-container"
+  aria-label="現在位置"
+>
+  <ol
+    class="breadcrumb container"
+    itemscope
+    itemtype="https://schema.org/BreadcrumbList"
+  >
+    
+    <li
+      class="breadcrumb__item"
+      itemprop="itemListElement"
+      itemscope
+      itemtype="https://schema.org/ListItem"
+    >
+      
+      <a itemprop="item" href="../">
+        <span itemprop="name">HOME</span>
+      </a>
+      
+      <meta itemprop="position" content="1" />
+    </li>
+    
+    <li
+      class="breadcrumb__item"
+      itemprop="itemListElement"
+      itemscope
+      itemtype="https://schema.org/ListItem"
+    >
+      
+      <span itemprop="name">船舶一覧</span>
+      
+      <meta itemprop="position" content="2" />
+    </li>
+    
+  </ol>
+</nav>
+
+
+  
+</header>
+
+
+    <div class="page-header">
+      <div
+        class="page-header__bg"
+        style="
+          background-image: url('../assets/images/fleet/header_bg-fleet.jpg');
+        "
+      ></div>
+      <div class="container">
+        <h1 class="page-header__title">
+          船舶一覧
+        </h1>
+      </div>
+    </div>
+
+    
+    <main class="main-content main-content--subpage">
+      <div class="container fleet__container">
+          
+        <section class="page-fleet__table">
+          <table class="page-fleet__summary-table">
+            <thead>
+              <tr>
+                <th>船舶名</th>
+                <th>G/T</th>
+                <th>DWT</th>
+                <th>船種</th>
+                <th>建造年月</th>
+                <th>航行区域</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr data-scroll-to-id="fleet-item-dai31eihoumaru">
+                <td>第31栄豊丸</td>
+                <td>498</td>
+                <td>1,265</td>
+                <td>白油タンカー</td>
+                <td>H25年9月(’13)</td>
+                <td>内航・限定近海</td>
+              </tr>
+              
+              <tr data-scroll-to-id="fleet-item-dai18houwamaru">
+                <td>第18豊和丸</td>
+                <td>499</td>
+                <td>1,223</td>
+                <td>白・黒油タンカー</td>
+                <td>H18年10月(’06)</td>
+                <td>内航・限定近海</td>
+              </tr>
+              
+              <tr data-scroll-to-id="fleet-item-shoshun">
+                <td>SHOSHUN</td>
+                <td>5,523</td>
+                <td>8,721</td>
+                <td>ケミカルタンカー IMO Ⅱ&Ⅲ</td>
+                <td>H28年3月(’16)</td>
+                <td>外航・近海</td>
+              </tr>
+              
+              <tr data-scroll-to-id="fleet-item-shoko">
+                <td>SHOKO</td>
+                <td>7,387</td>
+                <td>11,653</td>
+                <td>ケミカルタンカー IMO Ⅱ&Ⅲ</td>
+                <td>R02年8月(’20)</td>
+                <td>外航・近海</td>
+              </tr>
+              
+              <tr data-scroll-to-id="fleet-item-oriental-sakura">
+                <td>ORIENTAL SAKURA</td>
+                <td>9,141</td>
+                <td>16,090</td>
+                <td>ケミカルタンカー IMO Ⅱ&Ⅲ</td>
+                <td>H27年2月(’15)</td>
+                <td>外航・WorldWide</td>
+              </tr>
+              
+              <tr data-scroll-to-id="fleet-item-sarus-crane">
+                <td>SARUS CRANE</td>
+                <td>11,821</td>
+                <td>19,772</td>
+                <td>ケミカルタンカー IMO Ⅱ&Ⅲ</td>
+                <td>R04年11月(‘22)</td>
+                <td>外航・WorldWide</td>
+              </tr>
+              
+              <tr data-scroll-to-id="fleet-item-chemstar-sapphire">
+                <td>CHEMSTAR SAPPHIRE</td>
+                <td>12,149</td>
+                <td>19,993</td>
+                <td>ケミカルタンカー IMO Ⅱ&Ⅲ</td>
+                <td>R01年10月(’19)</td>
+                <td>外航・WorldWide</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </section>
+        
+        <section class="page-fleet__list">
+          
+          <div class="page-fleet__item" id="fleet-item-dai31eihoumaru">
+            <h2 class="subsection-title">第31栄豊丸</h2>
+             
+            <section
+              class="splide fleet-item-slider"
+              aria-label="第31栄豊丸 画像スライダー"
+            >
+              <div class="splide__track">
+                <ul class="splide__list">
+                  
+                  <li class="splide__slide">
+                    <picture>
+                      <source
+                        srcset="../assets/images/fleet/eihoumaru-01.webp"
+                        type="image/webp"
+                      />
+                      <img
+                        src="../assets/images/fleet/eihoumaru-01.jpg"
+                        alt="第31栄豊丸 写真1"
+                      />
+                    </picture>
+                  </li>
+                  
+                </ul>
+              </div>
+            </section>
+             
+
+            <div class="page-fleet__table">
+              <table class="page-fleet__summary-table">
+                <thead>
+                  <tr>
+                    <th>船舶名</th>
+                    <th>G/T</th>
+                    <th>DWT</th>
+                    <th>船種</th>
+                    <th>建造年月</th>
+                    <th>航行区域</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="船舶名">
+                      第31栄豊丸
+                    </td>
+                    <td data-label="G/T">
+                      498
+                    </td>
+                    <td data-label="DWT">
+                      1,265
+                    </td>
+                    <td data-label="船種">
+                      白油タンカー
+                    </td>
+                    <td data-label="建造年月">
+                      H25年9月(’13)
+                    </td>
+                    <td data-label="航行区域">
+                      内航・限定近海
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div class="page-fleet__item" id="fleet-item-dai18houwamaru">
+            <h2 class="subsection-title">第18豊和丸</h2>
+             
+            <section
+              class="splide fleet-item-slider"
+              aria-label="第18豊和丸 画像スライダー"
+            >
+              <div class="splide__track">
+                <ul class="splide__list">
+                  
+                  <li class="splide__slide">
+                    <picture>
+                      <source
+                        srcset="../assets/images/fleet/houwamaru-01.webp"
+                        type="image/webp"
+                      />
+                      <img
+                        src="../assets/images/fleet/houwamaru-01.jpg"
+                        alt="第18豊和丸 写真1"
+                      />
+                    </picture>
+                  </li>
+                  
+                </ul>
+              </div>
+            </section>
+             
+
+            <div class="page-fleet__table">
+              <table class="page-fleet__summary-table">
+                <thead>
+                  <tr>
+                    <th>船舶名</th>
+                    <th>G/T</th>
+                    <th>DWT</th>
+                    <th>船種</th>
+                    <th>建造年月</th>
+                    <th>航行区域</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="船舶名">
+                      第18豊和丸
+                    </td>
+                    <td data-label="G/T">
+                      499
+                    </td>
+                    <td data-label="DWT">
+                      1,223
+                    </td>
+                    <td data-label="船種">
+                      白・黒油タンカー
+                    </td>
+                    <td data-label="建造年月">
+                      H18年10月(’06)
+                    </td>
+                    <td data-label="航行区域">
+                      内航・限定近海
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div class="page-fleet__item" id="fleet-item-shoshun">
+            <h2 class="subsection-title">SHOSHUN</h2>
+             
+            <section
+              class="splide fleet-item-slider"
+              aria-label="SHOSHUN 画像スライダー"
+            >
+              <div class="splide__track">
+                <ul class="splide__list">
+                  
+                  <li class="splide__slide">
+                    <picture>
+                      <source
+                        srcset="../assets/images/fleet/shoshun-01.webp"
+                        type="image/webp"
+                      />
+                      <img
+                        src="../assets/images/fleet/shoshun-01.jpg"
+                        alt="SHOSHUN 写真1"
+                      />
+                    </picture>
+                  </li>
+                  
+                </ul>
+              </div>
+            </section>
+             
+
+            <div class="page-fleet__table">
+              <table class="page-fleet__summary-table">
+                <thead>
+                  <tr>
+                    <th>船舶名</th>
+                    <th>G/T</th>
+                    <th>DWT</th>
+                    <th>船種</th>
+                    <th>建造年月</th>
+                    <th>航行区域</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="船舶名">
+                      SHOSHUN
+                    </td>
+                    <td data-label="G/T">
+                      5,523
+                    </td>
+                    <td data-label="DWT">
+                      8,721
+                    </td>
+                    <td data-label="船種">
+                      ケミカルタンカー IMO Ⅱ&Ⅲ
+                    </td>
+                    <td data-label="建造年月">
+                      H28年3月(’16)
+                    </td>
+                    <td data-label="航行区域">
+                      外航・近海
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div class="page-fleet__item" id="fleet-item-shoko">
+            <h2 class="subsection-title">SHOKO</h2>
+             
+            <section
+              class="splide fleet-item-slider"
+              aria-label="SHOKO 画像スライダー"
+            >
+              <div class="splide__track">
+                <ul class="splide__list">
+                  
+                  <li class="splide__slide">
+                    <picture>
+                      <source
+                        srcset="../assets/images/fleet/shoko-01.webp"
+                        type="image/webp"
+                      />
+                      <img
+                        src="../assets/images/fleet/shoko-01.jpg"
+                        alt="SHOKO 写真1"
+                      />
+                    </picture>
+                  </li>
+                  
+                </ul>
+              </div>
+            </section>
+             
+
+            <div class="page-fleet__table">
+              <table class="page-fleet__summary-table">
+                <thead>
+                  <tr>
+                    <th>船舶名</th>
+                    <th>G/T</th>
+                    <th>DWT</th>
+                    <th>船種</th>
+                    <th>建造年月</th>
+                    <th>航行区域</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="船舶名">
+                      SHOKO
+                    </td>
+                    <td data-label="G/T">
+                      7,387
+                    </td>
+                    <td data-label="DWT">
+                      11,653
+                    </td>
+                    <td data-label="船種">
+                      ケミカルタンカー IMO Ⅱ&Ⅲ
+                    </td>
+                    <td data-label="建造年月">
+                      R02年8月(’20)
+                    </td>
+                    <td data-label="航行区域">
+                      外航・近海
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div class="page-fleet__item" id="fleet-item-oriental-sakura">
+            <h2 class="subsection-title">ORIENTAL SAKURA</h2>
+             
+            <section
+              class="splide fleet-item-slider"
+              aria-label="ORIENTAL SAKURA 画像スライダー"
+            >
+              <div class="splide__track">
+                <ul class="splide__list">
+                  
+                  <li class="splide__slide">
+                    <picture>
+                      <source
+                        srcset="../assets/images/fleet/orientalsakura-01.webp"
+                        type="image/webp"
+                      />
+                      <img
+                        src="../assets/images/fleet/orientalsakura-01.jpg"
+                        alt="ORIENTAL SAKURA 写真1"
+                      />
+                    </picture>
+                  </li>
+                  
+                </ul>
+              </div>
+            </section>
+             
+
+            <div class="page-fleet__table">
+              <table class="page-fleet__summary-table">
+                <thead>
+                  <tr>
+                    <th>船舶名</th>
+                    <th>G/T</th>
+                    <th>DWT</th>
+                    <th>船種</th>
+                    <th>建造年月</th>
+                    <th>航行区域</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="船舶名">
+                      ORIENTAL SAKURA
+                    </td>
+                    <td data-label="G/T">
+                      9,141
+                    </td>
+                    <td data-label="DWT">
+                      16,090
+                    </td>
+                    <td data-label="船種">
+                      ケミカルタンカー IMO Ⅱ&Ⅲ
+                    </td>
+                    <td data-label="建造年月">
+                      H27年2月(’15)
+                    </td>
+                    <td data-label="航行区域">
+                      外航・WorldWide
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div class="page-fleet__item" id="fleet-item-sarus-crane">
+            <h2 class="subsection-title">SARUS CRANE</h2>
+             
+            <section
+              class="splide fleet-item-slider"
+              aria-label="SARUS CRANE 画像スライダー"
+            >
+              <div class="splide__track">
+                <ul class="splide__list">
+                  
+                  <li class="splide__slide">
+                    <picture>
+                      <source
+                        srcset="../assets/images/fleet/saruscrane-01.webp"
+                        type="image/webp"
+                      />
+                      <img
+                        src="../assets/images/fleet/saruscrane-01.jpg"
+                        alt="SARUS CRANE 写真1"
+                      />
+                    </picture>
+                  </li>
+                  
+                </ul>
+              </div>
+            </section>
+             
+
+            <div class="page-fleet__table">
+              <table class="page-fleet__summary-table">
+                <thead>
+                  <tr>
+                    <th>船舶名</th>
+                    <th>G/T</th>
+                    <th>DWT</th>
+                    <th>船種</th>
+                    <th>建造年月</th>
+                    <th>航行区域</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="船舶名">
+                      SARUS CRANE
+                    </td>
+                    <td data-label="G/T">
+                      11,821
+                    </td>
+                    <td data-label="DWT">
+                      19,772
+                    </td>
+                    <td data-label="船種">
+                      ケミカルタンカー IMO Ⅱ&Ⅲ
+                    </td>
+                    <td data-label="建造年月">
+                      R04年11月(‘22)
+                    </td>
+                    <td data-label="航行区域">
+                      外航・WorldWide
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div class="page-fleet__item" id="fleet-item-chemstar-sapphire">
+            <h2 class="subsection-title">CHEMSTAR SAPPHIRE</h2>
+             
+            <section
+              class="splide fleet-item-slider"
+              aria-label="CHEMSTAR SAPPHIRE 画像スライダー"
+            >
+              <div class="splide__track">
+                <ul class="splide__list">
+                  
+                  <li class="splide__slide">
+                    <picture>
+                      <source
+                        srcset="../assets/images/fleet/chemstarsapphire-01.webp"
+                        type="image/webp"
+                      />
+                      <img
+                        src="../assets/images/fleet/chemstarsapphire-01.jpg"
+                        alt="CHEMSTAR SAPPHIRE 写真1"
+                      />
+                    </picture>
+                  </li>
+                  
+                </ul>
+              </div>
+            </section>
+             
+
+            <div class="page-fleet__table">
+              <table class="page-fleet__summary-table">
+                <thead>
+                  <tr>
+                    <th>船舶名</th>
+                    <th>G/T</th>
+                    <th>DWT</th>
+                    <th>船種</th>
+                    <th>建造年月</th>
+                    <th>航行区域</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="船舶名">
+                      CHEMSTAR SAPPHIRE
+                    </td>
+                    <td data-label="G/T">
+                      12,149
+                    </td>
+                    <td data-label="DWT">
+                      19,993
+                    </td>
+                    <td data-label="船種">
+                      ケミカルタンカー IMO Ⅱ&Ⅲ
+                    </td>
+                    <td data-label="建造年月">
+                      R01年10月(’19)
+                    </td>
+                    <td data-label="航行区域">
+                      外航・WorldWide
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+        </section>
+        
+      </div>
+    </main>
+     <footer class="footer">
+  <div class="footer__container">
+    <div class="footer__info">
+      <div class="footer__company-name">
+        <span class="footer__logo-ja">三豊運輸株式会社</span>
+        <span class="footer__logo-en">Sampo Unyu Co.,Ltd</span>
+      </div>
+      <p class="footer__address">
+        〒210-0006<br />
+        神奈川県川崎市川崎区砂子1-1-14JTB川崎共同ビル6F<br />
+        <span class="footer__tel">TEL. 044-201-6474</span>（平日 9:00〜17:00）
+      </p>
+    </div>
+
+    <div class="footer__links">
+      <div class="footer__nav-column">
+        <ul class="nav-footer__menu">
+          <li class="nav-footer__item">
+            <a
+              href="../"
+              class="nav-footer__link "
+            >
+              HOME
+            </a>
+          </li>
+          <li class="nav-footer__item">
+            <a
+              href="../news/"
+              class="nav-footer__link "
+            >
+              お知らせ
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__nav-column">
+        <ul class="nav-footer__menu">
+          <li class="nav-footer__item">
+            
+            <span class="nav-footer__link">事業案内</span>
+            
+          </li>
+          <li class="nav-footer__submenu-item">
+            <a
+              href="../domestic-charter/"
+              class="nav-footer__submenu-link"
+            >
+              内航船舶貸渡業
+            </a>
+          </li>
+          <li class="nav-footer__submenu-item">
+            <a
+              href="../international-charter/"
+              class="nav-footer__submenu-link"
+            >
+              外航船舶貸渡業
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__nav-column">
+        <ul class="nav-footer__menu">
+          <li class="nav-footer__item">
+            <a
+              href="../company/"
+              class="nav-footer__link "
+            >
+              会社案内
+            </a>
+          </li>
+          <li class="nav-footer__submenu-item">
+            <a
+              href="../about/"
+              class="nav-footer__submenu-link"
+            >
+              会社概要
+            </a>
+          </li>
+          <li class="nav-footer__submenu-item">
+            <a
+              href="../fleet/"
+              class="nav-footer__submenu-link"
+            >
+              船舶一覧
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer__copyright">Copyright © 三豊運輸株式会社 All rights reserved.</p>
+</footer>
+<a
+  href="#"
+  id="pageTopButton"
+  class="page-top-button"
+  aria-label="ページトップへ戻る"
+>
+  <span class="material-icons-outlined">arrow_upward</span>
+</a>
+ <script src="../assets/js/bundle.js"></script>
+<!-- <script>
+  (function () {
+    const correctPassword = "sanpo2025"; // パスワードをここで設定
+
+    const entered = sessionStorage.getItem("auth");
+    if (entered === correctPassword) return;
+
+    const tryPassword = prompt(
+      "このサイトは関係者専用です。パスワードを入力してください："
+    );
+    if (tryPassword === correctPassword) {
+      sessionStorage.setItem("auth", correctPassword);
+    } else {
+      alert("パスワードが間違っています。");
+      location.href = "https://www.google.com"; // 間違ったらリダイレクト
+    }
+  })();
+</script> -->
+
+  </body>
+</html>

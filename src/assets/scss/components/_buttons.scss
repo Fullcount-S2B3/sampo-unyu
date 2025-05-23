@@ -53,6 +53,13 @@
     border-color: color.adjust($color-secondary, $lightness: -8%);
   }
 }
+.button--outline-primary {
+  @extend %button--primary;
+  background-color: transparent;
+  color: $color-primary;
+  &:hover {
+  }
+}
 .button--outline-white {
   @extend %button;
   background-color: transparent;

@@ -1,0 +1,51 @@
+<% const breadcrumbs = []; const nav = data.common; const
+currentPageSpecificData = currentPageDataForBreadcrumb || data.pages?.[pageId]
+|| {}; if (nav.nav_home) { breadcrumbs.push({ name: nav.nav_home, href: path });
+} let currentPageName = null; if (pageId && pageId.startsWith('news-detail')) {
+if (nav.nav_news) { breadcrumbs.push({ name: nav.nav_news, href: path +
+(nav.url_news || 'news/') }); } currentPageName = currentPageSpecificData.title
+|| "記事詳細"; } else { switch (pageId) { case 'about': currentPageName =
+nav.nav_about; break; case 'fleet': currentPageName = nav.nav_fleet; break; case
+'domestic': currentPageName = nav.nav_service_naiko; break; case
+'international': currentPageName = nav.nav_service_gaiko; break; case 'news':
+currentPageName = nav.nav_news; break; default: if
+(currentPageSpecificData.page_title) { currentPageName =
+currentPageSpecificData.page_title; } else if
+(currentPageSpecificData.meta_title) { currentPageName =
+currentPageSpecificData.meta_title; } else if (pageId) { currentPageName =
+pageId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()); } else {
+currentPageName = "現在のページ"; } break; } } if (currentPageName) { const
+lastCrumb = breadcrumbs.length > 0 ? breadcrumbs[breadcrumbs.length - 1] : null;
+if (!lastCrumb || lastCrumb.name !== currentPageName) { breadcrumbs.push({ name:
+currentPageName, href: null }); } else if (lastCrumb && lastCrumb.name ===
+currentPageName && lastCrumb.href) { lastCrumb.href = null; } } %> <% if
+(breadcrumbs.length > 1) { %>
+<nav
+  class="breadcrumb-container"
+  aria-label="<%- nav.breadcrumb_aria_label || '現在位置' %>"
+>
+  <ol
+    class="breadcrumb container"
+    itemscope
+    itemtype="https://schema.org/BreadcrumbList"
+  >
+    <% breadcrumbs.forEach((crumb, index) => { %>
+    <li
+      class="breadcrumb__item"
+      itemprop="itemListElement"
+      itemscope
+      itemtype="https://schema.org/ListItem"
+    >
+      <% if (!crumb.href || index === breadcrumbs.length - 1) { %>
+      <span itemprop="name"><%- crumb.name %></span>
+      <% } else { %>
+      <a itemprop="item" href="<%= crumb.href %>">
+        <span itemprop="name"><%- crumb.name %></span>
+      </a>
+      <% } %>
+      <meta itemprop="position" content="<%= index + 1 %>" />
+    </li>
+    <% }) %>
+  </ol>
+</nav>
+<% } %>

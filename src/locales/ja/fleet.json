@@ -18,6 +18,14 @@
         {
           "base_filename": "eihoumaru-01",
           "alt_text": "第31栄豊丸 写真1"
+        },
+        {
+          "base_filename": "eihoumaru-02",
+          "alt_text": "第31栄豊丸 写真2"
+        },
+        {
+          "base_filename": "eihoumaru-03",
+          "alt_text": "第31栄豊丸 写真3"
         }
       ],
       "specs": {
@@ -35,6 +43,10 @@
       "images": [
         {
           "base_filename": "houwamaru-01",
+          "alt_text": "第18豊和丸 写真1"
+        },
+        {
+          "base_filename": "houwamaru-02",
           "alt_text": "第18豊和丸 写真1"
         }
       ],
@@ -54,6 +66,30 @@
         {
           "base_filename": "shoshun-01",
           "alt_text": "SHOSHUN 写真1"
+        },
+        {
+          "base_filename": "shoshun-02",
+          "alt_text": "SHOSHUN 写真2"
+        },
+        {
+          "base_filename": "shoshun-03",
+          "alt_text": "SHOSHUN 写真3"
+        },
+        {
+          "base_filename": "shoshun-04",
+          "alt_text": "SHOSHUN 写真4"
+        },
+        {
+          "base_filename": "shoshun-05",
+          "alt_text": "SHOSHUN 写真5"
+        },
+        {
+          "base_filename": "shoshun-06",
+          "alt_text": "SHOSHUN 写真6"
+        },
+        {
+          "base_filename": "shoshun-07",
+          "alt_text": "SHOSHUN 写真7"
         }
       ],
       "specs": {
@@ -72,6 +108,26 @@
         {
           "base_filename": "shoko-01",
           "alt_text": "SHOKO 写真1"
+        },
+        {
+          "base_filename": "shoko-02",
+          "alt_text": "SHOKO 写真2"
+        },
+        {
+          "base_filename": "shoko-03",
+          "alt_text": "SHOKO 写真3"
+        },
+        {
+          "base_filename": "shoko-04",
+          "alt_text": "SHOKO 写真4"
+        },
+        {
+          "base_filename": "shoko-05",
+          "alt_text": "SHOKO 写真5"
+        },
+        {
+          "base_filename": "shoko-06",
+          "alt_text": "SHOKO 写真6"
         }
       ],
       "specs": {
@@ -90,6 +146,22 @@
         {
           "base_filename": "orientalsakura-01",
           "alt_text": "ORIENTAL SAKURA 写真1"
+        },
+        {
+          "base_filename": "orientalsakura-02",
+          "alt_text": "ORIENTAL SAKURA 写真2"
+        },
+        {
+          "base_filename": "orientalsakura-03",
+          "alt_text": "ORIENTAL SAKURA 写真3"
+        },
+        {
+          "base_filename": "orientalsakura-04",
+          "alt_text": "ORIENTAL SAKURA 写真4"
+        },
+        {
+          "base_filename": "orientalsakura-05",
+          "alt_text": "ORIENTAL SAKURA 写真5"
         }
       ],
       "specs": {
@@ -108,6 +180,18 @@
         {
           "base_filename": "saruscrane-01",
           "alt_text": "SARUS CRANE 写真1"
+        },
+        {
+          "base_filename": "saruscrane-02",
+          "alt_text": "SARUS CRANE 写真2"
+        },
+        {
+          "base_filename": "saruscrane-03",
+          "alt_text": "SARUS CRANE 写真3"
+        },
+        {
+          "base_filename": "saruscrane-04",
+          "alt_text": "SARUS CRANE 写真4"
         }
       ],
       "specs": {
@@ -126,6 +210,14 @@
         {
           "base_filename": "chemstarsapphire-01",
           "alt_text": "CHEMSTAR SAPPHIRE 写真1"
+        },
+        {
+          "base_filename": "chemstarsapphire-02",
+          "alt_text": "CHEMSTAR SAPPHIRE 写真2"
+        },
+        {
+          "base_filename": "chemstarsapphire-03",
+          "alt_text": "CHEMSTAR SAPPHIRE 写真3"
         }
       ],
       "specs": {

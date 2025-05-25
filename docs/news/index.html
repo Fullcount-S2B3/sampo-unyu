@@ -500,24 +500,24 @@
   <span class="material-icons-outlined">arrow_upward</span>
 </a>
  <script src="../assets/js/bundle.js"></script>
-<!-- <script>
-  (function () {
-    const correctPassword = "sanpo2025"; // パスワードをここで設定
+<script>
+  ;(function () {
+    const correctPassword = 'sampo2025' // パスワードをここで設定
 
-    const entered = sessionStorage.getItem("auth");
-    if (entered === correctPassword) return;
+    const entered = sessionStorage.getItem('auth')
+    if (entered === correctPassword) return
 
     const tryPassword = prompt(
-      "このサイトは関係者専用です。パスワードを入力してください："
-    );
+      'このサイトは関係者専用です。パスワードを入力してください：',
+    )
     if (tryPassword === correctPassword) {
-      sessionStorage.setItem("auth", correctPassword);
+      sessionStorage.setItem('auth', correctPassword)
     } else {
-      alert("パスワードが間違っています。");
-      location.href = "https://www.google.com"; // 間違ったらリダイレクト
+      alert('パスワードが間違っています。')
+      location.href = 'https://www.google.com' // 間違ったらリダイレクト
     }
-  })();
-</script> -->
+  })()
+</script>
 
   </body>
 </html>

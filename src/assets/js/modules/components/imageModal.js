@@ -7,52 +7,63 @@ export function initImageModal() {
     : null
   const triggerImages = document.querySelectorAll('.js-modal-trigger')
 
+  // CSSで設定したトランジション時間 (0.4s) + バッファ (50ms)
+  const transitionDuration = 450
+
   if (
     !modal ||
     !modalImage ||
     !closeModalButton ||
     triggerImages.length === 0
   ) {
-    // console.warn('Image Modal: Required elements not found. Initialization skipped.');
     return
   }
 
+  // --- 開く処理 ---
   triggerImages.forEach((img) => {
     img.addEventListener('click', function () {
-      modal.classList.add('is-visible')
-      modalImage.src = this.src // クリックされた画像のsrcをモーダル画像に設定
+      modalImage.src = this.src // 先にsrcを設定
       if (this.alt) {
-        modalCaption.textContent = this.alt // alt属性をキャプションに設定
+        modalCaption.textContent = this.alt
         modalCaption.style.display = 'block'
       } else {
         modalCaption.style.display = 'none'
+        modalCaption.textContent = ''
       }
+      modal.classList.add('is-visible') // src設定後にクラスを追加
     })
   })
 
-  // 閉じるボタンがクリックされたときの処理
-  closeModalButton.addEventListener('click', function () {
-    modal.classList.remove('is-visible')
-    modalImage.src = '' // モーダルを閉じる際に画像をクリア（任意）
-    modalCaption.textContent = '' // キャプションもクリア
-  })
+  // --- 閉じる処理 (setTimeout を使用) ---
+  function closeModalAndClear() {
+    // すでに非表示処理中の場合は何もしない
+    if (!modal.classList.contains('is-visible')) {
+      return
+    }
 
-  // モーダルの背景（画像以外）がクリックされたときの処理
-  modal.addEventListener('click', function (event) {
-    if (event.target === modal) {
-      // クリックされたのがモーダル背景自身か確認
-      modal.classList.remove('is-visible')
+    // 1. まずクラスを削除してトランジションを開始
+    modal.classList.remove('is-visible')
+
+    // 2. トランジション時間後に src と caption をクリア
+    setTimeout(() => {
+      console.log('Clearing image src via setTimeout...') // デバッグ用
       modalImage.src = ''
       modalCaption.textContent = ''
+    }, transitionDuration) // 設定した時間後に実行
+  }
+
+  // --- 閉じるイベントリスナー ---
+  closeModalButton.addEventListener('click', closeModalAndClear)
+
+  modal.addEventListener('click', function (event) {
+    if (event.target === modal) {
+      closeModalAndClear()
     }
   })
 
-  // Escapeキーでモーダルを閉じる
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape' && modal.classList.contains('is-visible')) {
-      modal.classList.remove('is-visible')
-      modalImage.src = ''
-      modalCaption.textContent = ''
+      closeModalAndClear()
     }
   })
 }

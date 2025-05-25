@@ -1,82 +1,38 @@
 {
-  "meta_title": "Company Overview | SANPO Shipping Co., Ltd.",
-  "meta_description": "This page provides an overview of SANPO Shipping Co., Ltd., including company profile, location, and business operations.",
-  "page_title": "Company Overview",
-  "profile_items": [
-    { "label": "Company Name", "value": "SANPO Shipping Co., Ltd." },
+  "meta_title": "International Ship Manning Services | Our Services | Mitoyo Shipping Co., Ltd.",
+  "meta_description": "Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text.",
+  "page_title": "International Ship Manning Services",
+  "sections": [
     {
-      "label": "Location",
-      "value": "6F, JTB Kawasaki Kyodo Building, 1-1-14 Sunako, Kawasaki-ku, Kawasaki-shi, Kanagawa, Japan"
-    },
-    { "label": "Founded", "value": "December 23, 1960 (Showa 35)" },
-    { "label": "Capital", "value": "50 million yen (100,000 shares issued)" },
-    {
-      "label": "Shareholders (Major Shareholders)",
-      "value_html": "Hisashi Irii: 39,000 shares<br />Showa Nittan Co., Ltd.: 20,000 shares<br />Junko Irii: 18,500 shares"
-    },
-    {
-      "label": "Executives",
-      "value_html": "President and CEO: Hisashi Irii<br />Director: Akira Kawai<br />Director: Yoshiaki Koike<br />Auditor: Shinya Yoshikawa"
-    },
-    {
-      "label": "Main Business Activities and Licenses",
-      "value_html": "1) Domestic ship manning (License No. Kan-D 1034)<br />2) International ship manning"
-    },
-    {
-      "label": "Number of Employees",
-      "value": "16 total (4 onshore, 12 offshore - employed by affiliate Sanpo SP)"
-    },
-    {
-      "label": "Fleet Overview",
-      "value_html": "Domestic: 2 oil tankers, 2,412 KL (limited near-sea service)<br />International: 5 oil tankers, 76,229 DWT<br />(Registered in: 3 PANAMA, 2 MARSHALL; Ship types: IMO II & III Chemical Tankers)<br />PANAMA entities: HOWA SHIPPING S.A. and HOSHO SHIPPING S.A.<br />MARSHALL entity: SP CLOVER SHIPPING Co., Ltd."
-    },
-    {
-      "label": "Consolidated Revenue",
-      "lines": [
-        "2020: 2,940 million yen",
-        "2021: 3,104 million yen",
-        "2022: 2,972 million yen",
-        "2023: 3,147 million yen",
-        "2024: 2,789 million yen"
+      "id": "section-transport",
+      "title": "Maritime Transport and International Cargo Shipping",
+      "heading_level": "h2",
+      "paragraphs": [
+        "Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text."
       ]
     },
     {
-      "label": "Affiliated Companies",
-      "lines": [
-        "HOWA SHIPPING S.A. (PANAMA)",
-        "HOSHO SHIPPING S.A. (PANAMA)",
-        "SP CLOVER SHIPPING Co., Ltd. (MARSHALL ISLANDS)",
-        "Sanpo Shipping Co., Ltd."
+      "id": "section-example2",
+      "title": "Commitment to Safety",
+      "heading_level": "h3",
+      "paragraphs": [
+        "This section contains text about our commitment to safety.\nAt Mitoyo Shipping, safety is our top priority, and we maintain a thorough and comprehensive management system."
       ]
     },
     {
-      "label": "Main Financial Institutions",
-      "lines": [
-        "Shoko Chukin Bank, Yokohama Nishiguchi Branch",
-        "Sumitomo Mitsui Banking Corporation, Tsurumi Branch",
-        "Mizuho Bank, Marunouchi Central Branch",
-        "Bank of Yokohama, Tsurumi Branch",
-        "Hiroshima Bank, Tokyo Branch",
-        "Development Bank of Japan",
-        "Awa Bank, Yokohama Branch",
-        "Tokushima Taisho Bank, Kamata Branch"
+      "id": "section-manning",
+      "title": "Vessel Management and Crew Manning",
+      "heading_level": "h2",
+      "paragraphs": [
+        "We provide comprehensive services in vessel operation, maintenance, and crew assignment, which are essential in maritime transport.\nWe ensure the safe and efficient operation of our owned vessels."
       ]
     },
     {
-      "label": "Main Clients",
-      "lines": [
-        "Yokohama Yusosen Co., Ltd.",
-        "Showa Nittan Co., Ltd.",
-        "Daito Tsusho Co., Ltd.",
-        "Iino Kaiun Kaisha, Ltd.",
-        "Asakawa Shipbuilding Co., Ltd.",
-        "Fukuoka Shipbuilding Co., Ltd.",
-        "Sanwa Dock Co., Ltd.",
-        "Kitanihon Shipbuilding Co., Ltd.",
-        "Mitsui Sumitomo Insurance Co., Ltd.",
-        "Tokio Marine & Nichido Fire Insurance Co., Ltd.",
-        "UK P&I",
-        "Japan P&I Club"
+      "id": "section-example1",
+      "title": "Future Outlook",
+      "heading_level": "h3",
+      "paragraphs": [
+        "This section contains text regarding our future outlook.\nLine breaks can be written like this\nacross multiple lines if needed."
       ]
     }
   ]

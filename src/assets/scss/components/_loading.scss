@@ -1,23 +1,37 @@
-.loading-spinner {
-  width: 300px;
-  height: auto;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
+@use '../abstracts' as *;
 
-  // 表示/非表示を制御するクラス
+.loading-spinner {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $color-white;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
   &.is-loading {
-    display: block; // または flex など、レイアウトに応じて
+    display: flex;
   }
+
   &.is-hidden {
     display: none;
+  }
+
+  .loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
   }
 
   .wave-loader {
     display: block;
     width: 100%;
+    max-width: 480px;
     height: auto;
     mask-image: linear-gradient(
       to right,
@@ -31,6 +45,68 @@
     mask-size: 250% 100%;
     mask-repeat: no-repeat;
     animation: loading-highlight-pass 1.6s linear infinite;
+    opacity: 0.5;
+  }
+
+  .loading-text {
+    display: flex;
+    justify-content: center;
+    gap: 0.2em;
+    margin-top: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: $font-roboto;
+    letter-spacing: 0.05em;
+    color: #b6c8db;
+
+    span {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUpLetter 0.6s ease forwards;
+    }
+
+    // 文字ごとにアニメーション遅延をつけて波に合わせる（1.6s周期に対応）
+    span:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+    span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    span:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+    span:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+    span:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+    span:nth-child(6) {
+      animation-delay: 0.6s;
+    } // 空白スペース
+    span:nth-child(7) {
+      animation-delay: 0.7s;
+    }
+    span:nth-child(8) {
+      animation-delay: 0.8s;
+    }
+    span:nth-child(9) {
+      animation-delay: 0.9s;
+    }
+    span:nth-child(10) {
+      animation-delay: 1s;
+    }
+  }
+
+  @keyframes fadeInUpLetter {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
@@ -40,5 +116,12 @@
   }
   100% {
     mask-position: -125% 0;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

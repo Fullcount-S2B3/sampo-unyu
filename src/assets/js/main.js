@@ -25,7 +25,7 @@ import { initImageModal } from './modules/components/imageModal.js' // NEWS詳�
 
 gsap.registerPlugin(ScrollTrigger)
 
-showLoading() //
+showLoading() // ローディング表示を開始
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM fully loaded and parsed. Initializing modules...')
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (currentPageId === 'home') {
     console.log('Initializing HOME page modules...')
-    initHeroAnimations() //
+    initHeroAnimations() // ホームページの場合はヒーローアニメーションを初期化 (ここでローディング非表示が制御される)
     initMessageTitleAnimation() //
     initParallax() //
   } else if (currentPageId === 'fleet') {
@@ -57,22 +57,32 @@ document.addEventListener('DOMContentLoaded', () => {
     initImageModal() // NEWS詳細でのみ実行
   }
 
-  const fallbackSpinner = document.querySelector('.loading-spinner.is-loading')
-  if (fallbackSpinner) {
-    setTimeout(() => {
-      console.log('Fallback: Hiding loading spinner via main.js timeout.')
-      hideLoading() //
-    }, 1000)
-  }
+  // DOMContentLoadedでのフォールバックタイマーを削除
+  // const fallbackSpinner = document.querySelector('.loading-spinner.is-loading');
+  // if (fallbackSpinner) {
+  //   setTimeout(() => {
+  //     console.log('Fallback: Hiding loading spinner via main.js timeout.');
+  //     hideLoading();
+  //   }, 1000);
+  // }
 })
 
 window.addEventListener('load', () => {
-  // ... (既存の window.load の処理)
-  const finalSpinnerCheck = document.querySelector(
-    '.loading-spinner.is-loading',
-  )
-  if (finalSpinnerCheck) {
-    console.log('Window.load: Forcing hide loading spinner as a final measure.')
-    hideLoading() //
+  const currentPageId = document.body.dataset.pageId
+
+  // ホームページ *以外* の場合のみ、window.loadでローディングを非表示にする
+  // ホームページの場合は heroAnimations.js が非表示を管理する
+  if (currentPageId !== 'home') {
+    const finalSpinnerCheck = document.querySelector(
+      '.loading-spinner.is-loading',
+    )
+    if (finalSpinnerCheck) {
+      console.log(
+        'Window.load: Hiding loading spinner for non-home page as a final measure.',
+      )
+      hideLoading() //
+    }
+  } else {
+    console.log('Window.load: On home page, heroAnimations will handle hiding.')
   }
 })

@@ -13,11 +13,13 @@ export function initFleetSplideSliders() {
   sliderElements.forEach((element) => {
     const splide = new Splide(element, {
       // Splideオプション
-      type: 'slide', // 'loop' にすると画像1枚でもクローンが作られるので注意。'slide'が良い。
+      type: 'loop', // 'loop' にすると画像1枚でもクローンが作られるので注意。'slide'が良い。
       perPage: 1,
       gap: '1rem', // スライド間のスペース (必要に応じて)
       pagination: true, // ページネーション（ドット）を表示
       arrows: true, // 矢印ナビゲーションを表示
+      speed: 1500,
+      easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
       // 他にも多くのオプションがあります。詳細はSplideのドキュメントを参照してください。
       //例: keyboard: 'global', drag: true, etc.
     })

@@ -6,7 +6,7 @@ data.news_data.articles) || []; const newsData = data.news; %>
   <%- include('./_includes/_head', { path: assetPath, lang: lang, pageTitle:
   currentPageData.meta_title || commonData.title, pageDescription:
   currentPageData.meta_description || commonData.description }) %>
-  <body class="page-<%= pageId %> page-top" data-page-id="<%= pageId %>"></body>
+  <body class="page-<%= pageId %> page-top" data-page-id="<%= pageId %>">
     <%- include('_includes/_header', { pageLinkBasePath: pageLinkBasePath,
     assetPath: assetPath, pageLinkToOtherLangRoot: pageLinkToOtherLangRoot,
     pageId: pageId, data: data, lang: lang }) %>
@@ -20,6 +20,10 @@ data.news_data.articles) || []; const newsData = data.news; %>
           playsinline
           loading="lazy"
         >
+          <source
+            src="<%= assetPath %>video/hero-video.webm"
+            type="video/webm"
+          />
           <source src="<%= assetPath %>video/hero-video.mp4" type="video/mp4" />
           <%- (currentPageData.hero && currentPageData.hero.video_fallback_text)
           || 'お使いのブラウザは動画タグに対応していません。' %>

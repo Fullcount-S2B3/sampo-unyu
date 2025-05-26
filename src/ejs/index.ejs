@@ -172,7 +172,7 @@ data.news_data.articles) || []; const newsData = data.news; %>
           <div class="company-section__grid">
             <div class="company-section__item">
               <a
-                href="<%= pageLinkBasePath %>company/about/"
+                href="<%= pageLinkBasePath %>about/"
                 class="company-section__link"
               >
                 <img
@@ -190,7 +190,7 @@ data.news_data.articles) || []; const newsData = data.news; %>
             </div>
             <div class="company-section__item">
               <a
-                href="<%= pageLinkBasePath %>company/history/"
+                href="<%= pageLinkBasePath %>fleet/"
                 class="company-section__link"
               >
                 <img
@@ -206,14 +206,6 @@ data.news_data.articles) || []; const newsData = data.news; %>
                 </h3>
               </a>
             </div>
-          </div>
-          <div class="section__more-button">
-            <a
-              href="<%= pageLinkBasePath %>company/"
-              class="button button--primary"
-              ><%- (currentPageData.company_section &&
-              currentPageData.company_section.more_button_text) %></a
-            >
           </div>
         </div>
       </section>

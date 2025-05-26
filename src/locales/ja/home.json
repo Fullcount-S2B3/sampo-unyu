@@ -1,7 +1,7 @@
 {
-"meta_title": "トップページ | 三豊運輸株式会社",
-"meta_description": "トップページの説明文です。",
-"hero": {
+  "meta_title": "トップページ | 三豊運輸株式会社",
+  "meta_description": "トップページの説明文です。",
+  "hero": {
     "heading": "船員配乗から<br />船舶の安全を支えます",
     "text": "所属船舶の運航管理や船員配乗を通じて、<br />海運業界の発展に貢献しております。",
     "video_fallback_text": "お使いのブラウザは動画タグに対応していません。",
@@ -23,7 +23,8 @@
   },
   "company_section": {
     "title": "COMPANY",
-    "subtitle": "会社案内",
+    "title_about": "会社案内",
+    "title_fleet": "船舶一覧",
     "image01_alt": "会社概要",
     "image02_alt": "船舶一覧",
     "more_button_text": "会社概要ページへ"

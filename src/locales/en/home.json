@@ -23,7 +23,8 @@
   },
   "company_section": {
     "title": "COMPANY",
-    "subtitle": "About Us",
+    "title_about": "About Us",
+    "title_fleet": "Fleet",
     "image01_alt": "Company Overview",
     "image02_alt": "Fleet List",
     "more_button_text": "Go to Company Overview"

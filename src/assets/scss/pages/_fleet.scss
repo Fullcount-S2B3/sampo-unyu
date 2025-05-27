@@ -112,154 +112,144 @@
     border-collapse: collapse;
   }
 }
-
-.fleet-item-slider.is-single-slide .splide__arrows,
-.fleet-item-slider.is-single-slide .splide__pagination {
-  display: none !important;
-}
-
-.fleet-item-slider .splide__slide img,
-.fleet-item-slider .splide__slide picture {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* スライダー全体のコンテナに対して相対的な位置指定を可能にする */
 .fleet-item-slider {
   position: relative;
-}
 
-/* 矢印ボタンの基本スタイル調整 */
-.fleet-item-slider .splide__arrow {
-  position: absolute;
-  top: 50%; /* 上下中央に配置 */
-  transform: translateY(-50%); /* 正確に中央揃えするための調整 */
-  z-index: 1; /* 画像の上に表示 */
-  background: rgba($color-primary, 0.3); /* 半透明の背景 */
-  border: none;
-  border-radius: 50%; /* 円形にする */
-  width: 48px; /* ボタンの幅 (アイコンサイズに合わせて調整) */
-  height: 48px; /* ボタンの高さ */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-  opacity: 0.7;
-  transition:
-    opacity 0.3s ease,
-    background-color 0.3s ease;
-}
-
-.fleet-item-slider .splide__arrow svg {
-  fill: #fff; /* アイコンの色を白に */
-  width: 20px; /* アイコンの幅 */
-  height: 20px; /* アイコンの高さ */
-}
-
-/* 前へボタンの位置とアイコンの向き調整 */
-.fleet-item-slider .splide__arrow--prev {
-  left: 15px; /* スライダーの左端からの距離 */
-}
-.fleet-item-slider .splide__arrow--prev svg {
-  transform: rotate(180deg); /* ★★★ 左向きにするために回転 ★★★ */
-}
-
-/* 次へボタンの位置 */
-.fleet-item-slider .splide__arrow--next {
-  right: 15px; /* スライダーの右端からの距離 */
-}
-/* .fleet-item-slider .splide__arrow--next svg はデフォルトで右向きなので回転不要 */
-
-/* ホバー時のスタイル */
-.fleet-item-slider .splide__arrow:hover {
-  background: rgba($color-primary, 0.6);
-  opacity: 1;
-}
-
-/* フォーカス時のスタイル (アクセシビリティのため) */
-.fleet-item-slider .splide__arrow:focus {
-  outline: 2px solid Highlight;
-  outline: 2px solid -webkit-focus-ring-color;
-}
-.fleet-item-slider .splide__arrow:focus:not(:focus-visible) {
-  outline: none;
-}
-.fleet-item-slider .splide__arrow:focus-visible {
-  outline: 2px solid Highlight;
-  outline: 2px solid -webkit-focus-ring-color;
-}
-
-/* disabled状態のボタン */
-.fleet-item-slider .splide__arrow:disabled {
-  opacity: 0.3;
-  cursor: default;
-  background: rgba($color-primary, 0.1);
-}
-
-// SCSS変数定義（例として）
-// $color-accent: #007bff; // あなたのプロジェクトのアクセントカラーを指定してください
-// $color-pagination-inactive: #ccc;
-// $color-pagination-hover: darken($color-accent, 10%);
-
-.fleet-item-slider {
-  // ... 他のスライダースタイル ...
-
-  .splide__pagination {
-    // bottom: 1em; // 位置調整 (デフォルトは0.5em、矢印とのバランスを見て調整)
-    // もし矢印をスライダーの内側に配置しているなら、ページネーションが重ならないように bottom の値を増やす
-    bottom: calc(
-      1em + 10px + 10px
-    ); // (デフォルトの矢印の高さ/2 + bottomからのマージン) ぐらいを想定
-    // または、矢印の高さと位置によって固定値を指定
-    // 例: bottom: 60px;
-    margin-top: 10px;
-    li {
-      margin: 0 5px; // ドット間のマージンを少し広げる
+  // スライド画像
+  .splide__slide {
+    max-height: calc(100vh - $header-height-subpage - 10.68rem);
+    img,
+    picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 
-  .splide__pagination__page {
-    background: $color-dark; // 非アクティブ時のドットの色 (例: #ccc)
-    width: 12px; // ドットの幅
-    height: 12px; // ドットの高さ
-    border-radius: 50%; // 円形にする
-    opacity: 0.6;
-    transition:
-      transform 0.2s ease-out,
-      background-color 0.2s ease-out,
-      opacity 0.2s ease-out;
-    border: none; // Splideのデフォルトボーダーをリセット
-    padding: 0; // Splideのデフォルトパディングをリセット
-    margin: 0; // Splideのデフォルトマージンをリセット（li側で制御）
+  // スライド数が1枚だけの場合はナビゲーション非表示
+  &.is-single-slide {
+    .splide__arrows,
+    .splide__pagination {
+      display: none !important;
+    }
+  }
 
-    &:hover {
-      background: $color-primary; // ホバー時の色 (例: $color-accent の少し暗い色)
-      opacity: 0.8;
-      transform: scale(1.1); // ホバー時に少し拡大
+  // 矢印ボタン
+  .splide__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    background: rgba($color-primary, 0.3);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.7;
+    transition:
+      opacity 0.3s ease,
+      background-color 0.3s ease;
+
+    svg {
+      fill: #fff;
+      width: 20px;
+      height: 20px;
     }
 
-    // アクティブなドットのスタイル
-    &.is-active {
-      background: $color-accent; // アクティブ時のドットの色 (アクセントカラー)
-      transform: scale(1.2); // アクティブなドットを少し大きく
+    &--prev {
+      left: 15px;
+
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+
+    &--next {
+      right: 15px;
+    }
+
+    &:hover {
+      background: rgba($color-primary, 0.6);
       opacity: 1;
     }
 
-    // フォーカス時のスタイル (アクセシビリティ)
     &:focus {
-      outline: 2px solid Highlight; // ブラウザデフォルト、またはカスタムスタイル
+      outline: 2px solid Highlight;
       outline: 2px solid -webkit-focus-ring-color;
-      outline-offset: 2px;
+
+      &:not(:focus-visible) {
+        outline: none;
+      }
     }
-    &:focus:not(:focus-visible) {
-      outline: none;
-    }
+
     &:focus-visible {
       outline: 2px solid Highlight;
       outline: 2px solid -webkit-focus-ring-color;
-      outline-offset: 2px;
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: default;
+      background: rgba($color-primary, 0.1);
+    }
+  }
+
+  // ページネーション
+  .splide__pagination {
+    bottom: calc(1em + 10px + 10px); // 矢印に干渉しないように調整
+    margin-top: 10px;
+
+    li {
+      margin: 0 5px;
+    }
+
+    &__page {
+      background: $color-dark;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      opacity: 0.6;
+      transition:
+        transform 0.2s ease-out,
+        background-color 0.2s ease-out,
+        opacity 0.2s ease-out;
+      border: none;
+      padding: 0;
+      margin: 0;
+
+      &:hover {
+        background: $color-primary;
+        opacity: 0.8;
+        transform: scale(1.1);
+      }
+
+      &.is-active {
+        background: $color-accent;
+        transform: scale(1.2);
+        opacity: 1;
+      }
+
+      &:focus {
+        outline: 2px solid Highlight;
+        outline: 2px solid -webkit-focus-ring-color;
+        outline-offset: 2px;
+
+        &:not(:focus-visible) {
+          outline: none;
+        }
+      }
+
+      &:focus-visible {
+        outline: 2px solid Highlight;
+        outline: 2px solid -webkit-focus-ring-color;
+        outline-offset: 2px;
+      }
     }
   }
 }

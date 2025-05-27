@@ -76,10 +76,12 @@ data.pages[pageId] || {}; %>
                       <source
                         srcset="<%= assetPath %>images/fleet/<%- image.base_filename %>.webp"
                         type="image/webp"
+                        class="fleet-photo"
                       />
                       <img
                         src="<%= assetPath %>images/fleet/<%- image.base_filename %>.jpg"
                         alt="<%- image.alt_text || ship.name %>"
+                        class="fleet-photo"
                       />
                     </picture>
                   </li>

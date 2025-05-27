@@ -2100,92 +2100,76 @@ body.page-top .main-content::before {
   border-collapse: collapse;
 }
 
-.fleet-item-slider.is-single-slide .splide__arrows,
-.fleet-item-slider.is-single-slide .splide__pagination {
-  display: none !important;
+.fleet-item-slider {
+  position: relative;
 }
-
+.fleet-item-slider .splide__slide {
+  max-height: calc(100vh - 152px - 10.68rem);
+}
 .fleet-item-slider .splide__slide img,
 .fleet-item-slider .splide__slide picture {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
-
-/* スライダー全体のコンテナに対して相対的な位置指定を可能にする */
-.fleet-item-slider {
-  position: relative;
+.fleet-item-slider.is-single-slide .splide__arrows,
+.fleet-item-slider.is-single-slide .splide__pagination {
+  display: none !important;
 }
-
-/* 矢印ボタンの基本スタイル調整 */
 .fleet-item-slider .splide__arrow {
   display: flex;
-  z-index: 1; /* 画像の上に表示 */
+  z-index: 1;
   position: absolute;
-  top: 50%; /* 上下中央に配置 */
+  top: 50%;
   align-items: center;
   justify-content: center;
-  width: 48px; /* ボタンの幅 (アイコンサイズに合わせて調整) */
-  height: 48px; /* ボタンの高さ */
+  width: 48px;
+  height: 48px;
   padding: 0;
-  transform: translateY(-50%); /* 正確に中央揃えするための調整 */
+  transform: translateY(-50%);
   border: none;
-  border-radius: 50%; /* 円形にする */
-  background: rgba(0, 56, 112, 0.3); /* 半透明の背景 */
+  border-radius: 50%;
+  background: rgba(0, 56, 112, 0.3);
   cursor: pointer;
   opacity: 0.7;
   transition: opacity 0.3s ease, background-color 0.3s ease;
 }
-
 .fleet-item-slider .splide__arrow svg {
-  fill: #fff; /* アイコンの色を白に */
-  width: 20px; /* アイコンの幅 */
-  height: 20px; /* アイコンの高さ */
+  fill: #fff;
+  width: 20px;
+  height: 20px;
 }
-
-/* 前へボタンの位置とアイコンの向き調整 */
 .fleet-item-slider .splide__arrow--prev {
-  left: 15px; /* スライダーの左端からの距離 */
+  left: 15px;
 }
-
 .fleet-item-slider .splide__arrow--prev svg {
-  transform: rotate(180deg); /* ★★★ 左向きにするために回転 ★★★ */
+  transform: rotate(180deg);
 }
-
-/* 次へボタンの位置 */
 .fleet-item-slider .splide__arrow--next {
-  right: 15px; /* スライダーの右端からの距離 */
+  right: 15px;
 }
-
-/* .fleet-item-slider .splide__arrow--next svg はデフォルトで右向きなので回転不要 */
-/* ホバー時のスタイル */
 .fleet-item-slider .splide__arrow:hover {
   background: rgba(0, 56, 112, 0.6);
   opacity: 1;
 }
-
-/* フォーカス時のスタイル (アクセシビリティのため) */
 .fleet-item-slider .splide__arrow:focus {
   outline: 2px solid Highlight;
   outline: 2px solid -webkit-focus-ring-color;
 }
-
 .fleet-item-slider .splide__arrow:focus:not(:focus-visible) {
   outline: none;
 }
-
 .fleet-item-slider .splide__arrow:focus-visible {
   outline: 2px solid Highlight;
   outline: 2px solid -webkit-focus-ring-color;
 }
-
-/* disabled状態のボタン */
 .fleet-item-slider .splide__arrow:disabled {
   background: rgba(0, 56, 112, 0.1);
   cursor: default;
   opacity: 0.3;
 }
-
 .fleet-item-slider .splide__pagination {
   bottom: calc(1em + 10px + 10px);
   margin-top: 10px;

@@ -1,6 +1,6 @@
 const gulp = require('gulp')
 const gulpEjs = require('gulp-ejs') // gulp-ejs プラグイン用
-const ejsEngine = require('ejs') // EJS API (render関数) 用
+const ejsEngine = require('ejs')    // EJS API (render関数) 用
 const rename = require('gulp-rename')
 const sass = require('gulp-sass')(require('sass'))
 const fs = require('fs')
@@ -43,8 +43,9 @@ function readJsonFile(filePath, lang, fileNameForLog = filePath) {
  * 多言語対応のEJSテンプレートをHTMLに変換する
  */
 function buildEJS(done) {
+  const SITE_BASE_URL = 'https://sampo-unyu.co.jp'; 
+
   const allProcessingPromises = languages.flatMap((lang) => {
-    // mapからflatMapに変更し、Promiseの配列をフラット化
     const commonData = readJsonFile(`src/locales/${lang}/common.json`, lang)
     const newsArticlesData = readJsonFile(
       `src/locales/${lang}/news-articles.json`,
@@ -53,7 +54,6 @@ function buildEJS(done) {
     const pageFiles = {
       home: 'home.json',
       news: 'news-list.json',
-      // news_detail は動的生成のため、pageFilesからは除外しても良い
       domestic: 'domestic.json',
       international: 'international.json',
       about: 'about.json',
@@ -77,13 +77,13 @@ function buildEJS(done) {
       })
     }
 
-    // 1. 固定ページの処理 (Promiseを返すようにする)
+    // 1. 固定ページの処理
     const fixedPagesPromise = new Promise((resolve, reject) => {
       gulp
         .src([
           'src/ejs/**/*.ejs',
           '!src/ejs/**/_*.ejs',
-          '!src/ejs/_templates/**/*.ejs', // 詳細ページテンプレートを除外
+          '!src/ejs/_templates/**/*.ejs',
         ])
         .pipe(
           plumber({
@@ -95,7 +95,6 @@ function buildEJS(done) {
               )
               this.emit('end')
               reject({
-                // このPromiseをreject
                 lang: lang,
                 type: 'ejs_plumber_error_fixed',
                 file: fileName,
@@ -131,14 +130,13 @@ function buildEJS(done) {
             const otherLang = lang === 'ja' ? 'en' : 'ja'
             const otherLangRootDirPath =
               otherLang === 'ja' ? 'docs' : `docs/${otherLang}`
-            let pageLinkToOtherLangRoot = path // 他言語の「トップ」へのパス
+            let pageLinkToOtherLangRoot = path
               .relative(outputDirForCurrentFile, otherLangRootDirPath)
               .replace(/\\/g, '/')
             if (pageLinkToOtherLangRoot === '') pageLinkToOtherLangRoot = './'
             else if (!pageLinkToOtherLangRoot.endsWith('/'))
               pageLinkToOtherLangRoot += '/'
 
-            // ★ 現在のページの言語を除いた相対パス部分を計算 (固定ページ用)
             const relativePathFromEjsRoot = path.relative(
               path.join(file.cwd, 'src/ejs'),
               file.path,
@@ -154,8 +152,14 @@ function buildEJS(done) {
               pageSpecificPath += baseFileName + '/'
             }
 
-            // ★ 他言語版の「カレント」ページへの相対URLを生成
             const otherLangUrl = pageLinkToOtherLangRoot + pageSpecificPath
+
+            let pageUrlPath = lang === 'ja' ? '/' : `/${lang}/`;
+            if (pageSpecificPath) {
+              pageUrlPath += pageSpecificPath;
+            }
+            if (pageUrlPath.endsWith('//') && pageUrlPath !== '//') pageUrlPath = pageUrlPath.slice(0, -1);
+            const ogUrl = SITE_BASE_URL + pageUrlPath;
 
             let pageId = path.basename(file.path, '.ejs')
             if (pageId === 'index') {
@@ -174,8 +178,9 @@ function buildEJS(done) {
               lang: lang,
               assetPath: assetPath,
               pageLinkBasePath: pageLinkBasePath,
-              pageLinkToOtherLangRoot: pageLinkToOtherLangRoot, // 他言語トップへのパス
-              otherLangUrl: otherLangUrl, // ★ 他言語カレントページへのパス
+              pageLinkToOtherLangRoot: pageLinkToOtherLangRoot,
+              otherLangUrl: otherLangUrl,
+              ogUrl: ogUrl,
               pageId: pageId,
               currentPageData: pagesData[pageId] || {},
             }
@@ -188,7 +193,6 @@ function buildEJS(done) {
               `[EJS RENDER FIXED:${lang}] Error in ${fileName}: ${err.message}`,
             )
             if (err.codeFrame) console.error(err.codeFrame)
-            // ここでのエラーはplumberがキャッチするはず
           }),
         )
         .pipe(
@@ -204,11 +208,11 @@ function buildEJS(done) {
           }),
         )
         .pipe(gulp.dest('docs'))
-        .on('end', resolve) // 固定ページ処理完了
-        .on('error', reject) // 固定ページ処理エラー
+        .on('end', resolve)
+        .on('error', reject)
     })
 
-    // 2. ニュース詳細ページの動的生成 (Promiseの配列を返す)
+    // 2. ニュース詳細ページの動的生成
     const newsDetailPromises = []
     if (newsArticlesData.articles && Array.isArray(newsArticlesData.articles)) {
       newsArticlesData.articles.forEach((article) => {
@@ -237,7 +241,7 @@ function buildEJS(done) {
         const otherLang = lang === 'ja' ? 'en' : 'ja'
         const detailOtherLangRootDirPath =
           otherLang === 'ja' ? 'docs' : `docs/${otherLang}`
-        let detailPageLinkToOtherLangRoot = path // 他言語の「トップ」へのパス
+        let detailPageLinkToOtherLangRoot = path
           .relative(detailPageOutputDir, detailOtherLangRootDirPath)
           .replace(/\\/g, '/')
         if (detailPageLinkToOtherLangRoot === '')
@@ -245,10 +249,13 @@ function buildEJS(done) {
         else if (!detailPageLinkToOtherLangRoot.endsWith('/'))
           detailPageLinkToOtherLangRoot += '/'
 
-        // ★ 他言語版の「カレント」詳細ページへの相対URLを生成
         const pageSpecificPathForDetail = 'news/' + article.id + '/'
         const otherLangUrlForDetail =
           detailPageLinkToOtherLangRoot + pageSpecificPathForDetail
+
+        let articleUrlPath = lang === 'ja' ? '/' : `/${lang}/`;
+        articleUrlPath += 'news/' + article.id + '/';
+        const ogUrlForDetail = SITE_BASE_URL + articleUrlPath;
 
         const articleDataForTemplate = {
           data: {
@@ -259,8 +266,9 @@ function buildEJS(done) {
           lang: lang,
           assetPath: detailAssetPath,
           pageLinkBasePath: detailPageLinkBasePath,
-          pageLinkToOtherLangRoot: detailPageLinkToOtherLangRoot, // 他言語トップへのパス
-          otherLangUrl: otherLangUrlForDetail, // ★ 他言語カレント詳細ページへのパス
+          pageLinkToOtherLangRoot: detailPageLinkToOtherLangRoot,
+          otherLangUrl: otherLangUrlForDetail,
+          ogUrl: ogUrlForDetail, 
           pageId: articlePageId,
           currentPageData: article,
         }
@@ -327,11 +335,10 @@ function buildEJS(done) {
         newsDetailPromises.push(detailPagePromise)
       })
     }
-    // 各言語ごとのPromiseの配列を返す (固定ページ + 詳細ページ群)
     return [fixedPagesPromise, ...newsDetailPromises]
   })
 
-  Promise.allSettled(allProcessingPromises.flat()) // flat() でネストされたPromise配列を平坦化
+  Promise.allSettled(allProcessingPromises.flat())
     .then((results) => {
       const errors = results.filter((r) => r.status === 'rejected')
       if (errors.length > 0) {
@@ -357,7 +364,6 @@ function buildEJS(done) {
     })
 }
 
-// --- 以下の関数は変更なし ---
 function compileSass() {
   return gulp
     .src('src/assets/scss/style.scss')
@@ -462,7 +468,9 @@ function convertToWebp() {
         },
       }),
     )
-    .pipe(imagemin([imageminWebp({ quality: 75 })]))
+    .pipe(
+      imagemin([imageminWebp({ quality: 75 })]),
+    )
     .pipe(rename({ extname: '.webp' }))
     .pipe(gulp.dest(dest))
     .on('end', function () {

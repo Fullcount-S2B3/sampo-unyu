@@ -1,9 +1,9 @@
 {
-  "meta_title": "Company Overview | SANPO Shipping Co., Ltd.",
-  "meta_description": "This page provides an overview of SANPO Shipping Co., Ltd., including company profile, location, and business operations.",
+  "meta_title": "Company Overview | Sampo Unyu Co.,Ltd.",
+  "meta_description": "This page provides an overview of Sampo Unyu Co.,Ltd., including company profile, location, and business operations.",
   "page_title": "Company Overview",
   "profile_items": [
-    { "label": "Company Name", "value": "SANPO Shipping Co., Ltd." },
+    { "label": "Company Name", "value": "Sampo Unyu Co.,Ltd." },
     {
       "label": "Location",
       "value": "6F, JTB Kawasaki Kyodo Building, 1-1-14 Sunako, Kawasaki-ku, Kawasaki-shi, Kanagawa, Japan"
@@ -24,7 +24,7 @@
     },
     {
       "label": "Number of Employees",
-      "value": "16 total (4 onshore, 12 offshore - employed by affiliate Sanpo SP)"
+      "value": "16 total (4 onshore, 12 offshore - employed by affiliate SAMPO SP)"
     },
     {
       "label": "Fleet Overview",
@@ -46,7 +46,7 @@
         "HOWA SHIPPING S.A. (PANAMA)",
         "HOSHO SHIPPING S.A. (PANAMA)",
         "SP CLOVER SHIPPING Co., Ltd. (MARSHALL ISLANDS)",
-        "Sanpo Shipping Co., Ltd."
+        "Sampo Unyu Co.,Ltd."
       ]
     },
     {

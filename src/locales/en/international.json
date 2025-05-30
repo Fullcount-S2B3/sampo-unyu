@@ -1,30 +1,22 @@
 {
-  "meta_title": "International Ship Manning Services | Our Services | Mitoyo Shipping Co., Ltd.",
-  "meta_description": "Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text.",
-  "page_title": "International Ship Manning Services",
+  "meta_title": "International Vessel Chartering | Services | Sampo Unyu Co., Ltd.",
+  "meta_description": "Sampo Unyu Co., Ltd. supports global logistics by providing owned vessels for international cargo transport. In partnership with trusted management companies, we ensure safe and efficient operations while advancing a sustainable international shipping business in a rapidly evolving global environment.",
+  "page_title": "International Vessel Chartering",
   "sections": [
     {
       "id": "section-transport",
-      "title": "Maritime Transport and International Cargo Shipping",
+      "title": "International Cargo Transportation",
       "heading_level": "h2",
       "paragraphs": [
-        "Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text."
-      ]
-    },
-    {
-      "id": "section-example2",
-      "title": "Commitment to Safety",
-      "heading_level": "h3",
-      "paragraphs": [
-        "This section contains text about our commitment to safety.\nAt Mitoyo Shipping, safety is our top priority, and we maintain a thorough and comprehensive management system."
+        "To support global logistics, we provide owned vessels for international cargo transportation.<br />We are committed to maintaining safe and efficient operational structures at all times."
       ]
     },
     {
       "id": "section-manning",
-      "title": "Vessel Management and Crew Manning",
+      "title": "Ship Management",
       "heading_level": "h2",
       "paragraphs": [
-        "We provide comprehensive services in vessel operation, maintenance, and crew assignment, which are essential in maritime transport.\nWe ensure the safe and efficient operation of our owned vessels."
+        "We entrust vessel operations, maintenance, and crew management to reliable ship management companies.<br />Through collaboration with highly specialized partners, we ensure both safety and operational efficiency."
       ]
     },
     {
@@ -32,7 +24,15 @@
       "title": "Future Outlook",
       "heading_level": "h3",
       "paragraphs": [
-        "This section contains text regarding our future outlook.\nLine breaks can be written like this\nacross multiple lines if needed."
+        "While global demand for maritime logistics remains stable, the international shipping industry continues to face challenges such as crew shortages and tightening regulations.<br />We are committed to advancing a sustainable international shipping business through strengthened collaboration with trusted management companies."
+      ]
+    },
+    {
+      "id": "section-example2",
+      "title": "Commitment to Safety",
+      "heading_level": "h3",
+      "paragraphs": [
+        "We work closely with management partners and relevant authorities to maintain a safety management system aligned with international standards.<br />By upholding a 'safety first' approach on every voyage, we continuously support stable and secure operations."
       ]
     }
   ]

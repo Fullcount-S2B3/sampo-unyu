@@ -1,15 +1,4 @@
 @charset "UTF-8";
-html {
-  font-size: 62.5%;
-}
-
-body {
-  color: #1a1a1a;
-  font-size: 1.6rem;
-  line-height: 1.6;
-  font-family: "Noto Sans JP", sans-serif;
-}
-
 /* すべての要素のマージン・パディングをリセット */
 *,
 *::before,
@@ -93,11 +82,20 @@ img {
   height: auto;
 }
 
+html {
+  font-size: 62.5%;
+}
+
+body {
+  color: #1a1a1a;
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
 body {
   color: #1a1a1a;
   font-size: 1.6rem;
   line-height: 1.7;
-  font-family: "Noto Sans JP", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -130,7 +128,6 @@ h6 {
   color: #003870;
   font-weight: bold;
   line-height: 1.4;
-  font-family: "Noto Sans JP", sans-serif;
 }
 
 h1 {
@@ -160,6 +157,14 @@ img {
 
 .main-content > section {
   overflow: hidden;
+}
+
+html[lang=ja] body {
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+html[lang=en] body {
+  font-family: "Roboto", sans-serif;
 }
 
 .breadcrumb-container {
@@ -322,7 +327,6 @@ img {
   color: inherit;
   font-weight: bold;
   font-size: 2rem;
-  font-family: "Noto Sans JP", sans-serif;
 }
 
 .news-list {
@@ -780,7 +784,6 @@ body:not(.page-top) .header .header__container::before {
   font-weight: normal;
   font-size: 3rem;
   line-height: 1.2;
-  font-family: "Noto Sans JP", sans-serif;
   transition-duration: 0.3s;
   transition-property: color;
   transition-timing-function: ease-in-out;
@@ -1142,7 +1145,6 @@ html[lang=en] .header__logo .header__logo-en {
   color: #fff;
   font-size: 3.2rem;
   line-height: 1;
-  font-family: "Noto Sans JP", sans-serif;
   letter-spacing: 0.1em;
   filter: drop-shadow(0 0 10px rgba(26, 26, 26, 0.5));
   opacity: 0;
@@ -1890,27 +1892,49 @@ body.page-top .main-content::before {
   }
 }
 .main-content--subpage {
-  padding: 5rem 0 10rem;
+  padding: 8rem 0 10rem;
   background-color: #fff;
 }
-
-.content-area {
+.main-content--subpage .content-area {
   display: flex;
   gap: 3rem;
 }
-
-.post-content {
+.main-content--subpage .content-area .post-content {
   flex-grow: 1;
 }
-
-.content-section {
-  margin-bottom: 6rem;
+.main-content--subpage .content-section {
+  margin-bottom: 12rem;
 }
-.content-section:last-child {
+.main-content--subpage .content-section:last-child {
   margin-bottom: 0;
 }
-
-.section-title--left-align {
+.main-content--subpage .content-section .section-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px; /* 画像とテキストの間隔 */
+}
+.main-content--subpage .content-section .section-layout .section__image-wrapper {
+  flex: 0 0 40%; /* 画像の幅を40%に固定（調整可能） */
+  /* または max-width: 450px; など、具体的な最大幅も指定すると良いでしょう */
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 16px;
+}
+.main-content--subpage .content-section .section-layout .section__image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.main-content--subpage .content-section .section-layout .section__content-wrapper {
+  flex: 1; /* 残りのスペースをテキストが使用 */
+}
+.main-content--subpage .content-section:nth-child(odd).has-image .section-layout {
+  flex-direction: row-reverse;
+}
+.main-content--subpage .content-section:not(.has-image) .section__content-wrapper {
+  flex-basis: 100%;
+}
+.main-content--subpage .section-title--left-align {
   margin-bottom: 2.5rem;
   padding-bottom: 1rem;
   border-bottom: 2px solid #003870;
@@ -1918,12 +1942,11 @@ body.page-top .main-content::before {
   text-align: left;
 }
 @media (max-width: 768px) {
-  .section-title--left-align {
+  .main-content--subpage .section-title--left-align {
     font-size: 2.24rem;
   }
 }
-
-.subsection-title {
+.main-content--subpage .subsection-title {
   margin-bottom: 2rem;
   padding-left: 1.5rem;
   border-left: 10px solid #0e6eb8;
@@ -1933,7 +1956,7 @@ body.page-top .main-content::before {
   font-family: "Noto Sans JP", sans-serif;
 }
 @media (max-width: 768px) {
-  .subsection-title {
+  .main-content--subpage .subsection-title {
     font-size: 2.24rem;
   }
 }

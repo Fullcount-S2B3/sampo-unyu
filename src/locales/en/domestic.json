@@ -1,22 +1,26 @@
 {
-  "meta_title": "Domestic Ship Manning Services | Business Overview | SANPO Shipping Co., Ltd.",
-  "meta_description": "Learn about our Domestic Ship Manning Services, including cargo transportation between domestic ports, ship management, and crew deployment.",
-  "page_title": "Domestic Ship Manning Services",
+  "meta_title": "Domestic Vessel Chartering | Services | Sampo Unyu Co., Ltd.",
+  "meta_description": "Sampo Unyu Co., Ltd. provides domestic vessel chartering services with a focus on coastal cargo transportation, including energy delivery to the Tokyo Islands. We handle ship operation and management comprehensively, contributing to the development of domestic maritime transport through safe and reliable shipping.",
+  "page_title": "Domestic Vessel Chartering",
   "sections": [
     {
       "id": "section-transport",
-      "title": "Maritime Transport & Domestic Cargo Shipping",
+      "title": "Coastal Cargo Transportation",
       "heading_level": "h2",
+      "image_basename": "domestic-01", 
+      "image_fallback_extension": "jpg", 
       "paragraphs": [
-        "In recent years, maritime transport has played an important role as a means suitable for large-volume and long-distance transportation.\nWe provide domestic cargo shipping services between Japanese ports using our owned vessels."
+        "In recent years, maritime transport has played a vital role as an efficient means for bulk and long-distance cargo transportation.<br />We mainly operate coastal cargo transport, including energy deliveries to the Tokyo Islands."
       ]
     },
     {
       "id": "section-manning",
-      "title": "Ship Management & Crew Deployment",
+      "title": "Ship Management",
       "heading_level": "h2",
+      "image_basename": "domestic-02", 
+      "image_fallback_extension": "jpg", 
       "paragraphs": [
-        "We consistently handle ship operation and maintenance, which are essential to maritime transport, along with crew deployment to ensure proper operation.\nWe support the safe and efficient operation of our owned vessels."
+        "We work in close partnership with ship management companies to ensure seamless operations, maintenance, and crew placement—essential elements of maritime logistics.<br />Our efforts support the safe and efficient operation of our owned vessels."
       ]
     },
     {
@@ -24,7 +28,7 @@
       "title": "Future Outlook",
       "heading_level": "h3",
       "paragraphs": [
-        "This section will contain text about our future outlook.\nIf line breaks are necessary, you can write across\nmultiple lines like this."
+        "Despite steady demand for domestic marine cargo transport, vessel availability and carrying capacity are declining.<br />We aim to contribute to the growth of the domestic maritime industry through strong collaboration with management companies and seafarers."
       ]
     },
     {
@@ -32,7 +36,7 @@
       "title": "Commitment to Safety",
       "heading_level": "h3",
       "paragraphs": [
-        "This section will contain text about our commitment to safety.\nAt SANPO Shipping, we place the highest priority on safe operation and maintain a thorough management system."
+        "We maintain close communication with charterers and management partners to constantly assess and ensure vessel safety.<br />With a strong focus on 'safety first,' we remain committed to reliable operations on every voyage."
       ]
     }
   ]

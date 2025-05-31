@@ -1,7 +1,6 @@
 @use '../abstracts' as *;
 
 body {
-  font-family: $font-base;
   font-size: $font-size-base;
   line-height: 1.7;
   color: $color-dark;
@@ -29,7 +28,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $font-heading;
   font-weight: bold;
   line-height: 1.4;
   color: $color-primary;
@@ -62,4 +60,18 @@ img {
 
 .main-content > section {
   overflow: hidden;
+}
+
+
+
+html[lang="ja"] {
+  body {
+  font-family: $font-base;
+  }
+}
+
+html[lang="en"] {
+  body {
+    font-family: $font-roboto;
+  }
 }

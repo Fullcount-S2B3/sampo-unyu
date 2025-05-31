@@ -1,7 +1,19 @@
 <%
   const pageId = 'international';
   const commonData = data.common;
-  const currentPageData = data.pages[pageId] || {}; 
+  const currentPageData = data.pages[pageId] || {};
+
+  // Helper function to get MIME type from extension
+  const getMimeType = (extension) => {
+    if (!extension) return '';
+    const ext = extension.toLowerCase();
+    if (ext === 'jpg' || ext === 'jpeg') return 'image/jpeg';
+    if (ext === 'png') return 'image/png';
+    if (ext === 'webp') return 'image/webp';
+    if (ext === 'gif') return 'image/gif';
+    // Add other types if needed
+    return ''; // fallback to let browser decide or handle error
+  };
 %>
 <!DOCTYPE html>
 <html lang="<%= lang %>">
@@ -29,24 +41,48 @@
       <div class="container content-area">
         <article class="post-content">
           <% if (currentPageData.sections && currentPageData.sections.length > 0) { %>
-            <% currentPageData.sections.forEach(function(section) { %>
-              <section class="content-section" <% if (section.id) { %>id="<%- section.id %>"<% } %>>
-                
-                <% if (section.title) { %>
-                  <% if (section.heading_level === 'h3') { %>
-                    <h3 class="subsection-title"><%- section.title %></h3>
-                  <% } else { %> 
-                    <h2 class="section-title section-title--left-align">
-                      <%- section.title %>
-                    </h2>
+            <% currentPageData.sections.forEach(function(section, index) { %>
+              <% const hasImage = section.image_basename && section.image_basename.trim() !== '' && section.image_fallback_extension && section.image_fallback_extension.trim() !== ''; %>
+              <section class="content-section <% if (hasImage) { %>has-image<% } %>" <% if (section.id) { %>id="<%- section.id %>"<% } %>>
+                <div class="section-layout">
+                  <% if (hasImage) { %>
+                    <% const webpSrc = assetPath + 'images/service/' + section.image_basename + '.webp'; %>
+                    <% const fallbackSrc = assetPath + 'images/service/' + section.image_basename + '.' + section.image_fallback_extension; %>
+                    <% const fallbackMimeType = getMimeType(section.image_fallback_extension); %>
+                    <div class="section__image-wrapper">
+                      <picture>
+                        <source srcset="<%= webpSrc %>" type="image/webp">
+                        <% if (fallbackMimeType) { %>
+                          <source srcset="<%= fallbackSrc %>" type="<%= fallbackMimeType %>">
+                        <% } %>
+                        <img
+                          src="<%= fallbackSrc %>"
+                          alt="<%- section.title ? section.title + ' イメージ' : 'セクションイメージ ' + (index + 1) %>"
+                          class="section__image"
+                          loading="lazy"
+                        />
+                      </picture>
+                    </div>
                   <% } %>
-                <% } %>
 
-                <% if (section.paragraphs && section.paragraphs.length > 0) { %>
-                  <% section.paragraphs.forEach(function(paragraphText) { %>
-                    <p><%- paragraphText.replace(/\n/g, '<br />') %></p>
-                  <% }); %>
-                <% } %>
+                  <div class="section__content-wrapper">
+                    <% if (section.title) { %>
+                      <% if (section.heading_level === 'h3') { %>
+                        <h3 class="subsection-title"><%- section.title %></h3>
+                      <% } else { %>
+                        <h2 class="section-title section-title--left-align">
+                          <%- section.title %>
+                        </h2>
+                      <% } %>
+                    <% } %>
+
+                    <% if (section.paragraphs && section.paragraphs.length > 0) { %>
+                      <% section.paragraphs.forEach(function(paragraphText) { %>
+                        <p><%- paragraphText.replace(/\n/g, '<br />') %></p>
+                      <% }); %>
+                    <% } %>
+                  </div>
+                </div>
               </section>
             <% }); %>
           <% } else { %>
@@ -57,11 +93,11 @@
     </main>
 
     <%- include('../_includes/_footer', {
-      assetPath: assetPath,
-      pageLinkBasePath: pageLinkBasePath,
-      pageLinkToOtherLangRoot: pageLinkToOtherLangRoot, pageId: pageId, data: data, lang: lang }) %>
+    assetPath: assetPath,
+    pageLinkBasePath: pageLinkBasePath,
+    pageLinkToOtherLangRoot: pageLinkToOtherLangRoot, pageId: pageId, data: data, lang: lang }) %>
     <%- include('../_includes/_scripts', { assetPath: assetPath,
-      pageLinkBasePath: pageLinkBasePath,
-      pageLinkToOtherLangRoot: pageLinkToOtherLangRoot, data: data, lang: lang }) %>
+    pageLinkBasePath: pageLinkBasePath,
+    pageLinkToOtherLangRoot: pageLinkToOtherLangRoot, data: data, lang: lang }) %>
   </body>
 </html>

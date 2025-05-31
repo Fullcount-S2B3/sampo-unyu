@@ -1,52 +1,101 @@
 @use "../abstracts" as *;
 
 .main-content--subpage {
-  padding: 5rem 0 10rem; // 下層ページのメインコンテンツエリアの上下余白
+  padding: 8rem 0 10rem; // 下層ページのメインコンテンツエリアの上下余白
   background-color: $color-white; // 基本は白背景
-}
 
-.content-area {
-  // メインコンテンツとサイドバーを配置するコンテナ
-  display: flex;
-  gap: 3rem; // メインとサイドバーの間隔
-}
+  .content-area {
+    // メインコンテンツとサイドバーを配置するコンテナ
+    display: flex;
+    gap: 3rem; // メインとサイドバーの間隔
 
-.post-content {
-  // 本文エリア
-  flex-grow: 1;
-  // width: 70%; // サイドバーがある場合は幅を指定
-}
-
-.content-section {
-  margin-bottom: 6rem;
-  &:last-child {
-    margin-bottom: 0;
+    .post-content {
+      // 本文エリア
+      flex-grow: 1;
+      // width: 70%; // サイドバーがある場合は幅を指定
+    }
   }
-}
 
-.section-title--left-align {
-  // 下層ページ用の左揃えタイトル
-  text-align: left;
-  // font-size: calc(#{$font-size-h2} * 0.9); // 少し小さめ
-  padding-bottom: 1rem;
-  border-bottom: 2px solid $color-primary;
-  margin-bottom: 2.5rem;
-  font-size: $font-size-h2;
-  @include sp {
-    font-size: $font-size-h2 * 0.7;
+  .content-section {
+    margin-bottom: 12rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    // .section-layout のデフォルトスタイル
+    .section-layout {
+      display: flex;
+      gap: 30px; /* 画像とテキストの間隔 */
+      align-items: flex-start; // 画像とテキストの上端を揃える（お好みで center など）
+
+      .section__image-wrapper {
+        flex: 0 0 40%; /* 画像の幅を40%に固定（調整可能） */
+        /* または max-width: 450px; など、具体的な最大幅も指定すると良いでしょう */
+        aspect-ratio: 16/9;
+        border-radius: 16px;
+        overflow: hidden; // border-radius を画像に適用するため
+        // filter: drop-shadow(0 0 8px rgba($color-dark,0.2));
+      }
+
+      .section__image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .section__content-wrapper {
+        flex: 1; /* 残りのスペースをテキストが使用 */
+      }
+    }
+
+    // ★★★ 奇数番目の .content-section の中の .section-layout に適用 ★★★
+    &:nth-child(odd) {
+      &.has-image .section-layout { // 画像がある場合のみ方向を反転
+        flex-direction: row-reverse;
+      }
+    }
+    // 偶数番目の .content-section の .section-layout はデフォルトの flex-direction: row; となります。
+
+    // 画像がないセクションのテキストエリアの幅調整
+    &:not(.has-image) {
+      .section__content-wrapper {
+        flex-basis: 100%; // 画像がない場合はテキストコンテンツが全幅を使用
+      }
+    }
+    // 画像があるセクションのテキストエリアの幅調整 (flex: 1 で自動調整されるので下記は必須ではない)
+    // &.has-image {
+    //   .section__content-wrapper {
+    //     // flex: 1 で十分なため、特別な指定は不要な場合が多い
+    //   }
+    // }
   }
-}
 
-.subsection-title {
-  // h3相当のタイトル
-  font-family: $font-base; // Noto Sans JP
-  font-size: $font-size-h2;
-  font-weight: bold;
-  color: $color-primary;
-  margin-bottom: 2rem;
-  padding-left: 1.5rem;
-  border-left: 10px solid $color-secondary;
-  @include sp {
-    font-size: $font-size-h2 * 0.7;
+  .section-title--left-align {
+    // 下層ページ用の左揃えタイトル
+    text-align: left;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid $color-primary;
+    margin-bottom: 2.5rem;
+    font-size: $font-size-h2;
+
+    @include sp {
+      font-size: $font-size-h2 * 0.7;
+    }
+  }
+
+  .subsection-title {
+    // h3相当のタイトル
+    font-family: $font-base;
+    font-size: $font-size-h2;
+    font-weight: bold;
+    color: $color-primary;
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+    border-left: 10px solid $color-secondary;
+
+    @include sp {
+      font-size: $font-size-h2 * 0.7;
+    }
   }
 }

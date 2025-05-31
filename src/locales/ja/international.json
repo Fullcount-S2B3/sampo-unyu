@@ -7,6 +7,8 @@
       "id": "section-transport",
       "title": "外航貨物輸送",
       "heading_level": "h2",
+      "image_basename": "international-01", 
+      "image_fallback_extension": "jpg", 
       "paragraphs": [
         "私たちは、国際物流の一翼を担うべく、外航貨物輸送を行うため、所有船舶を提供しております。<br />安全かつ効率的な運航体制を維持することを心掛けています。"
       ]
@@ -15,6 +17,8 @@
       "id": "section-manning",
       "title": "船舶管理",
       "heading_level": "h2",
+      "image_basename": "international-02", 
+      "image_fallback_extension": "jpg", 
       "paragraphs": [
         "信頼できる管理会社と契約を結び、船舶の運航・維持管理および船員の配乗管理を委託しています。<br />専門性の高いパートナーとの連携により、安全性と運航効率の確保を図っています。"
       ]

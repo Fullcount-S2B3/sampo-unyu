@@ -7,6 +7,8 @@
       "id": "section-transport",
       "title": "International Cargo Transportation",
       "heading_level": "h2",
+      "image_basename": "international-01", 
+      "image_fallback_extension": "jpg", 
       "paragraphs": [
         "To support global logistics, we provide owned vessels for international cargo transportation.<br />We are committed to maintaining safe and efficient operational structures at all times."
       ]
@@ -15,6 +17,8 @@
       "id": "section-manning",
       "title": "Ship Management",
       "heading_level": "h2",
+      "image_basename": "international-02", 
+      "image_fallback_extension": "jpg", 
       "paragraphs": [
         "We entrust vessel operations, maintenance, and crew management to reliable ship management companies.<br />Through collaboration with highly specialized partners, we ensure both safety and operational efficiency."
       ]

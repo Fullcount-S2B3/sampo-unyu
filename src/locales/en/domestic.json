@@ -7,6 +7,8 @@
       "id": "section-transport",
       "title": "Coastal Cargo Transportation",
       "heading_level": "h2",
+      "image_basename": "domestic-01", 
+      "image_fallback_extension": "jpg", 
       "paragraphs": [
         "In recent years, maritime transport has played a vital role as an efficient means for bulk and long-distance cargo transportation.<br />We mainly operate coastal cargo transport, including energy deliveries to the Tokyo Islands."
       ]
@@ -15,6 +17,8 @@
       "id": "section-manning",
       "title": "Ship Management",
       "heading_level": "h2",
+      "image_basename": "domestic-02", 
+      "image_fallback_extension": "jpg", 
       "paragraphs": [
         "We work in close partnership with ship management companies to ensure seamless operations, maintenance, and crew placement—essential elements of maritime logistics.<br />Our efforts support the safe and efficient operation of our owned vessels."
       ]

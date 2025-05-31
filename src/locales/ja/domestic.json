@@ -7,6 +7,8 @@
       "id": "section-transport",
       "title": "内航貨物輸送",
       "heading_level": "h2",
+      "image_basename": "domestic-01", 
+      "image_fallback_extension": "jpg", 
       "paragraphs": [
         "近年、海上輸送は大量輸送・長距離輸送に適した輸送手段として重要な役割を果たしています。<br />私たちは東京島嶼部へのエネルギー輸送等の内航貨物輸送を主に行っております。"
       ]
@@ -15,6 +17,8 @@
       "id": "section-manning",
       "title": "船舶管理",
       "heading_level": "h2",
+      "image_basename": "domestic-02", 
+      "image_fallback_extension": "jpg", 
       "paragraphs": [
         "海運において不可欠な船舶の運航・維持管理、適切な運航のための船員配乗をパートナー会社と手を組み一貫して行っております。<br />所有船舶の安全かつ効率的な運航を支えています。"
       ]
